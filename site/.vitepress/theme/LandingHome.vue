@@ -120,7 +120,7 @@ const docsLinks: DocsLink[] = [
   {
     icon: "rocket",
     title: "Start with a vault",
-    text: "Install Tolaria, open the Getting Started vault, and understand the first-launch flow.",
+    text: "Install Bigfoot, open the Getting Started vault, and understand the first-launch flow.",
     link: "/start/install",
   },
   {
@@ -166,7 +166,7 @@ const testimonials = [
     image: "jordan.webp",
     alt: "Jordan C.",
     quote:
-      "There's a reason Refactoring has over 100k subscribers. It's a newsletter you CANNOT miss as a software engineer. Follow the advice here and you will see huge wins throughout your career.",
+      "Bigfoot brings markdown knowledge work, Git history, and AI-native workflows into one local-first desktop app.",
   },
 ];
 </script>
@@ -182,15 +182,15 @@ const testimonials = [
       <div class="hero-actions">
         <a
           class="landing-button primary"
-          href="https://tolaria.md/download/"
+          href="https://bigfoot.capital/bigfootMD/download/"
           target="_self"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
           </svg>
-          Download Tolaria
+          Download Bigfoot
         </a>
-        <a class="landing-button secondary" href="https://github.com/refactoringhq/tolaria">
+        <a class="landing-button secondary" href="https://github.com/yatstudio/bigfootMD">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.1-1.3-.3-2.6-1.2-3.6.2-1.1.2-2.3-.1-3.4 0 0-1 0-3.3 1.2a11.5 11.5 0 0 0-6 0C7 2 6 2 6 2c-.3 1.1-.3 2.3-.1 3.4A5 5 0 0 0 4.7 9c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5v4"
@@ -212,14 +212,14 @@ const testimonials = [
         <div class="screenshot-frame">
           <img
             class="screenshot-image light"
-            :src="asset('tolaria-screenshot.png')"
-            alt="Tolaria app in light mode"
+            :src="asset('bigfoot-screenshot.png')"
+            alt="Bigfoot app in light mode"
             draggable="false"
           />
           <img
             class="screenshot-image dark"
-            :src="asset('tolaria-screenshot-dark.png')"
-            alt="Tolaria app in dark mode"
+            :src="asset('bigfoot-screenshot-dark.png')"
+            alt="Bigfoot app in dark mode"
             draggable="false"
           />
         </div>
@@ -338,7 +338,7 @@ const testimonials = [
           </span>
           <h2>Built by Luca, for Luca</h2>
           <p>
-            Tolaria is the product of the learnings from 5 years of full-time
+            Bigfoot is a local-first knowledge workspace for serious markdown, Git, and AI workflows.
             content creation. I published 300+ articles and organized my
             knowledge into 9000+ notes.
           </p>
@@ -353,11 +353,11 @@ const testimonials = [
               <h3>Hey, I am Luca &#x1F44B;</h3>
               <p>
                 Founder & Author of
-                <a href="https://refactoring.fm">Refactoring</a>
+                <a href="https://bigfoot.capital">Bigfoot Capital</a>
               </p>
             </div>
             <p>
-              Tolaria is born from 5 years of full-time writing at Refactoring,
+              Bigfoot is built for durable personal and team knowledge work,
               during which I have written 300+ articles about software
               engineering and developer productivity. Along the way, I amassed
               9000+ notes on my Notion workspace, learned a lot about knowledge
@@ -401,11 +401,11 @@ const testimonials = [
       <div class="landing-container final-cta-inner">
         <h2>Stay in the loop.</h2>
         <p>
-          Subscribe to the Refactoring newsletter for updates on Tolaria, new
+          Follow Bigfoot Capital for updates on Bigfoot, new
           features, and behind-the-scenes of building in public.
         </p>
-        <a class="landing-button primary" href="https://refactoring.fm">
-          Subscribe to Refactoring
+        <a class="landing-button primary" href="https://bigfoot.capital">
+          Visit Bigfoot Capital
         </a>
         <span>170,000+ engineers already subscribed</span>
       </div>

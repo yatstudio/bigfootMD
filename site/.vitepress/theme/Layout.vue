@@ -6,9 +6,9 @@ import { useData } from "vitepress";
 const { frontmatter } = useData();
 const fallbackGithubStars = "9,946";
 const githubStars = ref(fallbackGithubStars);
-const githubStarsCacheKey = "tolaria:github-stars";
+const githubStarsCacheKey = "bigfoot:github-stars";
 const githubStarsCacheTtlMs = 60 * 60 * 1000;
-const githubRepoApiUrl = "https://api.github.com/repos/refactoringhq/tolaria";
+const githubRepoApiUrl = "https://api.github.com/repos/yatstudio/bigfootMD";
 
 type GithubStarsCache = {
   stars: number;
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
       <template #nav-bar-content-after>
         <a
           class="github-star-widget"
-          href="https://github.com/refactoringhq/tolaria"
+          href="https://github.com/yatstudio/bigfootMD"
           target="_blank"
           rel="noreferrer"
           :aria-label="`${githubStars} GitHub stars`"
