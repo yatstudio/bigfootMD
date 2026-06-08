@@ -8,7 +8,7 @@ date: 2026-04-11
 
 ## Context
 
-Bigfoot is keyboard-first, but shortcut execution had split ownership: `useAppKeyboard` handled some shortcuts in the renderer while `menu.rs` owned others as native Tauri menu accelerators. That split made QA unreliable. Browser tests could prove the renderer path, but not the native menu path, and flaky macOS key synthesis made `Cmd+Shift+L`, `Cmd+Shift+I`, and `Cmd+N` regressions easy to miss.
+Bigfoot Note is keyboard-first, but shortcut execution had split ownership: `useAppKeyboard` handled some shortcuts in the renderer while `menu.rs` owned others as native Tauri menu accelerators. That split made QA unreliable. Browser tests could prove the renderer path, but not the native menu path, and flaky macOS key synthesis made `Cmd+Shift+L`, `Cmd+Shift+I`, and `Cmd+N` regressions easy to miss.
 
 ## Decision
 

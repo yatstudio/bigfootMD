@@ -3,15 +3,15 @@ import { defineConfig } from "vitepress";
 const base = process.env.VITEPRESS_BASE ?? "/";
 
 export default defineConfig({
-  title: "Bigfoot",
+  title: "Bigfoot Note",
   description:
-    "Bigfoot is a local-first Markdown knowledge base with native relationships, Git history, and AI workflows.",
+    "Bigfoot Note is a local-first Markdown knowledge base with native relationships, Git history, and AI workflows.",
   base,
   ignoreDeadLinks: [/^\/download\/?(?:index)?$/, /^\/releases\/?(?:index)?$/],
   cleanUrls: true,
   head: [
     ["link", { rel: "icon", type: "image/png", href: `${base}landing/favicon.png` }],
-    ["meta", { property: "og:title", content: "Bigfoot" }],
+    ["meta", { property: "og:title", content: "Bigfoot Note" }],
     [
       "meta",
       {
@@ -22,7 +22,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    logo: { src: "/landing/bigfoot-icon.png", alt: "Bigfoot" },
+    logo: { src: "/landing/bigfoot-icon.png", alt: "Bigfoot Note" },
     nav: [
       { text: "Start", link: "/start/install" },
       { text: "Concepts", link: "/concepts/vaults" },
@@ -37,7 +37,7 @@ export default defineConfig({
       {
         text: "Start Here",
         items: [
-          { text: "Install Bigfoot", link: "/start/install" },
+          { text: "Install Bigfoot Note", link: "/start/install" },
           { text: "First Launch", link: "/start/first-launch" },
           { text: "Getting Started Vault", link: "/start/getting-started-vault" },
           { text: "Open Or Create A Vault", link: "/start/open-or-create-vault" },
@@ -109,7 +109,7 @@ export default defineConfig({
     footer: {
       message: "Free and open source. Local-first, Git-first, and Markdown-based.",
       copyright:
-        "Bigfoot is AGPL-3.0-or-later. The Bigfoot name and logo remain covered by the project trademark policy.",
+        "Bigfoot Note is AGPL-3.0-or-later. The Bigfoot Note name and logo remain covered by the project trademark policy.",
     },
   },
 });

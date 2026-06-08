@@ -1,10 +1,10 @@
 # AI
 
-Bigfoot has two AI paths: coding agents that can use tools to inspect and edit a vault, and direct model targets that answer in chat mode from note context.
+Bigfoot Note has two AI paths: coding agents that can use tools to inspect and edit a vault, and direct model targets that answer in chat mode from note context.
 
 ## Coding Agents
 
-The AI panel can stream supported local CLI agents through Bigfoot's normalized event layer. Current targets include Claude Code, Codex, OpenCode, Pi, and Gemini CLI when they are installed on the machine.
+The AI panel can stream supported local CLI agents through Bigfoot Note's normalized event layer. Current targets include Claude Code, Codex, OpenCode, Pi, and Gemini CLI when they are installed on the machine.
 
 Coding agents can run in:
 
@@ -23,7 +23,7 @@ Supported provider shapes include:
 
 ## External MCP Setup
 
-Bigfoot exposes an MCP server for external tools. The setup flow can write Bigfoot's MCP entry into Claude Code, Gemini CLI, Cursor, and a generic MCP config path, and it can also copy the exact JSON snippet for manual setup.
+Bigfoot Note exposes an MCP server for external tools. The setup flow can write Bigfoot Note's MCP entry into Claude Code, Gemini CLI, Cursor, and a generic MCP config path, and it can also copy the exact JSON snippet for manual setup.
 
 MCP setup is explicit. Closing the dialog leaves third-party config files untouched.
 

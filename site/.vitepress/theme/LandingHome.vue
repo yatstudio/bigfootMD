@@ -120,7 +120,7 @@ const docsLinks: DocsLink[] = [
   {
     icon: "rocket",
     title: "Start with a vault",
-    text: "Install Bigfoot, open the Getting Started vault, and understand the first-launch flow.",
+    text: "Install Bigfoot Note, open the Getting Started vault, and understand the first-launch flow.",
     link: "/start/install",
   },
   {
@@ -166,7 +166,7 @@ const testimonials = [
     image: "jordan.webp",
     alt: "Jordan C.",
     quote:
-      "Bigfoot brings markdown knowledge work, Git history, and AI-native workflows into one local-first desktop app.",
+      "Bigfoot Note brings markdown knowledge work, Git history, and AI-native workflows into one local-first desktop app.",
   },
 ];
 </script>
@@ -188,7 +188,7 @@ const testimonials = [
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
           </svg>
-          Download Bigfoot
+          Download Bigfoot Note
         </a>
         <a class="landing-button secondary" href="https://github.com/yatstudio/bigfootMD">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -213,13 +213,13 @@ const testimonials = [
           <img
             class="screenshot-image light"
             :src="asset('bigfoot-screenshot.png')"
-            alt="Bigfoot app in light mode"
+            alt="Bigfoot Note app in light mode"
             draggable="false"
           />
           <img
             class="screenshot-image dark"
             :src="asset('bigfoot-screenshot-dark.png')"
-            alt="Bigfoot app in dark mode"
+            alt="Bigfoot Note app in dark mode"
             draggable="false"
           />
         </div>
@@ -338,7 +338,7 @@ const testimonials = [
           </span>
           <h2>Built by Luca, for Luca</h2>
           <p>
-            Bigfoot is a local-first knowledge workspace for serious markdown, Git, and AI workflows.
+            Bigfoot Note is a local-first knowledge workspace for serious markdown, Git, and AI workflows.
             content creation. I published 300+ articles and organized my
             knowledge into 9000+ notes.
           </p>
@@ -357,7 +357,7 @@ const testimonials = [
               </p>
             </div>
             <p>
-              Bigfoot is built for durable personal and team knowledge work,
+              Bigfoot Note is built for durable personal and team knowledge work,
               during which I have written 300+ articles about software
               engineering and developer productivity. Along the way, I amassed
               9000+ notes on my Notion workspace, learned a lot about knowledge
@@ -401,7 +401,7 @@ const testimonials = [
       <div class="landing-container final-cta-inner">
         <h2>Stay in the loop.</h2>
         <p>
-          Follow Bigfoot Capital for updates on Bigfoot, new
+          Follow Bigfoot Capital for updates on Bigfoot Note, new
           features, and behind-the-scenes of building in public.
         </p>
         <a class="landing-button primary" href="https://bigfoot.capital">

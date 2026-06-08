@@ -1,22 +1,22 @@
 ---
 type: ADR
 id: "0129"
-title: "Bigfoot vault item deep links"
+title: "Bigfoot Note vault item deep links"
 status: active
 date: 2026-05-27
 ---
 
-# ADR-0129: Bigfoot vault item deep links
+# ADR-0129: Bigfoot Note vault item deep links
 
 ## Context
 
-Users need durable links they can paste into calendars, task managers, chats, and other apps to return to a Bigfoot vault item. The link needs to identify a registered vault, preserve the file extension so non-Markdown files can be opened, and fail clearly when the vault or item is unavailable. Links must not create or import files implicitly.
+Users need durable links they can paste into calendars, task managers, chats, and other apps to return to a Bigfoot Note vault item. The link needs to identify a registered vault, preserve the file extension so non-Markdown files can be opened, and fail clearly when the vault or item is unavailable. Links must not create or import files implicitly.
 
 Mounted workspaces make vault naming non-trivial. A readable slug is useful, but two vaults can share a label, alias, or folder name. URL parsing also cannot rely only on the browser URL implementation because dot-segment normalization can hide path traversal attempts before validation runs.
 
 ## Decision
 
-Bigfoot deep links use this shape:
+Bigfoot Note deep links use this shape:
 
 ```text
 bigfoot://<vault-slug>/<relative-path-with-extension>

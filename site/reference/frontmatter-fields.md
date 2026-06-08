@@ -1,6 +1,6 @@
 # Frontmatter Fields
 
-Bigfoot uses conventions instead of a required schema.
+Bigfoot Note uses conventions instead of a required schema.
 
 | Field | Meaning |
 | --- | --- |
@@ -19,7 +19,7 @@ Bigfoot uses conventions instead of a required schema.
 
 ## Custom Fields
 
-You can add your own fields. If a field contains wikilinks, Bigfoot can treat it as a relationship.
+You can add your own fields. If a field contains wikilinks, Bigfoot Note can treat it as a relationship.
 
 ## System Fields
 

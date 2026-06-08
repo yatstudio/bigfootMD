@@ -1,6 +1,6 @@
-# Contributing to Bigfoot
+# Contributing to Bigfoot Note
 
-Thanks for being here! Bigfoot is still early, and every bug report, idea, and contribution genuinely helps shape the app.
+Thanks for being here! Bigfoot Note is still early, and every bug report, idea, and contribution genuinely helps shape the app.
 
 ## 🗳️ Where to share what
 
@@ -24,7 +24,7 @@ A few things to keep in mind before opening one:
   - Requests marked **planned** are usually great contribution targets
 - Keep PRs small, focused, and easy to review
 - Include a short explanation of the problem and your solution
-- Follow the dev process described in Bigfoot’s `AGENTS.md` (tests, code health, etc.)
+- Follow the dev process described in Bigfoot Note’s `AGENTS.md` (tests, code health, etc.)
 - Avoid bundling unrelated refactors into the same PR
 
 If you want to contribute a feature, the best place to start is here: <https://bigfoot.capital/>
@@ -33,7 +33,7 @@ If you want to contribute a feature, the best place to start is here: <https://b
 
 If you open a bug report on GitHub, it really helps to include:
 
-- your Bigfoot version
+- your Bigfoot Note version
 - your OS version
 - steps to reproduce
 - what you expected to happen
@@ -44,6 +44,6 @@ The clearer the report, the easier it is for us to reproduce and fix it.
 
 ## 🙏 Thank you
 
-Bigfoot is getting better because people care enough to try it, report what’s broken, suggest what’s missing, and contribute improvements.
+Bigfoot Note is getting better because people care enough to try it, report what’s broken, suggest what’s missing, and contribute improvements.
 
 That means a lot. Thanks for helping build it.

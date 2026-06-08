@@ -1,10 +1,10 @@
 # Contribute
 
-Bigfoot is free and open source, and any kind of help is useful. Pick the path that matches what you want to do.
+Bigfoot Note is free and open source, and any kind of help is useful. Pick the path that matches what you want to do.
 
 ## Sponsor Or Support
 
-The best way to support Bigfoot is to subscribe to [Bigfoot Capital](https://bigfoot.capital/), Luca's newsletter and community about running good teams and shipping software with AI.
+The best way to support Bigfoot Note is to subscribe to [Bigfoot Capital](https://bigfoot.capital/), Luca's newsletter and community about running good teams and shipping software with AI.
 
 ## Feature Requests
 
@@ -20,4 +20,4 @@ Small, focused pull requests are welcome. Check the product board first so you b
 
 ## Report A Bug
 
-Use [GitHub Issues](https://github.com/yatstudio/bigfootMD/issues) for bugs. Include what happened, what you expected, and clear reproduction steps. If you are reporting from inside Bigfoot, use the Contribute panel to copy sanitized diagnostics and attach them to the issue.
+Use [GitHub Issues](https://github.com/yatstudio/bigfootMD/issues) for bugs. Include what happened, what you expected, and clear reproduction steps. If you are reporting from inside Bigfoot Note, use the Contribute panel to copy sanitized diagnostics and attach them to the issue.

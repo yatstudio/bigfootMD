@@ -1,6 +1,6 @@
 # Editor
 
-Bigfoot offers a rich editor for daily writing and a raw Markdown mode for exact file control. Both modes write back to the same Markdown file.
+Bigfoot Note offers a rich editor for daily writing and a raw Markdown mode for exact file control. Both modes write back to the same Markdown file.
 
 ## Rich Editing
 

@@ -2,7 +2,7 @@
 
 The Getting Started vault is a small public sample vault hosted at [yatstudio/bigfootMD-getting-started](https://github.com/yatstudio/bigfootMD-getting-started).
 
-It exists to show Bigfoot's conventions without requiring you to restructure your own notes first.
+It exists to show Bigfoot Note's conventions without requiring you to restructure your own notes first.
 
 ## What It Demonstrates
 
@@ -15,11 +15,11 @@ It exists to show Bigfoot's conventions without requiring you to restructure you
 
 ## Local-Only By Default
 
-When Bigfoot clones the sample, it removes the remote from the local copy. This makes the sample vault disposable. You can edit it freely, commit locally, and delete it later.
+When Bigfoot Note clones the sample, it removes the remote from the local copy. This makes the sample vault disposable. You can edit it freely, commit locally, and delete it later.
 
 To connect a vault to your own remote, use the bottom status bar remote chip or run `Add Remote` from the command palette.
 
-Bigfoot also repairs starter-vault guidance files when needed. `AGENTS.md` is the canonical guidance file, `CLAUDE.md` is kept as a compatibility shim, and `GEMINI.md` is only created when you explicitly restore Gemini guidance.
+Bigfoot Note also repairs starter-vault guidance files when needed. `AGENTS.md` is the canonical guidance file, `CLAUDE.md` is kept as a compatibility shim, and `GEMINI.md` is only created when you explicitly restore Gemini guidance.
 
 ## Use It Alongside Your Own Vaults
 
@@ -29,4 +29,4 @@ This lets search, quick open, note lists, backlinks, and wikilink navigation spa
 
 ## When To Move On
 
-After you understand the sample, open your own vault. Bigfoot does not require a special folder structure: a folder of Markdown files is enough to start. You can remove the sample from Bigfoot's vault list later without deleting its files from disk.
+After you understand the sample, open your own vault. Bigfoot Note does not require a special folder structure: a folder of Markdown files is enough to start. You can remove the sample from Bigfoot Note's vault list later without deleting its files from disk.

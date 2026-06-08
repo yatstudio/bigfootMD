@@ -8,7 +8,7 @@ date: 2026-05-12
 
 ## Context
 
-Bigfoot has relied on props-down callbacks-up state flow since ADR-0026 because most renderer state is orchestrated in `App.tsx` and the component tree stays understandable. Today's `date_display_format` refactor exposed a narrow exception: the same installation-local rendering preference now needs to reach note rows, property chips and cells, inspector surfaces, table-of-contents metadata, search subtitles, and date-editing controls across multiple branches of the tree. Continuing to thread that value through intermediate components would add noisy prop plumbing to components that do not conceptually own the preference.
+Bigfoot Note has relied on props-down callbacks-up state flow since ADR-0026 because most renderer state is orchestrated in `App.tsx` and the component tree stays understandable. Today's `date_display_format` refactor exposed a narrow exception: the same installation-local rendering preference now needs to reach note rows, property chips and cells, inspector surfaces, table-of-contents metadata, search subtitles, and date-editing controls across multiple branches of the tree. Continuing to thread that value through intermediate components would add noisy prop plumbing to components that do not conceptually own the preference.
 
 ## Decision
 
@@ -25,4 +25,4 @@ Leaf components can read shared formatting preferences directly, so `date_displa
 
 This narrows ADR-0026's blanket "no Context for data" rule. The replacement rule is: mutable application/domain state still lives in `App.tsx` plus focused hooks, while React context is allowed only for tightly scoped, cross-cutting UI preferences whose canonical value still originates from that same top-level state.
 
-Future additions to `AppPreferencesProvider` should stay small, renderer-local, and read-focused. If Bigfoot starts moving writable domain state, async workflows, or large derived objects into context, that needs a new ADR rather than quietly expanding this pattern.
+Future additions to `AppPreferencesProvider` should stay small, renderer-local, and read-focused. If Bigfoot Note starts moving writable domain state, async workflows, or large derived objects into context, that needs a new ADR rather than quietly expanding this pattern.

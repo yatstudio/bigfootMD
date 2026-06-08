@@ -8,7 +8,7 @@ date: 2026-03-07
 
 ## Context
 
-As Bigfoot adds features that depend on vault files (type definitions, config files, agents), users with existing vaults would miss these files. Manually creating them is error-prone. Features must work on both new and existing vaults without user intervention.
+As Bigfoot Note adds features that depend on vault files (type definitions, config files, agents), users with existing vaults would miss these files. Manually creating them is error-prone. Features must work on both new and existing vaults without user intervention.
 
 ## Decision
 

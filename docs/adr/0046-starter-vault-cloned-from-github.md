@@ -8,7 +8,7 @@ date: 2026-04-08
 
 ## Context
 
-Bigfoot ships an optional "Getting Started" vault to help new users understand types, properties, wikilinks, and relationships. Previously, all starter content (markdown files, view YAMLs) was stored inside the app repo under `getting-started-vault/` and written to disk via `create_getting_started_vault()`. This created friction: updating sample content required a new app release, the content grew stale quickly, and the bundled files added noise to the main repo.
+Bigfoot Note ships an optional "Getting Started" vault to help new users understand types, properties, wikilinks, and relationships. Previously, all starter content (markdown files, view YAMLs) was stored inside the app repo under `getting-started-vault/` and written to disk via `create_getting_started_vault()`. This created friction: updating sample content required a new app release, the content grew stale quickly, and the bundled files added noise to the main repo.
 
 ## Decision
 

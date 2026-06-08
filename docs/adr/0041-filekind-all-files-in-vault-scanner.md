@@ -8,7 +8,7 @@ date: 2026-04-02
 
 ## Context
 
-Bigfoot vaults often contain non-markdown files alongside notes: images, PDFs, YAML configs, JSON exports, scripts, etc. Previously the vault scanner only indexed `.md` files — all other files were invisible to the app. This made the Folder view incomplete: navigating a folder containing a `config.yml` or `photo.png` showed nothing, even though the file was physically there.
+Bigfoot Note vaults often contain non-markdown files alongside notes: images, PDFs, YAML configs, JSON exports, scripts, etc. Previously the vault scanner only indexed `.md` files — all other files were invisible to the app. This made the Folder view incomplete: navigating a folder containing a `config.yml` or `photo.png` showed nothing, even though the file was physically there.
 
 The need arose when adding a Folder tree view that is meant to mirror the actual filesystem structure. Users expect to see all files in a folder, as any file manager would show.
 
@@ -16,7 +16,7 @@ The need arose when adding a Folder tree view that is meant to mirror the actual
 
 **The vault scanner now indexes all files (not just `.md`). Every `VaultEntry` carries a `fileKind` field (`"markdown"`, `"text"`, or `"binary"`) that controls how the frontend renders and opens it.**
 
-- **`"markdown"`**: full Bigfoot behavior — frontmatter parsing, BlockNote editor, title sync, type system.
+- **`"markdown"`**: full Bigfoot Note behavior — frontmatter parsing, BlockNote editor, title sync, type system.
 - **`"text"`**: filename as title, no frontmatter, opens in raw CodeMirror editor. Covers `.yml`, `.json`, `.ts`, `.py`, `.sh`, etc.
 - **`"binary"`**: filename as title, grayed out, non-clickable. Covers images, PDFs, binaries.
 - **Hidden files** (starting with `.`) are skipped regardless of extension.

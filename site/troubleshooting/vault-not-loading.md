@@ -1,12 +1,12 @@
 # Vault Not Loading
 
-Use this checklist when Bigfoot cannot open or refresh a vault.
+Use this checklist when Bigfoot Note cannot open or refresh a vault.
 
 ## Check The Folder
 
 - Confirm the folder exists.
 - Confirm the folder contains readable files.
-- Confirm Bigfoot has permission to access the folder.
+- Confirm Bigfoot Note has permission to access the folder.
 - Try opening a smaller test vault to isolate the issue.
 
 ## Check Git

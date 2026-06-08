@@ -8,7 +8,7 @@ date: 2026-04-01
 
 ## Context
 
-Bigfoot handles in-app renames (rename.rs) and propagates wikilink updates across the vault. But notes can also be renamed externally — from Finder, another editor, or a git operation (e.g., `git mv`). In those cases, the app had no way to detect that a rename had occurred, leaving wikilinks broken and the vault inconsistent.
+Bigfoot Note handles in-app renames (rename.rs) and propagates wikilink updates across the vault. But notes can also be renamed externally — from Finder, another editor, or a git operation (e.g., `git mv`). In those cases, the app had no way to detect that a rename had occurred, leaving wikilinks broken and the vault inconsistent.
 
 The app already uses git for the cache (ADR-0014) and requires git as a vault prerequisite (ADR-0034), making git diff a natural and already-available detection mechanism.
 

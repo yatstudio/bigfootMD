@@ -9,7 +9,7 @@ date: 2026-04-12
 
 ## Context
 
-Bigfoot's AI features depend on the `claude` CLI being installed on the user's machine. New users arriving with no prior context could open the app, try AI-powered workflows, and get silent failures with no explanation.
+Bigfoot Note's AI features depend on the `claude` CLI being installed on the user's machine. New users arriving with no prior context could open the app, try AI-powered workflows, and get silent failures with no explanation.
 
 A dedicated first-launch prompt was needed to:
 - Surface whether the `claude` CLI is already present.

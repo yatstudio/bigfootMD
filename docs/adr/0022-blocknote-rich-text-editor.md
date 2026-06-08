@@ -8,7 +8,7 @@ date: 2026-02-15
 
 ## Context
 
-Bigfoot needs a rich text editor that can render markdown with YAML frontmatter, support custom inline content types (wikilinks), and provide a modern editing experience. The editor must handle the markdown-to-blocks-to-markdown round-trip without data loss.
+Bigfoot Note needs a rich text editor that can render markdown with YAML frontmatter, support custom inline content types (wikilinks), and provide a modern editing experience. The editor must handle the markdown-to-blocks-to-markdown round-trip without data loss.
 
 ## Decision
 

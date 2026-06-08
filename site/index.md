@@ -3,7 +3,7 @@ layout: page
 sidebar: false
 aside: false
 landing: true
-title: Bigfoot
+title: Bigfoot Note
 description: A second brain for the AI era. Free forever.
 ---
 

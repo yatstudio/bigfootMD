@@ -8,7 +8,7 @@ date: 2026-03-08
 
 ## Context
 
-Bigfoot needs to support arbitrary relationship types between notes (e.g., `Topics:`, `Key People:`, `Depends on:`). Initially, a hardcoded list `RELATIONSHIP_KEYS` identified which frontmatter fields were relationships. This was fragile — adding a new relationship type required a code change, and users couldn't define their own.
+Bigfoot Note needs to support arbitrary relationship types between notes (e.g., `Topics:`, `Key People:`, `Depends on:`). Initially, a hardcoded list `RELATIONSHIP_KEYS` identified which frontmatter fields were relationships. This was fragile — adding a new relationship type required a code change, and users couldn't define their own.
 
 ## Decision
 

@@ -1,12 +1,12 @@
 # Git Authentication
 
-Bigfoot uses system Git authentication. It does not manage provider passwords directly.
+Bigfoot Note uses system Git authentication. It does not manage provider passwords directly.
 
 ## Symptoms
 
 - Push fails.
 - Pull asks for credentials repeatedly.
-- Remote fetch works in one terminal but not in Bigfoot.
+- Remote fetch works in one terminal but not in Bigfoot Note.
 
 ## Checks
 

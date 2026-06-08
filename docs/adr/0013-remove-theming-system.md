@@ -9,7 +9,7 @@ superseded_by: "0081"
 
 ## Context
 
-Bigfoot had a vault-based theming system where themes were markdown notes in `theme/` with `type: Theme` frontmatter. Each property became a CSS variable. This included a `ThemeManager` hook, theme property editor, dark mode detection, live preview on save, and three built-in themes. The system was complex (spanning Rust seed/create/defaults modules, TypeScript hooks, and CSS variable bridging) and added significant maintenance burden for a feature that most users never customized beyond the defaults.
+Bigfoot Note had a vault-based theming system where themes were markdown notes in `theme/` with `type: Theme` frontmatter. Each property became a CSS variable. This included a `ThemeManager` hook, theme property editor, dark mode detection, live preview on save, and three built-in themes. The system was complex (spanning Rust seed/create/defaults modules, TypeScript hooks, and CSS variable bridging) and added significant maintenance burden for a feature that most users never customized beyond the defaults.
 
 ## Decision
 

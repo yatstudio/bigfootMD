@@ -8,7 +8,7 @@ date: 2026-03-24
 
 ## Context
 
-As Bigfoot added more features that store configuration in note frontmatter (pinned properties, type icons, colors, sidebar labels, sort order), the Properties panel became cluttered with internal fields that users shouldn't normally edit. A convention was needed to distinguish user-visible properties from system-internal ones.
+As Bigfoot Note added more features that store configuration in note frontmatter (pinned properties, type icons, colors, sidebar labels, sort order), the Properties panel became cluttered with internal fields that users shouldn't normally edit. A convention was needed to distinguish user-visible properties from system-internal ones.
 
 ## Decision
 

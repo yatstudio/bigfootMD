@@ -11,7 +11,7 @@ date: 2026-03-31
 
 Supersedes the scanning constraint in [ADR-0006](0006-flat-vault-structure.md) which limited vault indexing to root-level `.md` files plus protected folders (`attachments/`, `assets/`).
 
-Users with folder-based workflows (PARA, Zettelkasten with folders, project directories) could not see or filter notes by directory. The vault scanner silently ignored all subdirectory `.md` files, making Bigfoot unsuitable for vaults with any folder structure.
+Users with folder-based workflows (PARA, Zettelkasten with folders, project directories) could not see or filter notes by directory. The vault scanner silently ignored all subdirectory `.md` files, making Bigfoot Note unsuitable for vaults with any folder structure.
 
 ## Decision
 

@@ -1,6 +1,6 @@
 # Use The Command Palette
 
-The command palette is the fastest way to move around Bigfoot.
+The command palette is the fastest way to move around Bigfoot Note.
 
 Open it with:
 

@@ -1,16 +1,16 @@
 # Abstractions
 
-Key abstractions and domain models in Bigfoot.
+Key abstractions and domain models in Bigfoot Note.
 
 ## Design Philosophy
 
-Bigfoot's abstractions follow the **convention over configuration** principle: standard field names, types, and relationships have well-defined meanings and trigger UI behavior automatically. This makes vaults legible both to humans and to AI agents — the more a vault follows conventions, the less custom configuration an AI needs to navigate it correctly.
+Bigfoot Note's abstractions follow the **convention over configuration** principle: standard field names, types, and relationships have well-defined meanings and trigger UI behavior automatically. This makes vaults legible both to humans and to AI agents — the more a vault follows conventions, the less custom configuration an AI needs to navigate it correctly.
 
 The full set of design principles is documented in [ARCHITECTURE.md](./ARCHITECTURE.md#design-principles).
 
 ## Semantic Field Names (conventions)
 
-These frontmatter field names have special meaning in Bigfoot's UI:
+These frontmatter field names have special meaning in Bigfoot Note's UI:
 
 | Field | Meaning | UI behavior |
 |---|---|---|
@@ -27,7 +27,7 @@ These frontmatter field names have special meaning in Bigfoot's UI:
 | `related_to:` | Lateral relationship | Humanized to `Related to` in the UI |
 | `has:` | Contained relationship | Humanized to `Has` in the UI |
 
-Relationship fields are detected dynamically — any frontmatter field containing `[[wikilink]]` values is treated as a relationship (see [ADR-0010](adr/0010-dynamic-wikilink-relationship-detection.md)). Bigfoot's own default relationship vocabulary uses snake_case on disk, but labels are humanized at render time and existing user-authored keys are left untouched.
+Relationship fields are detected dynamically — any frontmatter field containing `[[wikilink]]` values is treated as a relationship (see [ADR-0010](adr/0010-dynamic-wikilink-relationship-detection.md)). Bigfoot Note's own default relationship vocabulary uses snake_case on disk, but labels are humanized at render time and existing user-authored keys are left untouched.
 
 ### System Properties (underscore convention)
 
@@ -36,7 +36,7 @@ Any frontmatter field whose name starts with `_` is a **system property**:
 - It is **not shown** in the Properties panel (neither for notes nor for Type notes)
 - It is **not exposed** as a user-visible property in search, filters, or the UI
 - It **is editable** directly in the raw editor (power users can access it if needed)
-- It is used by Bigfoot internally for configuration, behavior, and UI preferences
+- It is used by Bigfoot Note internally for configuration, behavior, and UI preferences
 
 Examples:
 ```yaml
@@ -69,7 +69,7 @@ Git is a per-vault capability, not a prerequisite for the document model. A vaul
 
 Plain folders become Git-backed only when the user explicitly runs Git initialization from the setup dialog, status bar, or command palette. The setup dialog supports "not now" for a one-time dismissal and "never for this vault" for a local per-vault opt-out from future automatic prompts. Features that depend on Git must check both the vault capability and the installation-local `git_enabled` setting instead of assuming every vault has `.git` or that Git chrome is globally visible.
 
-Git initialization is intentionally scoped to dedicated vault folders. When the current non-git folder looks like a broad personal root such as Documents, Desktop, or Downloads and does not already carry Bigfoot-managed vault markers, `init_git_repo` refuses to run Git and asks the user to select or create a dedicated subfolder instead.
+Git initialization is intentionally scoped to dedicated vault folders. When the current non-git folder looks like a broad personal root such as Documents, Desktop, or Downloads and does not already carry Bigfoot Note-managed vault markers, `init_git_repo` refuses to run Git and asks the user to select or create a dedicated subfolder instead.
 
 ### VaultEntry
 
@@ -179,13 +179,13 @@ Git-facing renderer code must pass an explicit repository path instead of assumi
 
 `useGitFileWorkflows` is the renderer abstraction for note-scoped Git file actions. It translates active tabs, visible entries, and modified-file surfaces into the correct repository path for diff/history commands, deleted-note previews, queued editor diff requests, and discard refresh behavior.
 
-### Bigfoot Deep Links
+### Bigfoot Note Deep Links
 
 Deep links identify existing vault items with `bigfoot://<vault-slug>/<relative-path-with-extension>`. The slug is derived from the registered workspace alias, then label, then path basename; generated links append a stable short hash when two vaults share the same base slug. A manually typed ambiguous base slug is rejected instead of choosing the wrong vault.
 
 The relative path is encoded per segment, preserving `/` as the separator while allowing spaces, Unicode, and reserved characters inside filenames. Decoding rejects `.`, `..`, encoded slashes, backslashes, empty segments, and any resolved path outside the target vault root. Links keep the file extension so Markdown, text, media, PDFs, and other vault files can all route through the same `VaultEntry` lookup.
 
-Deep links are navigation-only. Opening one can focus Bigfoot, switch to a registered vault, reload the index once, and open an existing item; it never creates missing files, imports external files, or silently falls back to another vault. v1 links are path-based, so renaming or moving a file changes the canonical link. macOS and Windows are the verified v1 desktop targets; Linux registration is best-effort until package-level QA covers the supported desktop environments.
+Deep links are navigation-only. Opening one can focus Bigfoot Note, switch to a registered vault, reload the index once, and open an existing item; it never creates missing files, imports external files, or silently falls back to another vault. v1 links are path-based, so renaming or moving a file changes the canonical link. macOS and Windows are the verified v1 desktop targets; Linux registration is best-effort until package-level QA covers the supported desktop environments.
 
 ### File kinds and binary previews
 
@@ -193,11 +193,11 @@ Deep links are navigation-only. Opening one can focus Bigfoot, switch to a regis
 
 | `fileKind` | Source files | UI behavior |
 |---|---|---|
-| `markdown` or absent | `.md`, `.markdown` | Full Bigfoot note model: frontmatter, BlockNote, raw editor, relationships, title sync |
+| `markdown` or absent | `.md`, `.markdown` | Full Bigfoot Note note model: frontmatter, BlockNote, raw editor, relationships, title sync |
 | `text` | UTF-8 editable formats such as `.yml`, `.json`, `.ts`, `.py`, `.sh` | Opens through the raw editor without Markdown note semantics |
 | `binary` | Images, audio, video, PDFs, archives, other non-text files | Stays a normal vault file; previewable media and PDFs open in `FilePreview`, unsupported or broken binaries show an explicit fallback |
 
-Asset previewability is inferred in the renderer from the filename extension (`src/utils/filePreview.ts`) rather than stored as a new persisted kind. Supported images render through `<img>`, supported audio/video render through native HTML media controls, and supported PDFs render through the webview's PDF object renderer, all backed by Tauri asset URLs. On Linux AppImage builds, `should_use_external_media_preview` can disable in-webview audio/video rendering so the same file blocks show filename/external-open fallback controls instead of triggering unstable WebKitGTK media playback. Runtime asset access is accumulated only for vault roots Bigfoot has loaded in the current app session, because Tauri directory forbids cannot be safely reversed after a vault switch. The "open in default app" action re-enters the active-vault command boundary through `open_vault_file_external` before delegating to the native opener. This keeps the filesystem as source of truth and avoids converting assets into proprietary objects.
+Asset previewability is inferred in the renderer from the filename extension (`src/utils/filePreview.ts`) rather than stored as a new persisted kind. Supported images render through `<img>`, supported audio/video render through native HTML media controls, and supported PDFs render through the webview's PDF object renderer, all backed by Tauri asset URLs. On Linux AppImage builds, `should_use_external_media_preview` can disable in-webview audio/video rendering so the same file blocks show filename/external-open fallback controls instead of triggering unstable WebKitGTK media playback. Runtime asset access is accumulated only for vault roots Bigfoot Note has loaded in the current app session, because Tauri directory forbids cannot be safely reversed after a vault switch. The "open in default app" action re-enters the active-vault command boundary through `open_vault_file_external` before delegating to the native opener. This keeps the filesystem as source of truth and avoids converting assets into proprietary objects.
 
 Markdown note PDF export is not a stored file-kind transformation. `src/utils/notePdfExport.ts` temporarily marks the current webview for print-only rendering, asks for a `.pdf` filesystem destination only when the native capability reports direct save support, and invokes Tauri's native `WKWebView` PDF export command on macOS. Windows/Linux Tauri builds and browser mode keep print-dialog fallback behavior. `src/components/useEditorPdfExport.ts` ensures the rich rendered note is active before export, so frontmatter is ignored and the PDF reflects the current rendered editor DOM while leaving the vault file unchanged.
 
@@ -218,12 +218,12 @@ Entity type is stored in the `type:` frontmatter field (e.g. `type: Quarter`). T
 Type is determined **purely** from the `type:` frontmatter field — it is never inferred from the file's folder location. All notes live at the vault root as flat `.md` files:
 
 ```
-~/Bigfoot/
+~/Bigfoot Note/
 ├── my-project.md          ← type: Project (in frontmatter)
 ├── weekly-review.md       ← type: Procedure
 ├── john-doe.md            ← type: Person
 ├── some-topic.md          ← type: Topic
-├── AGENTS.md              ← canonical Bigfoot AI guidance
+├── AGENTS.md              ← canonical Bigfoot Note AI guidance
 ├── CLAUDE.md              ← compatibility shim pointing at AGENTS.md
 ├── GEMINI.md              ← optional Gemini CLI shim pointing at AGENTS.md
 ├── project.md             ← type: Type (definition document)
@@ -231,13 +231,13 @@ Type is determined **purely** from the `type:` frontmatter field — it is never
 ├── ...
 ```
 
-New notes are created at the vault root: `{vault}/{slug}.md`. Changing a note's type only requires updating the `type:` field in frontmatter — the file does not move. Moving a note into a user folder is a separate filesystem concern: the folder path changes, but the note keeps the same filename and `type:` value. Legacy `type/` and `types/` folders are still scanned like other non-hidden vault folders, so existing type documents in those folders continue to work, but new type documents created by Bigfoot are written at the vault root. Legacy `config/` content is still recognized during migration and repair, but Bigfoot's managed AI guidance now lives at the vault root.
+New notes are created at the vault root: `{vault}/{slug}.md`. Changing a note's type only requires updating the `type:` field in frontmatter — the file does not move. Moving a note into a user folder is a separate filesystem concern: the folder path changes, but the note keeps the same filename and `type:` value. Legacy `type/` and `types/` folders are still scanned like other non-hidden vault folders, so existing type documents in those folders continue to work, but new type documents created by Bigfoot Note are written at the vault root. Legacy `config/` content is still recognized during migration and repair, but Bigfoot Note's managed AI guidance now lives at the vault root.
 
 A `flatten_vault` migration command is available to move existing notes from type-based subfolders to the vault root.
 
 ### Types as Files
 
-Each entity type can have a corresponding **type document**: any markdown note with `type: Type` in its frontmatter. Bigfoot creates new type documents at the vault root (e.g., `project.md`, `person.md`) and still reads existing type documents from subfolders. Type documents:
+Each entity type can have a corresponding **type document**: any markdown note with `type: Type` in its frontmatter. Bigfoot Note creates new type documents at the vault root (e.g., `project.md`, `person.md`) and still reads existing type documents from subfolders. Type documents:
 
 - Have `type: Type` in their frontmatter (`Is A: Type` also accepted as legacy alias)
 - Define type metadata: icon, color, order, sidebar label, template, sort, view, visibility
@@ -260,7 +260,7 @@ Each entity type can have a corresponding **type document**: any markdown note w
 
 **Type relationship**: When any entry has an `isA` value (e.g., "Project"), the Rust backend automatically adds a `"Type"` entry to its `relationships` map pointing to `[[project]]`. This makes the type navigable from the Inspector panel while keeping location as an implementation detail.
 
-**Instance schema/defaults**: Custom scalar/scalar-array properties and relationship fields on a type document define the expected shape for notes of that type. Existing instances do not get mutated when a type changes; the Inspector enriches their real frontmatter with gray placeholders for missing type-defined properties/relationships. Valued type fields are copied into frontmatter only when Bigfoot creates a new instance of that type. Blank type fields stay as placeholders.
+**Instance schema/defaults**: Custom scalar/scalar-array properties and relationship fields on a type document define the expected shape for notes of that type. Existing instances do not get mutated when a type changes; the Inspector enriches their real frontmatter with gray placeholders for missing type-defined properties/relationships. Valued type fields are copied into frontmatter only when Bigfoot Note creates a new instance of that type. Blank type fields stay as placeholders.
 
 **UI behavior**:
 - Clicking a section group header pins the type document at the top of the NoteList if it exists
@@ -318,7 +318,7 @@ All `[[wikilinks]]` in the note body (not frontmatter) are extracted by regex an
 
 ### Title / Filename Sync
 
-Bigfoot separates **display title** from the file identifier:
+Bigfoot Note separates **display title** from the file identifier:
 
 - **Display title resolution** (`extract_title` in `vault/parsing.rs`): first `# H1` on the first non-empty body line, then legacy frontmatter `title:`, then slug-to-title from the filename stem.
 - **Opening a note is read-only**: selecting a note does not inject or auto-correct `title:` frontmatter.
@@ -379,7 +379,7 @@ The renderer uses `viewOrdering` helpers to convert drag or command-palette move
 
 ### Neighborhood Mode
 
-`SidebarSelection.kind === 'entity'` is Bigfoot's Neighborhood mode for note-list browsing.
+`SidebarSelection.kind === 'entity'` is Bigfoot Note's Neighborhood mode for note-list browsing.
 
 - The selected `entry` is the neighborhood source note.
 - The source note stays pinned at the top of the note list as a standard active row, not a special card.
@@ -431,7 +431,7 @@ Renderer attachment paths are normalized through `src/utils/vaultAttachments.ts`
 
 UI-only file actions operate on paths that are already selected or indexed in React state. Reveal-in-Finder routes through the Tauri opener plugin, external-open routes through the `open_vault_file_external` command and active-vault boundary before invoking the native opener, and copy-path uses the browser clipboard API. Plain-text paste reads the desktop clipboard through `read_text_from_clipboard` in Tauri so macOS WKWebView clipboard permissions do not block the command; browser/mock mode falls back to the Web Clipboard API or mock handlers. None of those actions mutate vault contents or bypass the backend write boundary.
 
-The local MCP WebSocket bridge follows the same active-vault boundary. `useVaultSwitcher` calls `sync_mcp_bridge_vault` after the persisted selection loads and after each vault switch; the desktop command starts/restarts the bridge with the active mounted workspace set in `VAULT_PATHS`, or stops it when there is no selected vault. App exit uses the same child cleanup path and waits for the bridge process after killing it. MCP Node entrypoints accept explicit `VAULT_PATH`/`VAULT_PATHS` for app-owned or legacy launches; durable external registrations omit vault env and resolve the current mounted workspace set from Bigfoot's `vaults.json` at tool-call time. `mcp-server/tool-service.js` owns the shared tool semantics for active-vault resolution, cross-vault lookup/search, note-creation defaults, vault listing, and UI action intents; `mcp-server/index.js` and `mcp-server/ws-bridge.js` remain transport adapters around that service. Manual MCP config export uses the same packaged `mcp-server/` resolver as registration and app-managed AI agents, including Windows executable-adjacent installs under `%LOCALAPPDATA%\Bigfoot`, so the copied snippet stays durable across active-workspace changes without writing third-party config files. Vault context checks each active workspace root for `AGENTS.md` and returns those instructions alongside note counts, folders, and recent notes. Desktop snippet copy goes through the native `copy_text_to_clipboard` command, while browser/mock mode keeps using the Web Clipboard API. External-client stdio MCP processes also exit when stdin closes; their UI-bridge reconnect timers and WebSocket are canceled during shutdown so disconnected clients do not leave extra Node processes behind.
+The local MCP WebSocket bridge follows the same active-vault boundary. `useVaultSwitcher` calls `sync_mcp_bridge_vault` after the persisted selection loads and after each vault switch; the desktop command starts/restarts the bridge with the active mounted workspace set in `VAULT_PATHS`, or stops it when there is no selected vault. App exit uses the same child cleanup path and waits for the bridge process after killing it. MCP Node entrypoints accept explicit `VAULT_PATH`/`VAULT_PATHS` for app-owned or legacy launches; durable external registrations omit vault env and resolve the current mounted workspace set from Bigfoot Note's `vaults.json` at tool-call time. `mcp-server/tool-service.js` owns the shared tool semantics for active-vault resolution, cross-vault lookup/search, note-creation defaults, vault listing, and UI action intents; `mcp-server/index.js` and `mcp-server/ws-bridge.js` remain transport adapters around that service. Manual MCP config export uses the same packaged `mcp-server/` resolver as registration and app-managed AI agents, including Windows executable-adjacent installs under `%LOCALAPPDATA%\Bigfoot Note`, so the copied snippet stays durable across active-workspace changes without writing third-party config files. Vault context checks each active workspace root for `AGENTS.md` and returns those instructions alongside note counts, folders, and recent notes. Desktop snippet copy goes through the native `copy_text_to_clipboard` command, while browser/mock mode keeps using the Web Clipboard API. External-client stdio MCP processes also exit when stdin closes; their UI-bridge reconnect timers and WebSocket are canceled during shutdown so disconnected clients do not leave extra Node processes behind.
 
 ### Vault Caching
 
@@ -541,7 +541,7 @@ interface PulseCommit {
 
 ### External Vault Refresh
 
-External vault mutations are any disk writes Bigfoot did not just perform through its own save path: Git pulls, AI-agent writes, filesystem watcher events, and edits from another app. These changes must route through `refreshPulledVaultState()` rather than calling `reloadVault()` in isolation. The shared refresh abstraction reloads entries, folders, and saved views together, preserves unsaved active-editor content, reopens a clean active note when the changed-path list includes that note, and closes the active tab if the file disappeared. Editor focus does not block the clean active note from converging to disk when its own file changed externally; if the active editor owned focus before that remount, the app requests editor focus again after the fresh tab is mounted. Unknown or unrelated watcher updates refresh vault-derived state without remounting the active editor. `useVaultWatcher` supplies changed filesystem paths to this abstraction after debouncing and after filtering recent app-owned saves. Overlapping entry reloads and modified-file polls are coalesced with a single trailing rerun so watcher and sync bursts do not stack native vault scans or Git status processes.
+External vault mutations are any disk writes Bigfoot Note did not just perform through its own save path: Git pulls, AI-agent writes, filesystem watcher events, and edits from another app. These changes must route through `refreshPulledVaultState()` rather than calling `reloadVault()` in isolation. The shared refresh abstraction reloads entries, folders, and saved views together, preserves unsaved active-editor content, reopens a clean active note when the changed-path list includes that note, and closes the active tab if the file disappeared. Editor focus does not block the clean active note from converging to disk when its own file changed externally; if the active editor owned focus before that remount, the app requests editor focus again after the fresh tab is mounted. Unknown or unrelated watcher updates refresh vault-derived state without remounting the active editor. `useVaultWatcher` supplies changed filesystem paths to this abstraction after debouncing and after filtering recent app-owned saves. Overlapping entry reloads and modified-file polls are coalesced with a single trailing rerun so watcher and sync bursts do not stack native vault scans or Git status processes.
 
 `useGitRepositories` is the commit-time companion to `useAutoSync`:
 - Owns repository picker validation plus `get_modified_files` and `git_remote_status` loading for active Git repositories
@@ -598,7 +598,7 @@ Defined in `src/components/editorSchema.tsx` and styled in `src/components/Edito
 - The schema overrides BlockNote's default `codeBlock` spec with `createCodeBlockSpec({ ...codeBlockOptions, defaultLanguage: "text" })` from `@blocknote/code-block`.
 - Fenced code blocks now use BlockNote's supported Shiki-backed highlighter path, which renders `.shiki` token spans directly inside the editor DOM.
 - Missing common grammars live in `src/utils/codeBlockLanguageCatalog.ts` and are registered lazily from direct `@shikijs/langs` imports by `src/components/codeBlockOptions.ts`; known aliases such as `ps1` and `vb` normalize to canonical picker values during Markdown import.
-- Bigfoot keeps `defaultLanguage: "text"` so unlabeled code blocks do not silently become JavaScript at creation time. Parsed unlabeled code blocks then run through Bigfoot's lightweight language inference, while explicit fence languages and user dropdown choices still win.
+- Bigfoot Note keeps `defaultLanguage: "text"` so unlabeled code blocks do not silently become JavaScript at creation time. Parsed unlabeled code blocks then run through Bigfoot Note's lightweight language inference, while explicit fence languages and user dropdown choices still win.
 - Inline-code chip styling remains scoped to `.bn-inline-content code`, so fenced `pre > code` nodes keep the dedicated code-block shell instead of inheriting the muted inline surface.
 
 ### Markdown Math
@@ -609,7 +609,7 @@ Defined in `src/utils/mathMarkdown.ts`, `src/components/editorSchema.tsx`, and s
 - The rich editor renders both node types through KaTeX with `throwOnError: false`, so malformed formulas keep their source visible instead of breaking the note.
 - Double-clicking rendered display math edits the math block's `latex` property in-place; Markdown delimiters remain owned by serialization. Inline math can still be reopened as source text for direct editing.
 - `serializeMathAwareBlocks()` converts math nodes back to Markdown delimiters before save, raw-mode entry, and editor-position snapshots.
-- Raw CodeMirror mode always shows the plain Markdown source, so imported technical notes stay editable outside Bigfoot.
+- Raw CodeMirror mode always shows the plain Markdown source, so imported technical notes stay editable outside Bigfoot Note.
 
 ### Mermaid Diagrams
 
@@ -627,9 +627,9 @@ Defined in `src/utils/durableMarkdownBlocks.ts`, `src/utils/editorDurableMarkdow
 
 - Fenced `tldraw` blocks become `tldrawBlock` schema nodes before BlockNote sees the Markdown body.
 - Each `tldrawBlock` stores a stable `boardId` plus the tldraw document snapshot JSON. Session state such as camera, selected tool, and current selection is not persisted into the note.
-- The rich editor renders the block with the `tldraw` package and saves debounced document snapshot changes back into the block props, so normal Bigfoot autosave writes the board into the `.md` file.
+- The rich editor renders the block with the `tldraw` package and saves debounced document snapshot changes back into the block props, so normal Bigfoot Note autosave writes the board into the `.md` file.
 - Whiteboard prop writes re-resolve the live BlockNote block by id before mutating it, and disappear as no-ops if a note reload or mode switch has already removed that block.
-- The tldraw runtime receives Bigfoot's resolved light/dark mode as its user color scheme, so embedded whiteboards follow the app appearance and update while mounted.
+- The tldraw runtime receives Bigfoot Note's resolved light/dark mode as its user color scheme, so embedded whiteboards follow the app appearance and update while mounted.
 - Embedded whiteboards expose a session-only full-window workspace that reuses the same tldraw store and Markdown snapshot; expanding or closing it does not persist camera, tool, or size state.
 - Mermaid and tldraw both register small codecs with the shared durable fenced-block pipeline; scanner, token, block injection, and mixed serialization mechanics live in one owner.
 - The `/whiteboard` slash command inserts an empty tldraw block using the same Markdown-durable storage path. Preview images are intentionally omitted; thumbnails can be added later as derived cache artifacts.
@@ -638,18 +638,18 @@ Defined in `src/utils/durableMarkdownBlocks.ts`, `src/utils/editorDurableMarkdow
 
 Defined in `src/components/bigfootEditorFormatting.tsx` and `src/components/bigfootEditorFormattingConfig.ts`:
 
-- `SingleEditorView` disables BlockNote's default formatting toolbar, `/` menu, and side menu, then mounts Bigfoot-owned controllers so the visible formatting surface matches Bigfoot's markdown round-trip guarantees.
+- `SingleEditorView` disables BlockNote's default formatting toolbar, `/` menu, and side menu, then mounts Bigfoot Note-owned controllers so the visible formatting surface matches Bigfoot Note's markdown round-trip guarantees.
 - `SingleEditorView` owns a whitespace mouse-selection bridge around BlockNote and its rich-editor scroll area: drag starts that land outside the editable text DOM are remapped through the ProseMirror view with clamped coordinates, while drags below the rendered document fall back to the document end. Drags that begin inside BlockNote's contenteditable surface, toolbars, side menu, dialogs, or non-primary mouse buttons stay on BlockNote/native handling.
-- `editorRichCopy.ts` owns rich-editor copy serialization for external apps. Normal selections use BlockNote's external clipboard HTML so tables, lists, checklists, and inline marks paste as rich content outside Bigfoot, while `SingleEditorView` still normalizes `text/plain` and keeps fenced code-block selections on raw code text.
-- The formatting toolbar only exposes inline controls that persist through `blocksToMarkdownLossy()` in Bigfoot's save pipeline: bold, italic, strike, nesting, and link creation. Controls that BlockNote can render temporarily but Bigfoot cannot faithfully persist, such as underline, color, alignment, and the block-type dropdown, are hidden instead of appearing to work and later disappearing.
-- Bigfoot's formatting-toolbar controller also keeps file/image actions mounted across the tiny hover gap between an image block and the floating toolbar, and while the toolbar itself is hovered, so image controls remain usable instead of collapsing mid-interaction.
+- `editorRichCopy.ts` owns rich-editor copy serialization for external apps. Normal selections use BlockNote's external clipboard HTML so tables, lists, checklists, and inline marks paste as rich content outside Bigfoot Note, while `SingleEditorView` still normalizes `text/plain` and keeps fenced code-block selections on raw code text.
+- The formatting toolbar only exposes inline controls that persist through `blocksToMarkdownLossy()` in Bigfoot Note's save pipeline: bold, italic, strike, nesting, and link creation. Controls that BlockNote can render temporarily but Bigfoot Note cannot faithfully persist, such as underline, color, alignment, and the block-type dropdown, are hidden instead of appearing to work and later disappearing.
+- Bigfoot Note's formatting-toolbar controller also keeps file/image actions mounted across the tiny hover gap between an image block and the floating toolbar, and while the toolbar itself is hovered, so image controls remain usable instead of collapsing mid-interaction.
 - `useEditorComposing` tracks editor-owned IME composition events and closes the floating formatting toolbar during composition plus a short post-composition settle window, keeping CJK candidate windows unobstructed without changing normal selection toolbar behavior.
-- `createImeCompositionKeyGuardExtension()` intercepts composing `Enter` keydown events before BlockNote's list shortcuts see them, so Korean/Japanese/Chinese IMEs can commit text at the start of list items without Bigfoot splitting the current bullet. It stops editor shortcut propagation only; it does not prevent the browser/IME default composition action.
+- `createImeCompositionKeyGuardExtension()` intercepts composing `Enter` keydown events before BlockNote's list shortcuts see them, so Korean/Japanese/Chinese IMEs can commit text at the start of list items without Bigfoot Note splitting the current bullet. It stops editor shortcut propagation only; it does not prevent the browser/IME default composition action.
 - `richEditorRecoveryClassifier.ts` is the shared taxonomy for recoverable BlockNote/ProseMirror failures used by render recovery and transform recovery. Paragraph and table-row index failures keep one canonical reason across `editor_render_recovered` and `rich_editor_transform_error_recovered`; the two recovery surfaces differ only in retry, repair, and dispatch behavior.
 - `richEditorInputTransform.ts` is the shared execution shell for rich-editor Markdown `beforeinput` transforms. It reads the live ProseMirror view, skips IME composition, resets state when a stale view is detected, dispatches transform transactions, prevents native input only after successful dispatch, and reports recoverable editor-transform errors through the shared classifier. Arrow ligatures, inline math conversion, and `==highlight==` keep their syntax-specific matching in their feature files and are composed for the main editor by `richEditorInputTransformExtension.ts`.
 - `useImageLightbox` listens for `dblclick` on the rich-editor container and opens `ImageLightbox` only when the event target resolves to a viewable BlockNote image. The target resolver handles media wrappers, ignores image captions/resize controls, missing sources, and tiny tracking-style images, preserving BlockNote's ordinary single-click image selection path.
-- The `/` slash menu remains the supported path for markdown-safe block transformations such as headings, quotes, list blocks, Mermaid diagrams, and whiteboards. Bigfoot filters out BlockNote's toggle-heading and toggle-list variants because those do not map cleanly to the markdown note model.
-- The block-handle side menu keeps only actions that survive Bigfoot's markdown round-trip. Delete and table-header toggles remain available; BlockNote's `Colors` submenu is removed because block colors are not part of Bigfoot's supported markdown surface. Bigfoot renders the add-block button outside the drag handle so the handle stays next to the block content. The side menu aligns itself to the first rendered text line for the hovered block, so H1/H2 typography, line-height, wrapping, and theme changes do not need per-heading offsets. Block reordering uses a Bigfoot-owned pointer gesture and direct BlockNote block moves instead of HTML5 `DataTransfer`, keeping it independent from Tauri's native file-drop system. Block-handle actions re-resolve the current live BlockNote block before mutating or dragging, so note reloads and sync churn cannot leave controls acting on stale block references.
+- The `/` slash menu remains the supported path for markdown-safe block transformations such as headings, quotes, list blocks, Mermaid diagrams, and whiteboards. Bigfoot Note filters out BlockNote's toggle-heading and toggle-list variants because those do not map cleanly to the markdown note model.
+- The block-handle side menu keeps only actions that survive Bigfoot Note's markdown round-trip. Delete and table-header toggles remain available; BlockNote's `Colors` submenu is removed because block colors are not part of Bigfoot Note's supported markdown surface. Bigfoot Note renders the add-block button outside the drag handle so the handle stays next to the block content. The side menu aligns itself to the first rendered text line for the hovered block, so H1/H2 typography, line-height, wrapping, and theme changes do not need per-heading offsets. Block reordering uses a Bigfoot Note-owned pointer gesture and direct BlockNote block moves instead of HTML5 `DataTransfer`, keeping it independent from Tauri's native file-drop system. Block-handle actions re-resolve the current live BlockNote block before mutating or dragging, so note reloads and sync churn cannot leave controls acting on stale block references.
 - BlockNote's table row/column handles are patched so stale or missing hovered-table state cancels the drag and hides handles instead of throwing. Add/remove row and column actions also validate the table position and cell indexes before resolving a ProseMirror `CellSelection`, so reloads or menu lag cannot turn stale handles into invalid table-selection positions. Checklist checkbox handlers also re-resolve the live block before updating `checked`, making delayed clicks after note reloads a no-op instead of a stale block mutation. Browser and native table regressions should exercise row and column dragging plus add-menu actions because the state is tracked per orientation.
 - `SingleEditorView` wraps the BlockNote surface in a narrow render-recovery boundary for recoverable BlockNote node-view failures classified by `richEditorRecoveryClassifier.ts`. The boundary retries the BlockNote view once, records `editor_render_recovered`, and marks the recovered error so the React root handler does not send that handled case back to Sentry. Other render errors still propagate through the normal root error path.
 - `useNoteWikilinkDrop()` is the shared editor-drop abstraction for dragging note rows into either editor mode. It reads the existing note-retargeting drag payload, resolves the vault-relative stem, and inserts a canonical `[[wikilink]]` without hijacking unrelated plain-text drags.
@@ -727,7 +727,7 @@ Typed ASCII arrow sequences are normalized consistently in both editor modes:
 
 ## Styling
 
-The app uses internal light and dark themes owned by Bigfoot, with System as an installation-local preference that follows the OS appearance (see [ADR-0081](adr/0081-internal-light-dark-theme-runtime.md) and [ADR-0112](adr/0112-system-theme-mode.md)). The previous vault-authored theming system remains removed.
+The app uses internal light and dark themes owned by Bigfoot Note, with System as an installation-local preference that follows the OS appearance (see [ADR-0081](adr/0081-internal-light-dark-theme-runtime.md) and [ADR-0112](adr/0112-system-theme-mode.md)). The previous vault-authored theming system remains removed.
 
 1. **Global CSS variables** (`src/index.css`): Semantic app colors, borders, surfaces, and interaction states via `:root` / `[data-theme]`, bridged to Tailwind v4
 2. **Editor theme** (`src/theme.json`): BlockNote typography, flattened to CSS vars by `useEditorTheme`
@@ -816,19 +816,19 @@ Installation-local layout state that should not sync through a vault stays in lo
 
 ### AI Guidance Files
 
-Bigfoot tracks managed vault-level AI guidance separately from normal note content:
-- `AGENTS.md` is the canonical managed guidance file for Bigfoot-aware coding agents
+Bigfoot Note tracks managed vault-level AI guidance separately from normal note content:
+- `AGENTS.md` is the canonical managed guidance file for Bigfoot Note-aware coding agents
 - `CLAUDE.md` is a compatibility shim that points Claude Code back to `AGENTS.md`
 - `GEMINI.md` is an optional Gemini CLI compatibility shim that points Gemini back to `AGENTS.md`
 - `useVaultAiGuidanceStatus` reads `get_vault_ai_guidance_status` and normalizes the backend state into four UI cases: `managed`, `missing`, `broken`, and `custom`
-- `restore_vault_ai_guidance` repairs only Bigfoot-managed files and creates the optional Gemini shim on explicit request; user-authored custom `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` files are surfaced as custom and left untouched
+- `restore_vault_ai_guidance` repairs only Bigfoot Note-managed files and creates the optional Gemini shim on explicit request; user-authored custom `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` files are surfaced as custom and left untouched
 - Editing a usable `AGENTS.md`, including changing its frontmatter `type`, makes the file custom rather than broken; broken is reserved for missing, empty, frontmatter-only, unreadable, or exact replaceable managed templates/stubs
 - The status bar AI badge and command palette consume that abstraction to expose restore actions only when the managed guidance is missing or broken
 
-Vault guidance is intentionally short and vault-specific. General Bigfoot product behavior is delivered through the bundled agent docs resource instead:
+Vault guidance is intentionally short and vault-specific. General Bigfoot Note product behavior is delivered through the bundled agent docs resource instead:
 - `scripts/build-agent-docs.mjs` compiles the public `site/` Markdown into `src-tauri/resources/agent-docs/`
 - `src-tauri/resources/agent-docs/AGENTS.md` orients agents to the generated docs bundle, while `index.md`, section bundles, `all.md`, `search-index.json`, and `pages/` provide fast local lookup
-- `get_agent_docs_path` exposes the resolved resource folder to the renderer, and `buildAgentSystemPrompt()` tells every app-managed CLI agent to read vault `AGENTS.md` first, then search the bundled docs for Bigfoot behavior
+- `get_agent_docs_path` exposes the resolved resource folder to the renderer, and `buildAgentSystemPrompt()` tells every app-managed CLI agent to read vault `AGENTS.md` first, then search the bundled docs for Bigfoot Note behavior
 
 ### Action History
 
@@ -843,8 +843,8 @@ Vault guidance is intentionally short and vault-specific. General Bigfoot produc
 
 `useOnboarding` hook detects first launch:
 - If vault path doesn't exist → show `WelcomeScreen`
-- User can create a new empty vault, open an existing folder, or clone the public Getting Started vault into a chosen parent folder; Bigfoot derives the final `Getting Started` child path before cloning
-- After the starter repo clone completes, Bigfoot removes every remote so the new vault opens local-only by default
+- User can create a new empty vault, open an existing folder, or clone the public Getting Started vault into a chosen parent folder; Bigfoot Note derives the final `Getting Started` child path before cloning
+- After the starter repo clone completes, Bigfoot Note removes every remote so the new vault opens local-only by default
 - Welcome state tracked in localStorage (`bigfoot_welcome_dismissed`, with legacy fallback)
 
 `useGettingStartedClone` encapsulates the non-onboarding Getting Started action:
@@ -862,13 +862,13 @@ Vault guidance is intentionally short and vault-specific. General Bigfoot produc
 
 ### Remote Git Operations
 
-Bigfoot delegates remote auth to the user's system git setup:
+Bigfoot Note delegates remote auth to the user's system git setup:
 - `CloneVaultModal` captures a remote URL and local destination
 - `clone_git_repo` and `create_getting_started_vault` both run system git clone work in blocking Tokio tasks so clone UIs stay responsive
 - On macOS, system-git commands prefer the user's login-shell `git` and `PATH`, and `git_add_remote` preflights HTTPS remotes through `git credential fill` so Keychain can prompt/grant access before the first fetch or push
-- On Linux AppImage launches, every system-git command and MCP runtime subprocess (Node.js or Bun) removes AppImage loader overrides such as `LD_LIBRARY_PATH`, `LD_PRELOAD`, and `GIT_EXEC_PATH` before spawning, so helpers like `git-remote-https` and the system MCP runtime bind against the host library stack instead of Bigfoot's bundled WebKit/AppImage libraries
+- On Linux AppImage launches, every system-git command and MCP runtime subprocess (Node.js or Bun) removes AppImage loader overrides such as `LD_LIBRARY_PATH`, `LD_PRELOAD`, and `GIT_EXEC_PATH` before spawning, so helpers like `git-remote-https` and the system MCP runtime bind against the host library stack instead of Bigfoot Note's bundled WebKit/AppImage libraries
 - On native Linux Wayland launches and Linux AppImage launches, startup environment safeguards set `WEBKIT_DISABLE_DMABUF_RENDERER=1` and `WEBKIT_DISABLE_COMPOSITING_MODE=1` unless the user already provided either variable, keeping WebKitGTK rendering crashes out of the app startup path while leaving native X11 launches unchanged.
-- On Linux AppImage launches, release packaging bundles the GTK3 fcitx immodule into the AppImage and startup environment safeguards write a cache-local `GTK_IM_MODULE_FILE` that points GTK at the mounted module whenever fcitx is configured. If the user has not explicitly chosen a GTK IM module, Bigfoot also sets `GTK_IM_MODULE=fcitx`, allowing WebKitGTK editor input to reach fcitx5 on both Wayland and X11 fallback launches without relying on host GTK module cache paths.
+- On Linux AppImage launches, release packaging bundles the GTK3 fcitx immodule into the AppImage and startup environment safeguards write a cache-local `GTK_IM_MODULE_FILE` that points GTK at the mounted module whenever fcitx is configured. If the user has not explicitly chosen a GTK IM module, Bigfoot Note also sets `GTK_IM_MODULE=fcitx`, allowing WebKitGTK editor input to reach fcitx5 on both Wayland and X11 fallback launches without relying on host GTK module cache paths.
 - `git_add_remote` uses the same system git path and refuses remotes whose history is unrelated or ahead of the local vault
 - Existing `git_pull` / `git_push` commands keep surfacing raw git errors, and clone commands fail fast when git wants interactive terminal input
 - No provider-specific token or username is stored in app settings
@@ -913,7 +913,7 @@ interface Settings {
 }
 ```
 
-Managed by `useSettings` hook and `SettingsPanel` component. `theme_mode` is installation-local because it controls device comfort rather than vault structure; the Settings panel and command-palette Light/Dark/System actions both update that same value. `system` remains a stored preference, while the runtime resolves it to `light` or `dark` for `data-theme` and app consumers. `ui_language` is also installation-local: `null` follows the supported system language with English fallback, while explicit values pin the UI language for this installation. Stored legacy aliases such as `zh-Hans` are normalized to canonical locale codes before the setting reaches React state. `date_display_format` is installation-local and controls rendered dates in note rows, property chips/cells, note info, table-of-contents metadata, and search result subtitles; `AppPreferencesProvider` owns the UI-level value so rendering surfaces can consume it without prop forwarding, while date picker text input remains ISO for predictable manual entry and storage. `note_width_mode` is the installation-local default for rich-editor note width; individual notes can override it with `_width` when they already have frontmatter. `sidebar_type_pluralization_enabled` is installation-local and defaults to `true`; when false, type rows use exact type names unless the type document defines an explicit `sidebar_label` override. `ai_features_enabled` is installation-local and defaults to `true`; when false, Bigfoot hides AI panel controls, status bar AI indicators, command-palette AI mode, and missing-agent prompts while leaving Settings as the re-enable path. `git_enabled` is also installation-local and defaults to `true`; when false, Bigfoot hides Git status-bar entries and command-palette actions, disables AutoGit controls, and avoids background Git refresh/sync work while leaving Settings as the re-enable path. `default_ai_agent` remains the legacy installation-local CLI fallback. `default_ai_target` is the active AI target used by the AI panel and status bar; it can point at a coding agent or a configured direct model. `ai_model_providers` stores non-secret provider metadata for local/API model targets, while hosted API keys live in Bigfoot's local app-data secrets file or user-managed environment variables instead of being persisted in app settings; env-backed keys can come from the app process or exported zsh/bash startup values on Unix. Direct OpenAI-compatible model streams receive the active vault root and may execute Bigfoot's native create-only `create_note` tool, but they do not receive shell access or general file-write tools. `ai_workspace_conversations` stores installation-local AI chat sidebar metadata only: conversation ids, titles, archive state, and explicit target overrides. It does not store vault content, prompts, transcripts, or model credentials. Provider defaults and local/API grouping come from the shared `src/shared/aiModelProviderCatalog.json` catalog used by both renderer settings and the Tauri direct-model runtime. `hide_gitignored_files` is also installation-local and defaults to `true`; changing it reloads entries, search, saved views, and folders without restarting. The `all_notes_show_pdfs`, `all_notes_show_images`, and `all_notes_show_unsupported` flags are installation-local All Notes category toggles that default off and update the list/counts without changing vault files. The AutoGit fields are also installation-local: `useAutoGit` consumes them to schedule automatic checkpoints, while `useCommitFlow` and the status bar quick action reuse the same checkpoint runner and deterministic automatic commit message generation.
+Managed by `useSettings` hook and `SettingsPanel` component. `theme_mode` is installation-local because it controls device comfort rather than vault structure; the Settings panel and command-palette Light/Dark/System actions both update that same value. `system` remains a stored preference, while the runtime resolves it to `light` or `dark` for `data-theme` and app consumers. `ui_language` is also installation-local: `null` follows the supported system language with English fallback, while explicit values pin the UI language for this installation. Stored legacy aliases such as `zh-Hans` are normalized to canonical locale codes before the setting reaches React state. `date_display_format` is installation-local and controls rendered dates in note rows, property chips/cells, note info, table-of-contents metadata, and search result subtitles; `AppPreferencesProvider` owns the UI-level value so rendering surfaces can consume it without prop forwarding, while date picker text input remains ISO for predictable manual entry and storage. `note_width_mode` is the installation-local default for rich-editor note width; individual notes can override it with `_width` when they already have frontmatter. `sidebar_type_pluralization_enabled` is installation-local and defaults to `true`; when false, type rows use exact type names unless the type document defines an explicit `sidebar_label` override. `ai_features_enabled` is installation-local and defaults to `true`; when false, Bigfoot Note hides AI panel controls, status bar AI indicators, command-palette AI mode, and missing-agent prompts while leaving Settings as the re-enable path. `git_enabled` is also installation-local and defaults to `true`; when false, Bigfoot Note hides Git status-bar entries and command-palette actions, disables AutoGit controls, and avoids background Git refresh/sync work while leaving Settings as the re-enable path. `default_ai_agent` remains the legacy installation-local CLI fallback. `default_ai_target` is the active AI target used by the AI panel and status bar; it can point at a coding agent or a configured direct model. `ai_model_providers` stores non-secret provider metadata for local/API model targets, while hosted API keys live in Bigfoot Note's local app-data secrets file or user-managed environment variables instead of being persisted in app settings; env-backed keys can come from the app process or exported zsh/bash startup values on Unix. Direct OpenAI-compatible model streams receive the active vault root and may execute Bigfoot Note's native create-only `create_note` tool, but they do not receive shell access or general file-write tools. `ai_workspace_conversations` stores installation-local AI chat sidebar metadata only: conversation ids, titles, archive state, and explicit target overrides. It does not store vault content, prompts, transcripts, or model credentials. Provider defaults and local/API grouping come from the shared `src/shared/aiModelProviderCatalog.json` catalog used by both renderer settings and the Tauri direct-model runtime. `hide_gitignored_files` is also installation-local and defaults to `true`; changing it reloads entries, search, saved views, and folders without restarting. The `all_notes_show_pdfs`, `all_notes_show_images`, and `all_notes_show_unsupported` flags are installation-local All Notes category toggles that default off and update the list/counts without changing vault files. The AutoGit fields are also installation-local: `useAutoGit` consumes them to schedule automatic checkpoints, while `useCommitFlow` and the status bar quick action reuse the same checkpoint runner and deterministic automatic commit message generation.
 
 ## Telemetry
 

@@ -8,11 +8,11 @@ date: 2026-02-28
 
 ## Context
 
-Bigfoot's AI features (agent panel, chat) need structured access to vault data — searching notes, reading content, editing frontmatter, and steering the UI. Rather than building a bespoke API, the Model Context Protocol (MCP) provides a standardized tool interface that works with Claude Code, Cursor, and any MCP-compatible client.
+Bigfoot Note's AI features (agent panel, chat) need structured access to vault data — searching notes, reading content, editing frontmatter, and steering the UI. Rather than building a bespoke API, the Model Context Protocol (MCP) provides a standardized tool interface that works with Claude Code, Cursor, and any MCP-compatible client.
 
 ## Decision
 
-**Bigfoot ships a Node.js MCP server (`mcp-server/`) that exposes vault operations as 14 tools. It runs on stdio for external clients and on two WebSocket ports (9710 for tool calls, 9711 for UI actions) for the embedded Bigfoot frontend. Tauri spawns the server on startup and auto-registers it in Claude Code and Cursor configs.**
+**Bigfoot Note ships a Node.js MCP server (`mcp-server/`) that exposes vault operations as 14 tools. It runs on stdio for external clients and on two WebSocket ports (9710 for tool calls, 9711 for UI actions) for the embedded Bigfoot Note frontend. Tauri spawns the server on startup and auto-registers it in Claude Code and Cursor configs.**
 
 ## Options considered
 

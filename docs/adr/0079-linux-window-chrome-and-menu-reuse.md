@@ -8,13 +8,13 @@ date: 2026-04-24
 
 ## Context
 
-Bigfoot's desktop shell was designed around macOS window chrome. `titleBarStyle: "Overlay"` and `hiddenTitle: true` give the app a clean single-surface titlebar on macOS, but Linux ignores those flags and draws native GTK decorations and a native menu bar on top of the React UI. That creates a double-titlebar effect, mismatched theming, and inconsistent behavior between the main window and detached note windows.
+Bigfoot Note's desktop shell was designed around macOS window chrome. `titleBarStyle: "Overlay"` and `hiddenTitle: true` give the app a clean single-surface titlebar on macOS, but Linux ignores those flags and draws native GTK decorations and a native menu bar on top of the React UI. That creates a double-titlebar effect, mismatched theming, and inconsistent behavior between the main window and detached note windows.
 
-We still need Linux to reuse Bigfoot's existing command palette, shortcut manifest, and deterministic menu-command routing instead of inventing a Linux-only command path.
+We still need Linux to reuse Bigfoot Note's existing command palette, shortcut manifest, and deterministic menu-command routing instead of inventing a Linux-only command path.
 
 ## Decision
 
-**Bigfoot uses custom React-rendered window chrome on Linux and routes its menu through the existing shared command IDs.**
+**Bigfoot Note uses custom React-rendered window chrome on Linux and routes its menu through the existing shared command IDs.**
 
 - The main Tauri window disables server-side decorations on Linux during app setup.
 - Detached note windows set `decorations: false` when Linux chrome is active.
@@ -25,13 +25,13 @@ We still need Linux to reuse Bigfoot's existing command palette, shortcut manife
 
 ## Options considered
 
-- **React-rendered Linux chrome with shared command IDs** (chosen): keeps Linux visually aligned with Bigfoot's existing shell and preserves one command-routing model across keyboard shortcuts, menu clicks, and QA helpers. Cons: Bigfoot now owns Linux window chrome behavior directly.
+- **React-rendered Linux chrome with shared command IDs** (chosen): keeps Linux visually aligned with Bigfoot Note's existing shell and preserves one command-routing model across keyboard shortcuts, menu clicks, and QA helpers. Cons: Bigfoot Note now owns Linux window chrome behavior directly.
 - **Keep native GTK decorations and menu bar on Linux**: cheaper to ship, but it breaks visual consistency and produces overlapping titlebar/menu surfaces that do not match the rest of the app.
 - **Introduce Linux-only command wiring for the custom menu**: would allow a Linux-specific implementation, but it would fork the shortcut/menu architecture and weaken deterministic QA.
 
 ## Consequences
 
-- Linux main windows and detached note windows now present one consistent titlebar surface controlled by Bigfoot.
+- Linux main windows and detached note windows now present one consistent titlebar surface controlled by Bigfoot Note.
 - Menu commands, command palette actions, and deterministic QA still share the same command IDs, which limits platform-specific drift.
 - Linux packaging and CI must install WebKit2GTK 4.1 dependencies and produce Linux bundles explicitly.
-- Bigfoot now owns Linux resize handles, maximize/minimize/close behavior, and titlebar drag-region behavior in the renderer, so regressions in those surfaces require direct tests.
+- Bigfoot Note now owns Linux resize handles, maximize/minimize/close behavior, and titlebar drag-region behavior in the renderer, so regressions in those surfaces require direct tests.

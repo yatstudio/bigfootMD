@@ -1,7 +1,7 @@
 [package]
 name = "bigfoot"
 version = "0.1.0"
-description = "Personal knowledge and life management app"
+description = "Bigfoot Note personal knowledge and life management app"
 authors = ["Luca Rossi"]
 license = "AGPL-3.0-or-later"
 repository = ""

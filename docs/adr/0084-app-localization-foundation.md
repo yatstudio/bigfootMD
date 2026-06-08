@@ -8,11 +8,11 @@ date: 2026-04-26
 
 ## Context
 
-Bigfoot was effectively English-only. Users requested a general i18n foundation and Chinese-language support. We need a path that lets the UI adopt additional locales without pushing UI-language preferences into vault files or making every partially translated string a runtime failure.
+Bigfoot Note was effectively English-only. Users requested a general i18n foundation and Chinese-language support. We need a path that lets the UI adopt additional locales without pushing UI-language preferences into vault files or making every partially translated string a runtime failure.
 
 ## Decision
 
-Bigfoot owns a dependency-free frontend localization layer in `src/lib/i18n.ts`.
+Bigfoot Note owns a dependency-free frontend localization layer in `src/lib/i18n.ts`.
 
 - English is the canonical fallback locale.
 - Simplified Chinese (`zh-Hans`) is the first additional locale.
@@ -23,7 +23,7 @@ Bigfoot owns a dependency-free frontend localization layer in `src/lib/i18n.ts`.
 
 ## Alternatives considered
 
-- **Add an i18n dependency now**: useful long term, but unnecessary for the first locale and would add framework surface before we know Bigfoot's locale workflow.
+- **Add an i18n dependency now**: useful long term, but unnecessary for the first locale and would add framework surface before we know Bigfoot Note's locale workflow.
 - **Store language in the vault**: rejected because UI language is an installation preference, not content structure.
 - **Translate ad hoc strings inline**: rejected because it would make fallback behavior inconsistent and future locales expensive.
 

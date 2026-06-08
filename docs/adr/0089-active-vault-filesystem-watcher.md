@@ -8,13 +8,13 @@ date: 2026-04-27
 
 ## Context
 
-Bigfoot treats the filesystem as the source of truth, but before this decision the running app only noticed external file changes after a manual Reload Vault, a Git pull, or an AI-agent-specific refresh callback. Edits from another editor, terminal commands, another Bigfoot window, or a non-pull Git operation could leave React state and the editor surface stale.
+Bigfoot Note treats the filesystem as the source of truth, but before this decision the running app only noticed external file changes after a manual Reload Vault, a Git pull, or an AI-agent-specific refresh callback. Edits from another editor, terminal commands, another Bigfoot Note window, or a non-pull Git operation could leave React state and the editor surface stale.
 
 ADR-0071 already defines the safe reconciliation policy for external vault mutations: reload vault-derived state, protect unsaved local edits, and reopen the clean active note from disk when needed. Filesystem watching needed to reuse that policy instead of adding another ad hoc reload path.
 
 ## Decision
 
-**Bigfoot watches the active desktop vault with a native filesystem watcher and routes external change batches through the shared external-refresh reconciler.**
+**Bigfoot Note watches the active desktop vault with a native filesystem watcher and routes external change batches through the shared external-refresh reconciler.**
 
 The desktop backend exposes `start_vault_watcher` and `stop_vault_watcher` commands backed by Rust `notify`. It watches the active vault recursively, ignores known non-content churn such as `.git/`, `node_modules/`, temp files, and `.bigfoot-rename-txn`, then emits `vault-changed` events with the active vault path and changed paths.
 
@@ -31,6 +31,6 @@ The renderer owns batching and reconciliation. `useVaultWatcher` starts the back
 
 - External writes converge automatically into the visible vault state after a short debounce.
 - Active clean notes are refreshed through the same path as pull and AI-agent updates; unsaved local edits remain protected.
-- Bigfoot app-owned saves are suppressed briefly so autosave does not trigger a full external refresh loop.
+- Bigfoot Note app-owned saves are suppressed briefly so autosave does not trigger a full external refresh loop.
 - The status bar can show reload progress for manual and automatic refreshes.
 - The watcher is a desktop-only integration; mobile builds keep no-op command stubs until a mobile-specific filesystem strategy exists.

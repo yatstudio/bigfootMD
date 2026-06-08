@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "Bigfoot",
+  "productName": "Bigfoot Note",
   "version": "0.1.0",
   "identifier": "capital.bigfoot.desktop",
   "build": {
@@ -14,7 +14,7 @@
     "macOSPrivateApi": true,
     "windows": [
       {
-        "title": "Bigfoot",
+        "title": "Bigfoot Note",
         "width": 1400,
         "height": 900,
         "minWidth": 480,
@@ -75,7 +75,9 @@
   "plugins": {
     "deep-link": {
       "desktop": {
-        "schemes": ["bigfoot"]
+        "schemes": [
+          "bigfoot"
+        ]
       }
     },
     "updater": {

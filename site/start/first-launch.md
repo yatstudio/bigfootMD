@@ -4,7 +4,7 @@ The first launch flow is designed to get you into a real vault quickly without h
 
 ## What You Choose
 
-Bigfoot asks whether you want to:
+Bigfoot Note asks whether you want to:
 
 - Create or clone the Getting Started vault.
 - Open an existing local vault.
@@ -12,9 +12,9 @@ Bigfoot asks whether you want to:
 
 The Getting Started vault is cloned locally and then disconnected from its remote. That keeps the sample safe to edit without accidentally pushing tutorial changes.
 
-## What Bigfoot Creates
+## What Bigfoot Note Creates
 
-Bigfoot stores app-level settings on the local machine. Your notes stay in the vault folder you choose.
+Bigfoot Note stores app-level settings on the local machine. Your notes stay in the vault folder you choose.
 
 | Data | Stored in |
 | --- | --- |
@@ -32,4 +32,4 @@ Bigfoot stores app-level settings on the local machine. Your notes stay in the v
 
 ## AI Setup Prompt
 
-Bigfoot can show an optional AI agents prompt after a vault is open. It checks common local install locations for supported coding agents and gives you setup paths, but you can dismiss it and use Bigfoot without AI.
+Bigfoot Note can show an optional AI agents prompt after a vault is open. It checks common local install locations for supported coding agents and gives you setup paths, but you can dismiss it and use Bigfoot Note without AI.

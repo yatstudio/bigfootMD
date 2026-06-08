@@ -8,7 +8,7 @@ date: 2026-03-27
 
 ## Context
 
-Bigfoot runs on macOS via Tauri v2. The goal is to also support iPad without changing the stack or redesigning the app from scratch. The core question: extend the existing stack to iOS, or rewrite in SwiftUI for a fully native experience?
+Bigfoot Note runs on macOS via Tauri v2. The goal is to also support iPad without changing the stack or redesigning the app from scratch. The core question: extend the existing stack to iOS, or rewrite in SwiftUI for a fully native experience?
 
 ## Decision
 
@@ -18,7 +18,7 @@ The prototype (`feat: add iPad/iOS prototype via Tauri v2 mobile target`, build 
 
 ## Alternatives considered
 
-- **SwiftUI rewrite**: best native macOS/iPad experience, full App Store integration, native TextKit 2 editor. Rejected for now — would discard all existing React code, Rust backend, 2200+ tests, and Claude Code's accumulated context. Worth revisiting if Bigfoot becomes iOS-first.
+- **SwiftUI rewrite**: best native macOS/iPad experience, full App Store integration, native TextKit 2 editor. Rejected for now — would discard all existing React code, Rust backend, 2200+ tests, and Claude Code's accumulated context. Worth revisiting if Bigfoot Note becomes iOS-first.
 - **Capacitor**: replaces Tauri layer, keeps React, but the Rust backend is lost entirely — git and file operations would need reimplementation in JS or Swift.
 - **React Native + WebView**: wraps the React app in a WebView. Too hacky, performance concerns, App Store review risks.
 

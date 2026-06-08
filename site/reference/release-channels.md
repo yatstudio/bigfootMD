@@ -1,6 +1,6 @@
 # Release Channels
 
-Bigfoot publishes Stable and Alpha release metadata to GitHub Pages.
+Bigfoot Note publishes Stable and Alpha release metadata to GitHub Pages.
 
 ## Stable
 

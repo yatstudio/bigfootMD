@@ -1,6 +1,6 @@
-# Install Bigfoot
+# Install Bigfoot Note
 
-Bigfoot publishes desktop builds for macOS, Windows, and Linux. macOS is the primary day-to-day development target, with Windows and Linux builds supported through the release pipeline and fixed as platform issues are found.
+Bigfoot Note publishes desktop builds for macOS, Windows, and Linux. macOS is the primary day-to-day development target, with Windows and Linux builds supported through the release pipeline and fixed as platform issues are found.
 
 ## Download
 
@@ -23,18 +23,18 @@ brew install --cask bigfoot
 | Platform | Status | Notes |
 | --- | --- | --- |
 | macOS | Primary | Apple Silicon and Intel builds are published. Homebrew is available. |
-| Windows | Supported, early | NSIS installers are Authenticode-signed and updater bundles are Tauri-signed. Company-managed SmartScreen, Defender, or WDAC policies can still require IT approval of the Bigfoot publisher before first install. |
+| Windows | Supported, early | NSIS installers are Authenticode-signed and updater bundles are Tauri-signed. Company-managed SmartScreen, Defender, or WDAC policies can still require IT approval of the Bigfoot Note publisher before first install. |
 | Linux | Supported, early | AppImage, deb, and RPM artifacts are published. Desktop behavior depends on distribution WebKitGTK and input-method integration. |
 
 See [Supported Platforms](/reference/supported-platforms) for the current support policy.
 
 ## Managed Windows Devices
 
-Do not disable SmartScreen or Windows Security to install Bigfoot. On a managed Windows device, validate that the downloaded installer has a valid Bigfoot Authenticode signature, then install it through the normal Windows prompt. If company policy still blocks the first run because reputation is not yet established, ask IT to approve the Bigfoot publisher or deploy the same signed installer through the approved software portal.
+Do not disable SmartScreen or Windows Security to install Bigfoot Note. On a managed Windows device, validate that the downloaded installer has a valid Bigfoot Note Authenticode signature, then install it through the normal Windows prompt. If company policy still blocks the first run because reputation is not yet established, ask IT to approve the Bigfoot Note publisher or deploy the same signed installer through the approved software portal.
 
 ## After Installing
 
-1. Open Bigfoot.
+1. Open Bigfoot Note.
 2. Choose the Getting Started vault if you want a guided sample.
 3. Or open an existing folder of Markdown files as a vault.
 4. Use the command palette with `Cmd+K` on macOS or `Ctrl+K` on Linux and Windows.

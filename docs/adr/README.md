@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-This folder contains Architecture Decision Records (ADRs) for the Bigfoot app.
+This folder contains Architecture Decision Records (ADRs) for the Bigfoot Note app.
 
 ## Format
 
@@ -180,7 +180,7 @@ proposed → active → superseded
 | [0126](0126-renderer-action-history.md) | Renderer action history for app-level undo and redo | active |
 | [0127](0127-native-ai-workspace-window.md) | Native AI workspace window | superseded -> [0128](0128-lightweight-ai-workspace-window.md) |
 | [0128](0128-lightweight-ai-workspace-window.md) | Lightweight AI workspace window | active |
-| [0129](0129-bigfoot-vault-item-deep-links.md) | Bigfoot vault item deep links | active |
+| [0129](0129-bigfoot-vault-item-deep-links.md) | Bigfoot Note vault item deep links | active |
 | [0130](0130-windows-authenticode-release-signing.md) | Windows Authenticode signing for release installers | active |
 | [0131](0131-reusable-release-artifact-build-workflow.md) | Reusable release artifact build workflow | active |
 | [0132](0132-alpha-authenticode-soft-gate.md) | Alpha Authenticode soft gate | active |

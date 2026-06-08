@@ -9,7 +9,7 @@ superseded_by: "0115"
 
 ## Context
 
-React apps commonly adopt global state management libraries (Redux, Zustand, Jotai, Context) to share state across components. For Bigfoot, the component tree is relatively shallow (App → panels → sub-components), and the data flow is predictable. Adding a state management library would increase complexity without proportional benefit.
+React apps commonly adopt global state management libraries (Redux, Zustand, Jotai, Context) to share state across components. For Bigfoot Note, the component tree is relatively shallow (App → panels → sub-components), and the data flow is predictable. Adding a state management library would increase complexity without proportional benefit.
 
 ## Decision
 

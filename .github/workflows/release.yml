@@ -178,8 +178,8 @@ jobs:
             fi
           }
 
-          normalize_updater aarch64 "updater-aarch64/Bigfoot_${{ needs.version.outputs.version }}_macOS_Silicon.app.tar.gz"
-          normalize_updater x86_64 "updater-x86_64/Bigfoot_${{ needs.version.outputs.version }}_macOS_Intel.app.tar.gz"
+          normalize_updater aarch64 "updater-aarch64/Bigfoot_Note_${{ needs.version.outputs.version }}_macOS_Silicon.app.tar.gz"
+          normalize_updater x86_64 "updater-x86_64/Bigfoot_Note_${{ needs.version.outputs.version }}_macOS_Intel.app.tar.gz"
 
       - name: Generate release notes
         run: |
@@ -298,7 +298,7 @@ jobs:
         uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65
         with:
           tag_name: ${{ needs.version.outputs.tag }}
-          name: Bigfoot ${{ needs.version.outputs.display_version }}
+          name: Bigfoot Note ${{ needs.version.outputs.display_version }}
           body_path: release_notes.md
           draft: false
           prerelease: true
