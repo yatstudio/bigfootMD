@@ -9,8 +9,6 @@ concurrency:
 
 env:
   NODE_OPTIONS: --max-old-space-size=4096
-  TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY || 'untrusted comment: minisign encrypted secret key\nRUTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==' }}
-  TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD || '' }}
 
 jobs:
   version:
@@ -60,7 +58,7 @@ jobs:
       - name: Set trial version
         run: |
           VERSION="${{ needs.version.outputs.version }}"
-          jq --arg v "$VERSION" '.version = $v' src-tauri/tauri.conf.json > tmp.json && mv tmp.json src-tauri/tauri.conf.json
+          jq --arg v "$VERSION" '.version = $v | .bundle.createUpdaterArtifacts = false' src-tauri/tauri.conf.json > tmp.json && mv tmp.json src-tauri/tauri.conf.json
           sed -i '' "s/^version = \".*\"/version = \"$VERSION\"/" src-tauri/Cargo.toml
       - name: Build macOS app bundle
         env:
@@ -121,7 +119,7 @@ jobs:
       - name: Set trial version
         run: |
           VERSION="${{ needs.version.outputs.version }}"
-          jq --arg v "$VERSION" '.version = $v' src-tauri/tauri.conf.json > tmp.json && mv tmp.json src-tauri/tauri.conf.json
+          jq --arg v "$VERSION" '.version = $v | .bundle.createUpdaterArtifacts = false' src-tauri/tauri.conf.json > tmp.json && mv tmp.json src-tauri/tauri.conf.json
           sed -i "s/^version = \".*\"/version = \"$VERSION\"/" src-tauri/Cargo.toml
       - name: Build Linux bundles
         env:
@@ -173,6 +171,7 @@ jobs:
           $version = "${{ needs.version.outputs.version }}"
           $tauri = Get-Content "src-tauri/tauri.conf.json" | ConvertFrom-Json
           $tauri.version = $version
+          $tauri.bundle.createUpdaterArtifacts = $false
           $tauri | ConvertTo-Json -Depth 100 | Set-Content "src-tauri/tauri.conf.json"
           (Get-Content "src-tauri/Cargo.toml") -replace '^version = ".*"$', "version = `"$version`"" | Set-Content "src-tauri/Cargo.toml"
       - name: Build Windows installer
