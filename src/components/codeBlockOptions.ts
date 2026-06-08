@@ -50,11 +50,11 @@ const GO_LANGUAGE_REGISTRATION = {
   },
 }
 
-type TolariaCodeHighlighter = Awaited<ReturnType<NonNullable<typeof codeBlockOptions.createHighlighter>>>
-type TolariaLoadLanguage = TolariaCodeHighlighter['loadLanguage']
-type TolariaLanguageInput = Parameters<TolariaLoadLanguage>[number]
-type TolariaLanguageLoader = () => Promise<TolariaLanguageInput[]>
-type TolariaNamedLanguageRegistration = Record<string, unknown> & {
+type BigfootCodeHighlighter = Awaited<ReturnType<NonNullable<typeof codeBlockOptions.createHighlighter>>>
+type BigfootLoadLanguage = BigfootCodeHighlighter['loadLanguage']
+type BigfootLanguageInput = Parameters<BigfootLoadLanguage>[number]
+type BigfootLanguageLoader = () => Promise<BigfootLanguageInput[]>
+type BigfootNamedLanguageRegistration = Record<string, unknown> & {
   name: string
   displayName?: string
   aliases?: string[]
@@ -76,31 +76,31 @@ function prioritizeTheme(themes: string[], theme: string) {
   return [theme, ...themes.filter((candidate) => candidate !== theme)]
 }
 
-function languageInputs(languages: readonly TolariaLanguageInput[]): TolariaLanguageInput[] {
+function languageInputs(languages: readonly BigfootLanguageInput[]): BigfootLanguageInput[] {
   return [...languages]
 }
 
-function namedLanguageRegistration(value: TolariaLanguageInput): TolariaNamedLanguageRegistration | null {
+function namedLanguageRegistration(value: BigfootLanguageInput): BigfootNamedLanguageRegistration | null {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) return null
   const record = value as Record<string, unknown>
   return typeof record.name === 'string'
-    ? record as TolariaNamedLanguageRegistration
+    ? record as BigfootNamedLanguageRegistration
     : null
 }
 
 function renameLanguageRegistration(
-  languages: readonly TolariaLanguageInput[],
+  languages: readonly BigfootLanguageInput[],
   sourceName: string,
   nextLanguage: { name: string; displayName: string; aliases: string[] },
-): TolariaLanguageInput[] {
+): BigfootLanguageInput[] {
   return languages.map((language) => {
     const registration = namedLanguageRegistration(language)
     if (!registration || registration.name !== sourceName) return language
-    return { ...registration, ...nextLanguage } as TolariaLanguageInput
+    return { ...registration, ...nextLanguage } as BigfootLanguageInput
   })
 }
 
-async function loadVbScriptLanguage(): Promise<TolariaLanguageInput[]> {
+async function loadVbScriptLanguage(): Promise<BigfootLanguageInput[]> {
   const language = await import('@shikijs/langs/vb')
   return renameLanguageRegistration(language.default, 'vb', {
     name: 'vbscript',
@@ -109,7 +109,7 @@ async function loadVbScriptLanguage(): Promise<TolariaLanguageInput[]> {
   })
 }
 
-const EXTRA_LANGUAGE_LOADERS = new Map<string, TolariaLanguageLoader>([
+const EXTRA_LANGUAGE_LOADERS = new Map<string, BigfootLanguageLoader>([
   ['powershell', async () => languageInputs((await import('@shikijs/langs/powershell')).default)],
   ['vbscript', loadVbScriptLanguage],
   ['dart', async () => languageInputs((await import('@shikijs/langs/dart')).default)],
@@ -131,24 +131,24 @@ const EXTRA_LANGUAGE_LOADERS = new Map<string, TolariaLanguageLoader>([
   ['toml', async () => languageInputs((await import('@shikijs/langs/toml')).default)],
 ])
 
-function expandGoLanguage(language: string): TolariaLanguageInput[] | null {
+function expandGoLanguage(language: string): BigfootLanguageInput[] | null {
   return canonicalKnownCodeBlockLanguage(language) === 'go'
-    ? [GO_LANGUAGE_REGISTRATION as TolariaLanguageInput]
+    ? [GO_LANGUAGE_REGISTRATION as BigfootLanguageInput]
     : null
 }
 
-async function expandExternalLanguage(language: string): Promise<TolariaLanguageInput[] | null> {
+async function expandExternalLanguage(language: string): Promise<BigfootLanguageInput[] | null> {
   const canonicalLanguage = canonicalKnownCodeBlockLanguage(language) ?? language.trim().toLowerCase()
   const loadLanguage = EXTRA_LANGUAGE_LOADERS.get(canonicalLanguage)
   return loadLanguage ? loadLanguage() : null
 }
 
-async function expandLanguage(language: TolariaLanguageInput): Promise<TolariaLanguageInput[]> {
+async function expandLanguage(language: BigfootLanguageInput): Promise<BigfootLanguageInput[]> {
   if (typeof language !== 'string') return [language]
   return expandGoLanguage(language) ?? await expandExternalLanguage(language) ?? [language]
 }
 
-async function createTolariaCodeHighlighter(): Promise<TolariaCodeHighlighter> {
+async function createBigfootCodeHighlighter(): Promise<BigfootCodeHighlighter> {
   const highlighter = await codeBlockOptions.createHighlighter()
   return {
     ...highlighter,
@@ -160,10 +160,10 @@ async function createTolariaCodeHighlighter(): Promise<TolariaCodeHighlighter> {
   }
 }
 
-export function createTolariaCodeBlockOptions(): Partial<CodeBlockOptions> {
+export function createBigfootCodeBlockOptions(): Partial<CodeBlockOptions> {
   const options: Partial<CodeBlockOptions> = {
     ...codeBlockOptions,
-    createHighlighter: createTolariaCodeHighlighter,
+    createHighlighter: createBigfootCodeHighlighter,
     defaultLanguage: 'text',
     supportedLanguages: {
       ...codeBlockOptions.supportedLanguages,

@@ -51,8 +51,8 @@ pub struct GitCommit {
     pub date: i64,
 }
 
-const DEFAULT_GITIGNORE: &str = "# Tolaria app files (machine-specific, never commit)\n\
-.laputa/settings.json\n\
+const DEFAULT_GITIGNORE: &str = "# Bigfoot app files (machine-specific, never commit)\n\
+.bigfoot/settings.json\n\
 \n\
 # macOS\n\
 .DS_Store\n\
@@ -317,26 +317,26 @@ fn run_git(dir: &Path, args: &[&str]) -> Result<(), String> {
 }
 
 /// Fallback author name written when no identity is configured anywhere.
-const FALLBACK_AUTHOR_NAME: &str = "Tolaria";
+const FALLBACK_AUTHOR_NAME: &str = "Bigfoot";
 
 /// Fallback author email written when no identity is configured anywhere.
-const FALLBACK_AUTHOR_EMAIL: &str = "vault@tolaria.default";
+const FALLBACK_AUTHOR_EMAIL: &str = "vault@bigfoot.default";
 
-/// Email previously hardcoded by Tolaria. GitHub may attribute it to a real
+/// Email previously hardcoded by Bigfoot. GitHub may attribute it to a real
 /// account, so it is treated as "no identity": healed from the local scope and
 /// skipped wherever it resolves from.
-const LEGACY_FALLBACK_EMAIL: &str = "vault@tolaria.md";
+const LEGACY_FALLBACK_EMAIL: &str = "vault@bigfoot.md";
 
 /// Ensure git can resolve an author identity for the vault, without ever
 /// overriding one the user configured themselves.
 ///
-/// 1. Heal: earlier Tolaria versions unconditionally wrote
-///    `Tolaria <vault@tolaria.md>` into the repo-local config, shadowing the
+/// 1. Heal: earlier Bigfoot versions unconditionally wrote
+///    `Bigfoot <vault@bigfoot.md>` into the repo-local config, shadowing the
 ///    user's own global/system identity. If that legacy email is still present
 ///    locally, remove it so the user's identity resolves again.
 /// 2. Respect: if git resolves a value from any scope, keep it. A resolved email
 ///    equal to the legacy fallback is skipped, since it misattributes commits.
-/// 3. Fallback: only when nothing resolves, write a repo-local Tolaria fallback
+/// 3. Fallback: only when nothing resolves, write a repo-local Bigfoot fallback
 ///    identity so app-managed commits still work.
 pub(crate) fn ensure_author_config(dir: &Path) -> Result<(), String> {
     heal_legacy_local_identity(dir)?;
@@ -370,7 +370,7 @@ fn resolved_author_value_is_usable(value: &str, skip_legacy: bool) -> bool {
     !skip_legacy || value != LEGACY_FALLBACK_EMAIL
 }
 
-/// Remove the local `vault@tolaria.md` email that earlier versions wrote into
+/// Remove the local `vault@bigfoot.md` email that earlier versions wrote into
 /// repo-local config. A local name the user set themselves is left untouched.
 fn heal_legacy_local_identity(dir: &Path) -> Result<(), String> {
     let local_email = local_config_value(dir, "user.email")?;
@@ -758,7 +758,7 @@ mod tests {
 
         let content = fs::read_to_string(dir.path().join(".gitignore")).unwrap();
         assert!(content.contains(".DS_Store"));
-        assert!(content.contains(".laputa/settings.json"));
+        assert!(content.contains(".bigfoot/settings.json"));
     }
 
     #[test]
@@ -846,7 +846,7 @@ mod tests {
             .output()
             .unwrap();
         git_command()
-            .args(["config", "gpg.program", "/missing/tolaria-test-gpg"])
+            .args(["config", "gpg.program", "/missing/bigfoot-test-gpg"])
             .current_dir(&vault)
             .output()
             .unwrap();
@@ -902,13 +902,13 @@ mod tests {
             ".gitignore should exclude .DS_Store"
         );
         assert!(
-            content.contains(".laputa/settings.json"),
+            content.contains(".bigfoot/settings.json"),
             ".gitignore should exclude settings.json"
         );
         // Cache is now stored outside the vault — no need for .gitignore entry
         assert!(
-            !content.contains(".laputa-cache.json"),
-            ".gitignore should NOT contain .laputa-cache.json (cache is external)"
+            !content.contains(".bigfoot-cache.json"),
+            ".gitignore should NOT contain .bigfoot-cache.json (cache is external)"
         );
     }
 

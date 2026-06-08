@@ -49,7 +49,7 @@
               "gap": 8,
               "children": [
                 { "type": "frame", "id": "ms_i1chk", "width": 16, "height": 16, "cornerRadius": 3, "fill": "#2383E2", "stroke": { "fill": "#2383E2", "thickness": 1 } },
-                { "type": "text", "id": "ms_i1t", "content": "Build Laputa App", "fill": "#37352F", "fontFamily": "Inter", "fontSize": 13, "fontWeight": "600" }
+                { "type": "text", "id": "ms_i1t", "content": "Build Bigfoot App", "fill": "#37352F", "fontFamily": "Inter", "fontSize": 13, "fontWeight": "600" }
               ]
             },
             { "type": "text", "id": "ms_i1s", "content": "Build a personal knowledge management app.", "fill": "#9B9A97", "fontFamily": "Inter", "fontSize": 12 }
@@ -223,7 +223,7 @@
           "fill": "#EBF5FF",
           "stroke": { "align": "inside", "fill": "#2383E2", "thickness": { "left": 3, "bottom": 1 } },
           "children": [
-            { "type": "text", "id": "ms_r1t", "content": "Build Laputa App  \u2190 anchor (first Cmd+click)", "fill": "#37352F", "fontFamily": "Inter", "fontSize": 13, "fontWeight": "600" },
+            { "type": "text", "id": "ms_r1t", "content": "Build Bigfoot App  \u2190 anchor (first Cmd+click)", "fill": "#37352F", "fontFamily": "Inter", "fontSize": 13, "fontWeight": "600" },
             { "type": "text", "id": "ms_r1s", "content": "Build a personal knowledge management app.", "fill": "#9B9A97", "fontFamily": "Inter", "fontSize": 12 }
           ]
         },
@@ -357,7 +357,7 @@
           "stroke": { "align": "inside", "fill": "#2383E2", "thickness": { "left": 3, "bottom": 1 } },
           "fill": "#EBF5FF",
           "children": [
-            { "type": "text", "id": "ms_e1t", "content": "Build Laputa App  (current note \u2014 active)", "fill": "#37352F", "fontFamily": "Inter", "fontSize": 13, "fontWeight": "600" },
+            { "type": "text", "id": "ms_e1t", "content": "Build Bigfoot App  (current note \u2014 active)", "fill": "#37352F", "fontFamily": "Inter", "fontSize": 13, "fontWeight": "600" },
             { "type": "text", "id": "ms_e1s", "content": "Build a personal knowledge management app.", "fill": "#9B9A97", "fontFamily": "Inter", "fontSize": 12 }
           ]
         },

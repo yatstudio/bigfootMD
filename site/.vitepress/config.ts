@@ -3,15 +3,15 @@ import { defineConfig } from "vitepress";
 const base = process.env.VITEPRESS_BASE ?? "/";
 
 export default defineConfig({
-  title: "Tolaria",
+  title: "Bigfoot",
   description:
-    "Tolaria is a local-first Markdown knowledge base with native relationships, Git history, and AI workflows.",
+    "Bigfoot is a local-first Markdown knowledge base with native relationships, Git history, and AI workflows.",
   base,
   ignoreDeadLinks: [/^\/download\/?(?:index)?$/, /^\/releases\/?(?:index)?$/],
   cleanUrls: true,
   head: [
     ["link", { rel: "icon", type: "image/png", href: `${base}landing/favicon.png` }],
-    ["meta", { property: "og:title", content: "Tolaria" }],
+    ["meta", { property: "og:title", content: "Bigfoot" }],
     [
       "meta",
       {
@@ -22,13 +22,13 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    logo: { src: "/landing/tolaria-icon.png", alt: "Tolaria" },
+    logo: { src: "/landing/bigfoot-icon.png", alt: "Bigfoot" },
     nav: [
       { text: "Start", link: "/start/install" },
       { text: "Concepts", link: "/concepts/vaults" },
       { text: "Guides", link: "/guides/capture-a-note" },
       { text: "Templates", link: "/templates/portent" },
-      { text: "Downloads", link: "https://tolaria.md/download/", target: "_self", noIcon: true },
+      { text: "Downloads", link: "https://bigfoot.md/download/", target: "_self", noIcon: true },
     ],
     search: {
       provider: "local",
@@ -37,7 +37,7 @@ export default defineConfig({
       {
         text: "Start Here",
         items: [
-          { text: "Install Tolaria", link: "/start/install" },
+          { text: "Install Bigfoot", link: "/start/install" },
           { text: "First Launch", link: "/start/first-launch" },
           { text: "Getting Started Vault", link: "/start/getting-started-vault" },
           { text: "Open Or Create A Vault", link: "/start/open-or-create-vault" },
@@ -109,7 +109,7 @@ export default defineConfig({
     footer: {
       message: "Free and open source. Local-first, Git-first, and Markdown-based.",
       copyright:
-        "Tolaria is AGPL-3.0-or-later. The Tolaria name and logo remain covered by the project trademark policy.",
+        "Bigfoot is AGPL-3.0-or-later. The Bigfoot name and logo remain covered by the project trademark policy.",
     },
   },
 });

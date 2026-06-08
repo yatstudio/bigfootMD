@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   looksLikeLocalFileReference,
   shouldStripAutoLinkedLocalFileMark,
-  shouldAutoLinkTolariaHref,
+  shouldAutoLinkBigfootHref,
 } from './editorLinkAutolink'
 
 describe('looksLikeLocalFileReference', () => {
@@ -24,16 +24,16 @@ describe('looksLikeLocalFileReference', () => {
   })
 })
 
-describe('shouldAutoLinkTolariaHref', () => {
+describe('shouldAutoLinkBigfootHref', () => {
   it('rejects plain filename-like text', () => {
-    expect(shouldAutoLinkTolariaHref({ raw: 'AGENTS.md' })).toBe(false)
-    expect(shouldAutoLinkTolariaHref({ raw: 'docs/README.md' })).toBe(false)
+    expect(shouldAutoLinkBigfootHref({ raw: 'AGENTS.md' })).toBe(false)
+    expect(shouldAutoLinkBigfootHref({ raw: 'docs/README.md' })).toBe(false)
   })
 
   it('keeps normal url-like values eligible for autolinking', () => {
-    expect(shouldAutoLinkTolariaHref({ raw: 'https://example.com/docs' })).toBe(true)
-    expect(shouldAutoLinkTolariaHref({ raw: 'example.com' })).toBe(true)
-    expect(shouldAutoLinkTolariaHref({ raw: 'example.com/README.md' })).toBe(true)
+    expect(shouldAutoLinkBigfootHref({ raw: 'https://example.com/docs' })).toBe(true)
+    expect(shouldAutoLinkBigfootHref({ raw: 'example.com' })).toBe(true)
+    expect(shouldAutoLinkBigfootHref({ raw: 'example.com/README.md' })).toBe(true)
   })
 })
 
@@ -52,7 +52,7 @@ describe('shouldStripAutoLinkedLocalFileMark', () => {
   it('keeps intentional external links', () => {
     expect(shouldStripAutoLinkedLocalFileMark({
       href: { raw: 'https://example.com/docs' },
-      text: { raw: 'Tolaria Docs' },
+      text: { raw: 'Bigfoot Docs' },
     })).toBe(false)
     expect(shouldStripAutoLinkedLocalFileMark({
       href: { raw: 'https://example.com/agents' },

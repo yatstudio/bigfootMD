@@ -9,7 +9,7 @@ date: 2026-03-31
 
 ## Context
 
-The Laputa sidebar originally surfaced git-related affordances — a "Changes" nav item (visible when modified files > 0), a "Pulse" nav item, and a "Commit & Push" button — alongside the note-type navigation filters and sections. This mixed two concerns in the sidebar: **navigation** (where to go) and **git status / actions** (what changed, what to do). As the sidebar grew, the git items created visual noise and made the nav hierarchy harder to scan.
+The Bigfoot sidebar originally surfaced git-related affordances — a "Changes" nav item (visible when modified files > 0), a "Pulse" nav item, and a "Commit & Push" button — alongside the note-type navigation filters and sections. This mixed two concerns in the sidebar: **navigation** (where to go) and **git status / actions** (what changed, what to do). As the sidebar grew, the git items created visual noise and made the nav hierarchy harder to scan.
 
 ## Decision
 

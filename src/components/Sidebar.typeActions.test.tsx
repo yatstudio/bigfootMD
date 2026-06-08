@@ -39,7 +39,7 @@ function makeEntry(overrides: {
 const projectNote = makeEntry({
   path: '/vault/project/build-app.md',
   filename: 'build-app.md',
-  title: 'Build Laputa App',
+  title: 'Build Bigfoot App',
   isA: 'Project',
 })
 

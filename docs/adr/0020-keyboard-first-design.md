@@ -8,7 +8,7 @@ date: 2026-03-01
 
 ## Context
 
-Laputa is a productivity tool for knowledge workers who spend most of their time typing. Mouse-heavy interactions interrupt flow. Every feature should be reachable without touching the mouse, and the app must be fully testable via keyboard events (important for Playwright automation and accessibility).
+Bigfoot is a productivity tool for knowledge workers who spend most of their time typing. Mouse-heavy interactions interrupt flow. Every feature should be reachable without touching the mouse, and the app must be fully testable via keyboard events (important for Playwright automation and accessibility).
 
 ## Decision
 

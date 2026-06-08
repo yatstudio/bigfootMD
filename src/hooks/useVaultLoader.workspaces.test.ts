@@ -178,22 +178,22 @@ describe('useVaultLoader workspaces', () => {
   it('keeps the active vault folder root visible when it is absent from mounted folder vaults', async () => {
     const entryVaults = [
       { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: false },
-      { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true },
+      { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true },
     ]
     const folderVaults = [entryVaults[1]]
     mockWorkspaceBackend({
       foldersByPath: {
         '/brian': [backendFolder('brian-projects')],
-        '/laputa': [backendFolder('laputa-projects')],
+        '/bigfoot': [backendFolder('bigfoot-projects')],
       },
     })
 
-    const { result } = renderHook(() => useVaultLoader('/brian', entryVaults, '/laputa', folderVaults))
+    const { result } = renderHook(() => useVaultLoader('/brian', entryVaults, '/bigfoot', folderVaults))
 
     await waitForEntries(result, 2)
     await waitFor(() => {
       expect(result.current.folders).toEqual([
-        mountedFolderRoot('Laputa', '/laputa', 'laputa-projects'),
+        mountedFolderRoot('Bigfoot', '/bigfoot', 'bigfoot-projects'),
         mountedFolderRoot('brian', '/brian', 'brian-projects'),
       ])
     })
@@ -266,17 +266,17 @@ describe('useVaultLoader workspaces', () => {
 
   it('reloads scoped folder roots when another mounted workspace is added', async () => {
     const brian = { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: true }
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
     const third = { label: 'Third', path: '/third', alias: 'third', available: true, mounted: true }
     mockWorkspaceBackend({
       foldersByPath: {
         '/brian': [backendFolder('brian-root')],
-        '/laputa': [backendFolder('laputa-root')],
+        '/bigfoot': [backendFolder('bigfoot-root')],
         '/third': [backendFolder('third-root')],
       },
     })
     const { result, rerender } = renderHook(
-      ({ folderVaults }) => useVaultLoader('/brian', [brian, laputa, third], '/brian', folderVaults),
+      ({ folderVaults }) => useVaultLoader('/brian', [brian, bigfoot, third], '/brian', folderVaults),
       { initialProps: { folderVaults: [brian] } },
     )
 
@@ -285,28 +285,28 @@ describe('useVaultLoader workspaces', () => {
       expect(result.current.folders.map((folder) => folder.name)).toEqual(['brian-root'])
     })
 
-    rerender({ folderVaults: [brian, laputa] })
+    rerender({ folderVaults: [brian, bigfoot] })
 
     await waitFor(() => {
-      expect(result.current.folders.map((folder) => folder.rootPath)).toEqual(['/brian', '/laputa'])
+      expect(result.current.folders.map((folder) => folder.rootPath)).toEqual(['/brian', '/bigfoot'])
     })
 
-    rerender({ folderVaults: [brian, laputa, third] })
+    rerender({ folderVaults: [brian, bigfoot, third] })
 
     await waitFor(() => {
-      expect(result.current.folders.map((folder) => folder.rootPath)).toEqual(['/brian', '/laputa', '/third'])
+      expect(result.current.folders.map((folder) => folder.rootPath)).toEqual(['/brian', '/bigfoot', '/third'])
     })
   })
 
   it('adds each mounted workspace as soon as that workspace finishes loading', async () => {
-    const laputaLoad = createDeferred<VaultEntry[]>()
+    const bigfootLoad = createDeferred<VaultEntry[]>()
     const brian = { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: true }
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
     const team = { label: 'Team', path: '/team', alias: 'team', available: true, mounted: true }
-    const vaults = [brian, laputa, team]
+    const vaults = [brian, bigfoot, team]
 
     mockWorkspaceBackend({
-      entriesByPath: { '/laputa': laputaLoad.promise },
+      entriesByPath: { '/bigfoot': bigfootLoad.promise },
     })
 
     const { result } = renderHook(() => useVaultLoader('/brian', vaults, '/brian', vaults))
@@ -316,11 +316,11 @@ describe('useVaultLoader workspaces', () => {
     })
 
     await act(async () => {
-      laputaLoad.resolve([{ ...mockEntries[0], path: '/laputa/note/hello.md' }])
+      bigfootLoad.resolve([{ ...mockEntries[0], path: '/bigfoot/note/hello.md' }])
     })
 
     await waitFor(() => {
-      expect(result.current.entries.map((entry) => entry.workspace?.path).sort()).toEqual(['/brian', '/laputa', '/team'])
+      expect(result.current.entries.map((entry) => entry.workspace?.path).sort()).toEqual(['/brian', '/bigfoot', '/team'])
     })
   })
 
@@ -356,19 +356,19 @@ describe('useVaultLoader workspaces', () => {
   it('uses cached vault listing for background workspace loads in Tauri mode', async () => {
     await enableTauriMode()
     const brian = { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: true }
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
-    const vaults = [brian, laputa]
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
+    const vaults = [brian, bigfoot]
     mockWorkspaceBackend()
 
     const { result } = renderHook(() => useVaultLoader('/brian', vaults, '/brian', vaults))
 
     await waitForEntries(result, 2)
 
-    const laputaLoadCommands = backendInvokeFn.mock.calls
-      .filter(([, args]) => args?.path === '/laputa')
+    const bigfootLoadCommands = backendInvokeFn.mock.calls
+      .filter(([, args]) => args?.path === '/bigfoot')
       .map(([command]) => command)
-    expect(laputaLoadCommands).toContain('list_vault')
-    expect(laputaLoadCommands).not.toContain('reload_vault')
+    expect(bigfootLoadCommands).toContain('list_vault')
+    expect(bigfootLoadCommands).not.toContain('reload_vault')
   })
 
   it('clears stale views immediately when switching to another preloaded workspace', async () => {
@@ -378,8 +378,8 @@ describe('useVaultLoader workspaces', () => {
       },
     })
     const brian = { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: true }
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
-    const vaults = [brian, laputa]
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
+    const vaults = [brian, bigfoot]
     const { result, rerender } = renderHook(
       ({ path }) => useVaultLoader(path, vaults, path),
       { initialProps: { path: '/brian' } },
@@ -389,7 +389,7 @@ describe('useVaultLoader workspaces', () => {
       expect(result.current.views.map((view) => view.filename)).toEqual(['brian.yml'])
     })
 
-    rerender({ path: '/laputa' })
+    rerender({ path: '/bigfoot' })
 
     expect(result.current.views).toEqual([])
     await waitFor(() => {

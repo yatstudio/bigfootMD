@@ -54,8 +54,8 @@ describe('editor schema code block highlighting', () => {
     document.documentElement.classList.remove('dark')
     document.documentElement.dataset.theme = 'light'
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
-    const highlighter = await createTolariaCodeBlockOptions().createHighlighter?.()
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
+    const highlighter = await createBigfootCodeBlockOptions().createHighlighter?.()
 
     expect(highlighter?.getLoadedThemes()[0]).toBe('github-light')
   })
@@ -65,8 +65,8 @@ describe('editor schema code block highlighting', () => {
     document.documentElement.classList.add('dark')
     document.documentElement.dataset.theme = 'dark'
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
-    const highlighter = await createTolariaCodeBlockOptions().createHighlighter?.()
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
+    const highlighter = await createBigfootCodeBlockOptions().createHighlighter?.()
 
     expect(highlighter?.getLoadedThemes()[0]).toBe('github-dark')
   })
@@ -74,8 +74,8 @@ describe('editor schema code block highlighting', () => {
   it('registers Go as a selectable Shiki code block language', async () => {
     vi.resetModules()
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
-    const options = createTolariaCodeBlockOptions()
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
+    const options = createBigfootCodeBlockOptions()
 
     expect(options.supportedLanguages?.go).toMatchObject({
       name: 'Go',
@@ -86,8 +86,8 @@ describe('editor schema code block highlighting', () => {
   it('registers additional common Shiki code block languages', async () => {
     vi.resetModules()
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
-    const options = createTolariaCodeBlockOptions()
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
+    const options = createBigfootCodeBlockOptions()
 
     expect(options.supportedLanguages?.powershell).toMatchObject({
       name: 'PowerShell',
@@ -122,8 +122,8 @@ describe('editor schema code block highlighting', () => {
   it('loads the Go Shiki grammar for Go code blocks', async () => {
     vi.resetModules()
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
-    const highlighter = await createTolariaCodeBlockOptions().createHighlighter?.()
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
+    const highlighter = await createBigfootCodeBlockOptions().createHighlighter?.()
 
     await expect(highlighter?.loadLanguage('go')).resolves.toBeUndefined()
     expect(highlighter?.getLoadedLanguages()).toContain('go')
@@ -137,8 +137,8 @@ describe('editor schema code block highlighting', () => {
   ])('loads the %s Shiki grammar for code blocks', async (language, loadedLanguage) => {
     vi.resetModules()
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
-    const highlighter = await createTolariaCodeBlockOptions().createHighlighter?.()
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
+    const highlighter = await createBigfootCodeBlockOptions().createHighlighter?.()
 
     await expect(highlighter?.loadLanguage(language)).resolves.toBeUndefined()
     expect(highlighter?.getLoadedLanguages()).toContain(loadedLanguage)
@@ -148,17 +148,17 @@ describe('editor schema code block highlighting', () => {
     installLegacyWebKitRegExp()
     vi.resetModules()
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
 
-    expect(createTolariaCodeBlockOptions()).not.toHaveProperty('createHighlighter')
+    expect(createBigfootCodeBlockOptions()).not.toHaveProperty('createHighlighter')
   })
 
   it('omits the Shiki highlighter when WebKit lacks regex lookbehind syntax', async () => {
     installLookbehindMissingRegExp()
     vi.resetModules()
 
-    const { createTolariaCodeBlockOptions } = await import('./codeBlockOptions')
+    const { createBigfootCodeBlockOptions } = await import('./codeBlockOptions')
 
-    expect(createTolariaCodeBlockOptions()).not.toHaveProperty('createHighlighter')
+    expect(createBigfootCodeBlockOptions()).not.toHaveProperty('createHighlighter')
   })
 })

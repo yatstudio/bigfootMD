@@ -6,7 +6,7 @@ test.describe('AI chat wikilink rendering', () => {
   test.beforeEach(async ({ page }) => {
     await installMockAiAgent(page)
 
-    // Block vault API so mock entries are used (ensures "Build Laputa App" exists)
+    // Block vault API so mock entries are used (ensures "Build Bigfoot App" exists)
     await page.route('**/api/vault/ping', route => route.fulfill({ status: 503 }))
 
     await page.goto('/', { waitUntil: 'domcontentloaded' })
@@ -20,7 +20,7 @@ test.describe('AI chat wikilink rendering', () => {
     await page.getByRole('button', { name: 'Open the AI panel' }).click()
     await expect(page.getByTestId('ai-panel')).toBeVisible({ timeout: 3000 })
 
-    // Send a message to trigger mock response with [[Build Laputa App]] and [[Matteo Cellini]]
+    // Send a message to trigger mock response with [[Build Bigfoot App]] and [[Matteo Cellini]]
     const input = page.getByTestId('agent-input')
     await input.fill('Tell me about this note')
     await page.getByTestId('agent-send').click()
@@ -33,8 +33,8 @@ test.describe('AI chat wikilink rendering', () => {
     const wikilink = page.locator('.chat-wikilink').first()
 
     // Verify wikilink text and attributes
-    await expect(wikilink).toHaveText('Build Laputa App')
-    await expect(wikilink).toHaveAttribute('data-wikilink-target', 'Build Laputa App')
+    await expect(wikilink).toHaveText('Build Bigfoot App')
+    await expect(wikilink).toHaveAttribute('data-wikilink-target', 'Build Bigfoot App')
     await expect(wikilink).toHaveAttribute('role', 'link')
 
     // Verify second wikilink

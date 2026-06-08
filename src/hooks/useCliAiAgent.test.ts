@@ -24,7 +24,7 @@ vi.mock('../lib/agentDocsPath', () => ({
 const mockStreamAiAgent = vi.mocked(streamAiAgent)
 const mockBuildAgentSystemPrompt = vi.mocked(buildAgentSystemPrompt)
 const mockGetAgentDocsPath = vi.mocked(getAgentDocsPath)
-const VAULT = '/Users/luca/Laputa'
+const VAULT = '/Users/luca/Bigfoot'
 
 function renderAgent(
   contextPrompt: string | undefined = undefined,

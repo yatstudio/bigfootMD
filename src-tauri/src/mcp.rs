@@ -11,8 +11,8 @@ mod subprocess;
 #[cfg(all(desktop, target_os = "linux"))]
 pub(crate) use extraction::extract_mcp_server_to_stable_dir;
 
-const MCP_SERVER_NAME: &str = "tolaria";
-const LEGACY_MCP_SERVER_NAME: &str = "laputa";
+const MCP_SERVER_NAME: &str = "bigfoot";
+const LEGACY_MCP_SERVER_NAME: &str = "bigfoot";
 
 /// Status of the MCP server installation.
 #[derive(Debug, Serialize, Clone, PartialEq)]
@@ -195,7 +195,7 @@ fn verify_node_version(node: &Path) -> Result<(), String> {
     };
     if major < 18 {
         return Err(format!(
-            "Node.js 18+ is required for Tolaria MCP tools; found {}",
+            "Node.js 18+ is required for Bigfoot MCP tools; found {}",
             raw_version.trim()
         ));
     }
@@ -365,7 +365,7 @@ fn verify_bun_version(bun: &Path) -> Result<(), String> {
     };
     if major < 1 {
         return Err(format!(
-            "Bun 1+ is required for Tolaria MCP tools; found {}",
+            "Bun 1+ is required for Bigfoot MCP tools; found {}",
             raw_version.trim()
         ));
     }
@@ -485,16 +485,16 @@ fn push_unique_path(paths: &mut Vec<PathBuf>, path: PathBuf) {
 
 fn linux_package_mcp_server_dirs(root: &Path) -> Vec<PathBuf> {
     vec![
-        root.join("Tolaria").join("mcp-server"),
-        root.join("Tolaria").join("resources").join("mcp-server"),
-        root.join("lib").join("Tolaria").join("mcp-server"),
+        root.join("Bigfoot").join("mcp-server"),
+        root.join("Bigfoot").join("resources").join("mcp-server"),
+        root.join("lib").join("Bigfoot").join("mcp-server"),
         root.join("lib")
-            .join("Tolaria")
+            .join("Bigfoot")
             .join("resources")
             .join("mcp-server"),
-        root.join("lib").join("tolaria").join("mcp-server"),
+        root.join("lib").join("bigfoot").join("mcp-server"),
         root.join("lib")
-            .join("tolaria")
+            .join("bigfoot")
             .join("resources")
             .join("mcp-server"),
     ]
@@ -631,7 +631,7 @@ pub fn mcp_config_snippet(vault_path: &str) -> Result<String, String> {
     let _ = vault_path;
     let runtime = find_mcp_runtime().map_err(|e| {
         format!(
-            "Node.js 18+ or Bun 1+ is required on PATH before Tolaria can build MCP config: {e}"
+            "Node.js 18+ or Bun 1+ is required on PATH before Bigfoot can build MCP config: {e}"
         )
     })?;
     let server_dir = mcp_server_dir_for_registration()?;
@@ -656,12 +656,12 @@ fn register_mcp_to_configs(entry: &serde_json::Value, config_paths: &[PathBuf]) 
     status.to_string()
 }
 
-/// Register Tolaria as an MCP server in external AI tool config files.
+/// Register Bigfoot as an MCP server in external AI tool config files.
 pub fn register_mcp(vault_path: &str) -> Result<String, String> {
     let _ = vault_path;
     let runtime = find_mcp_runtime().map_err(|e| {
         format!(
-            "Node.js 18+ or Bun 1+ is required on PATH before Tolaria can register MCP tools: {e}"
+            "Node.js 18+ or Bun 1+ is required on PATH before Bigfoot can register MCP tools: {e}"
         )
     })?;
     let server_dir = mcp_server_dir_for_registration()?;
@@ -679,7 +679,7 @@ pub fn register_mcp(vault_path: &str) -> Result<String, String> {
     Ok(register_mcp_to_configs(&entry, &mcp_config_paths()))
 }
 
-/// Insert or update the Tolaria entry in an MCP config file.
+/// Insert or update the Bigfoot entry in an MCP config file.
 fn upsert_mcp_config(config_path: &Path, entry: &serde_json::Value) -> Result<bool, String> {
     if let Some(parent) = config_path.parent() {
         std::fs::create_dir_all(parent)
@@ -793,7 +793,7 @@ pub fn remove_mcp() -> String {
 
 /// Check whether the MCP server is properly installed and registered.
 ///
-/// Returns `Installed` when the Tolaria entry exists for the active vault in
+/// Returns `Installed` when the Bigfoot entry exists for the active vault in
 /// an external AI tool config and the referenced index.js file is present.
 /// Otherwise returns `NotInstalled`.
 pub fn check_mcp_status(vault_path: &str) -> McpStatus {
@@ -859,7 +859,7 @@ mod tests {
         index_js: &'a str,
     }
 
-    fn assert_registered_tolaria_server(
+    fn assert_registered_bigfoot_server(
         config: &serde_json::Value,
         expected: ExpectedMcpServer<'_>,
     ) {
@@ -892,7 +892,7 @@ mod tests {
     }
 
     #[test]
-    fn build_mcp_config_snippet_wraps_tolaria_server_entry() {
+    fn build_mcp_config_snippet_wraps_bigfoot_server_entry() {
         let entry = test_mcp_entry("/path/to/index.js");
         let snippet = build_mcp_config_snippet(&entry).unwrap();
         let config: serde_json::Value = serde_json::from_str(&snippet).unwrap();
@@ -983,14 +983,14 @@ mod tests {
     fn mcp_server_dir_candidates_prefer_resource_root_before_linux_packages() {
         let dev_path = Path::new("/repo/mcp-server");
         let resource_roots = vec![PathBuf::from(
-            "/Applications/Tolaria.app/Contents/Resources",
+            "/Applications/Bigfoot.app/Contents/Resources",
         )];
         let candidates = mcp_server_dir_candidates(dev_path, &resource_roots);
 
-        let resource_dir = PathBuf::from("/Applications/Tolaria.app/Contents/Resources/mcp-server");
+        let resource_dir = PathBuf::from("/Applications/Bigfoot.app/Contents/Resources/mcp-server");
         let linux_pos = candidates
             .iter()
-            .position(|path| path == &PathBuf::from("/usr/local/Tolaria/mcp-server"))
+            .position(|path| path == &PathBuf::from("/usr/local/Bigfoot/mcp-server"))
             .unwrap();
 
         assert_eq!(candidates[0], dev_path);
@@ -1001,25 +1001,25 @@ mod tests {
     #[test]
     fn mcp_server_dir_candidates_include_linux_package_resource_roots() {
         let dev_path = Path::new("/repo/mcp-server");
-        let resource_roots = vec![PathBuf::from("/opt/tolaria")];
+        let resource_roots = vec![PathBuf::from("/opt/bigfoot")];
         let candidates = mcp_server_dir_candidates(dev_path, &resource_roots);
         let expected = [
-            PathBuf::from("/opt/tolaria/Tolaria/mcp-server"),
-            PathBuf::from("/opt/tolaria/Tolaria/resources/mcp-server"),
-            PathBuf::from("/opt/tolaria/lib/Tolaria/mcp-server"),
-            PathBuf::from("/opt/tolaria/lib/Tolaria/resources/mcp-server"),
-            PathBuf::from("/opt/tolaria/lib/tolaria/mcp-server"),
-            PathBuf::from("/opt/tolaria/lib/tolaria/resources/mcp-server"),
-            PathBuf::from("/usr/local/Tolaria/mcp-server"),
-            PathBuf::from("/usr/local/Tolaria/resources/mcp-server"),
-            PathBuf::from("/usr/local/lib/Tolaria/mcp-server"),
-            PathBuf::from("/usr/local/lib/Tolaria/resources/mcp-server"),
-            PathBuf::from("/usr/local/lib/tolaria/mcp-server"),
-            PathBuf::from("/usr/local/lib/tolaria/resources/mcp-server"),
-            PathBuf::from("/usr/lib/Tolaria/mcp-server"),
-            PathBuf::from("/usr/lib/Tolaria/resources/mcp-server"),
-            PathBuf::from("/usr/lib/tolaria/mcp-server"),
-            PathBuf::from("/usr/lib/tolaria/resources/mcp-server"),
+            PathBuf::from("/opt/bigfoot/Bigfoot/mcp-server"),
+            PathBuf::from("/opt/bigfoot/Bigfoot/resources/mcp-server"),
+            PathBuf::from("/opt/bigfoot/lib/Bigfoot/mcp-server"),
+            PathBuf::from("/opt/bigfoot/lib/Bigfoot/resources/mcp-server"),
+            PathBuf::from("/opt/bigfoot/lib/bigfoot/mcp-server"),
+            PathBuf::from("/opt/bigfoot/lib/bigfoot/resources/mcp-server"),
+            PathBuf::from("/usr/local/Bigfoot/mcp-server"),
+            PathBuf::from("/usr/local/Bigfoot/resources/mcp-server"),
+            PathBuf::from("/usr/local/lib/Bigfoot/mcp-server"),
+            PathBuf::from("/usr/local/lib/Bigfoot/resources/mcp-server"),
+            PathBuf::from("/usr/local/lib/bigfoot/mcp-server"),
+            PathBuf::from("/usr/local/lib/bigfoot/resources/mcp-server"),
+            PathBuf::from("/usr/lib/Bigfoot/mcp-server"),
+            PathBuf::from("/usr/lib/Bigfoot/resources/mcp-server"),
+            PathBuf::from("/usr/lib/bigfoot/mcp-server"),
+            PathBuf::from("/usr/lib/bigfoot/resources/mcp-server"),
         ];
 
         assert!(expected.iter().all(|path| candidates.contains(path)));
@@ -1030,29 +1030,29 @@ mod tests {
         let dev_path = Path::new("/repo/mcp-server");
         let candidates = mcp_server_dir_candidates(dev_path, &[]);
 
-        assert!(candidates.contains(&PathBuf::from("/usr/lib/Tolaria/mcp-server")));
+        assert!(candidates.contains(&PathBuf::from("/usr/lib/Bigfoot/mcp-server")));
     }
 
     #[test]
     fn mcp_server_dir_candidates_include_linux_appimage_resource_root() {
         let dev_path = Path::new("/repo/mcp-server");
-        let resource_roots = vec![PathBuf::from("/tmp/.mount_tolaria/usr")];
+        let resource_roots = vec![PathBuf::from("/tmp/.mount_bigfoot/usr")];
         let candidates = mcp_server_dir_candidates(dev_path, &resource_roots);
 
         assert!(candidates.contains(&PathBuf::from(
-            "/tmp/.mount_tolaria/usr/lib/tolaria/resources/mcp-server"
+            "/tmp/.mount_bigfoot/usr/lib/bigfoot/resources/mcp-server"
         )));
     }
 
     #[test]
     fn mcp_server_dir_candidates_include_runtime_dev_roots_when_build_path_is_stale() {
-        let stale_dev_path = Path::new("/Users/runner/work/tolaria/tolaria/mcp-server");
-        let current_dir = Path::new("/Users/luca/Workspace/tolaria");
+        let stale_dev_path = Path::new("/Users/runner/work/bigfoot/bigfoot/mcp-server");
+        let current_dir = Path::new("/Users/luca/Workspace/bigfoot");
         let candidates = mcp_server_dir_candidates_for(stale_dev_path, &[], Some(current_dir));
 
-        assert!(candidates.contains(&PathBuf::from("/Users/luca/Workspace/tolaria/mcp-server")));
+        assert!(candidates.contains(&PathBuf::from("/Users/luca/Workspace/bigfoot/mcp-server")));
         assert!(candidates.contains(&PathBuf::from(
-            "/Users/luca/Workspace/tolaria/src-tauri/resources/mcp-server"
+            "/Users/luca/Workspace/bigfoot/src-tauri/resources/mcp-server"
         )));
     }
 
@@ -1060,12 +1060,12 @@ mod tests {
     fn mcp_server_dir_candidates_include_macos_bundle_resources() {
         let dev_path = Path::new("/repo/mcp-server");
         let resource_roots = vec![PathBuf::from(
-            "/Applications/Tolaria.app/Contents/Resources",
+            "/Applications/Bigfoot.app/Contents/Resources",
         )];
         let candidates = mcp_server_dir_candidates_for(dev_path, &resource_roots, None);
 
         assert!(candidates.contains(&PathBuf::from(
-            "/Applications/Tolaria.app/Contents/Resources/mcp-server"
+            "/Applications/Bigfoot.app/Contents/Resources/mcp-server"
         )));
     }
 
@@ -1079,7 +1079,7 @@ mod tests {
         assert!(!was_update);
 
         let config = read_config(&config_path);
-        assert_registered_tolaria_server(
+        assert_registered_bigfoot_server(
             &config,
             ExpectedMcpServer {
                 index_js: "/test/index.js",
@@ -1110,7 +1110,7 @@ mod tests {
 
         let existing = serde_json::json!({
             "mcpServers": {
-                "laputa": {
+                "bigfoot": {
                     "command": "node",
                     "args": ["/old/index.js"],
                     "env": { "VAULT_PATH": "/old" }
@@ -1200,7 +1200,7 @@ mod tests {
         assert!(!was_update);
         assert_eq!(config["theme"], "GitHub");
         assert_eq!(config["mcpServers"]["other"]["command"], "example");
-        assert_registered_tolaria_server(
+        assert_registered_bigfoot_server(
             &config,
             ExpectedMcpServer {
                 index_js: "/gemini/index.js",
@@ -1362,7 +1362,7 @@ mod tests {
 
         let raw = std::fs::read_to_string(&claude_user_cfg).unwrap();
         let config: serde_json::Value = serde_json::from_str(&raw).unwrap();
-        assert_registered_tolaria_server(
+        assert_registered_bigfoot_server(
             &config,
             ExpectedMcpServer {
                 index_js: "/test/index.js",
@@ -1501,8 +1501,8 @@ mod tests {
         let config_path = tmp.path().join("mcp.json");
         let config = serde_json::json!({
             "mcpServers": {
-                "tolaria": { "command": "node", "args": ["/index.js"] },
-                "laputa": { "command": "node", "args": ["/legacy.js"] },
+                "bigfoot": { "command": "node", "args": ["/index.js"] },
+                "bigfoot": { "command": "node", "args": ["/legacy.js"] },
                 "other-server": { "command": "other", "args": [] }
             }
         });
@@ -1539,7 +1539,7 @@ mod tests {
         let config_path = tmp.path().join("mcp.json");
         let config = serde_json::json!({
             "mcpServers": {
-                "tolaria": {
+                "bigfoot": {
                     "type": "stdio",
                     "command": "node",
                     "args": [index_js.to_string_lossy()],

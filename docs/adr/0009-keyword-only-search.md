@@ -8,7 +8,7 @@ date: 2026-03-24
 
 ## Context
 
-Laputa previously used QMD (a Go binary) for semantic vector indexing, enabling similarity-based search. This added significant complexity: a bundled Go binary requiring code-signing, an indexing step on vault open, status bar progress tracking, auto-install logic, and a separate `tools/qmd/` directory. The semantic search quality did not justify the operational burden, especially as the AI agent (with MCP vault tools) became a more natural way to do exploratory queries.
+Bigfoot previously used QMD (a Go binary) for semantic vector indexing, enabling similarity-based search. This added significant complexity: a bundled Go binary requiring code-signing, an indexing step on vault open, status bar progress tracking, auto-install logic, and a separate `tools/qmd/` directory. The semantic search quality did not justify the operational burden, especially as the AI agent (with MCP vault tools) became a more natural way to do exploratory queries.
 
 ## Decision
 

@@ -121,7 +121,7 @@ mod native {
 
         #[test]
         fn output_path_accepts_a_pdf_file_path() {
-            assert!(validate_output_path("/tmp/tolaria-note.pdf").is_ok());
+            assert!(validate_output_path("/tmp/bigfoot-note.pdf").is_ok());
         }
     }
 }

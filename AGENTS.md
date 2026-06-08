@@ -1,4 +1,4 @@
-# AGENTS.md — Tolaria App
+# AGENTS.md — Bigfoot App
 
 ## 1. Development Process
 
@@ -58,7 +58,7 @@ Pre-commit and pre-push hooks enforce **Hotspot Code Health** and **Average Code
 
 **Before every commit:** run CodeScene file-level review on every touched or newly created code file and verify the rule above. **Boy Scout Rule:** every file you touch must leave with a higher score, unless it was already `10.0`, in which case it must stay `10.0`.
 
-**If CodeScene gate blocks your push:** use `mcp__codescene__code_health_score` to find the worst file, refactor it, commit, push again. Do NOT stop or wait for laputa-refactor — that is a background loop, not a substitute for fixing your own regressions.
+**If CodeScene gate blocks your push:** use `mcp__codescene__code_health_score` to find the worst file, refactor it, commit, push again. Do NOT stop or wait for bigfoot-refactor — that is a background loop, not a substitute for fixing your own regressions.
 
 ### Security scan with Codacy (mandatory)
 
@@ -99,11 +99,11 @@ BASE_URL="http://localhost:5201" npx playwright test tests/smoke/<slug>.spec.ts
 ```bash
 pnpm tauri dev &
 sleep 10
-bash ~/.openclaw/skills/tolaria-qa/scripts/focus-app.sh laputa
-bash ~/.openclaw/skills/tolaria-qa/scripts/screenshot.sh /tmp/qa-native.png
+bash ~/.openclaw/skills/bigfoot-qa/scripts/focus-app.sh bigfoot
+bash ~/.openclaw/skills/bigfoot-qa/scripts/screenshot.sh /tmp/qa-native.png
 ```
 
-Use computer-use/browser-control style interaction for native UI QA when available: click, hover, drag, select, scroll, and type the way a real user would with the mouse and trackpad. For every UI feature, test the primary mouse-driven path first, then verify any relevant keyboard shortcut or keyboard-first workflow still works. Tolaria is still a keyboard-first app, but QA must not assume users only interact by keyboard.
+Use computer-use/browser-control style interaction for native UI QA when available: click, hover, drag, select, scroll, and type the way a real user would with the mouse and trackpad. For every UI feature, test the primary mouse-driven path first, then verify any relevant keyboard shortcut or keyboard-first workflow still works. Bigfoot is still a keyboard-first app, but QA must not assume users only interact by keyboard.
 
 Use `osascript` for app focus, keyboard shortcuts, and keyboard-specific checks. **⚠️ WKWebView:** `osascript keystroke` can be blocked inside editor content — use computer use for native editor interaction when possible, and rely on Playwright for deterministic text-input coverage. Write result as Todoist comment (✅ or ❌).
 
@@ -119,7 +119,7 @@ Before pushing or moving a task to In Review, verify the release gates and add a
 - Codacy: MCP/CLI scan summary; confirm no new Critical/High findings.
 - Localization: any user-facing copy lives in `src/lib/locales/en.json`, `pnpm l10n:translate` was run, and `pnpm l10n:validate` passes. If no copy changed, say “Localization: no UI copy changes”.
 - PostHog: meaningful new user actions/events are instrumented with safe metadata; noisy/minor changes explicitly say “PostHog: no event needed because …”.
-- Refactoring: any files refactored to meet the CodeScene gate, or "none needed".
+- Bigfoot Capital: any files refactored to meet the CodeScene gate, or "none needed".
 - ADRs: any new/updated ADRs, or "none".
 - Docs: any updated docs (`ARCHITECTURE.md`, `ABSTRACTIONS.md`, etc.), or "none".
 - Demo vault dirt checked: `git status --short -- demo-vault demo-vault-v2` is empty unless fixture changes are intentional.
@@ -144,11 +144,11 @@ Default to `demo-vault-v2/` for testing.
 - Before declaring a task done, make sure `git status --short -- demo-vault demo-vault-v2` is empty unless demo fixture changes are part of the task.
 - If a fresh run starts and the only local dirt is inside `demo-vault/` or `demo-vault-v2/`, clean those paths first and continue. That case is recoverable QA residue, not a blocker.
 
-### User vault (`~/Laputa/`)
+### User vault (`~/Bigfoot/`)
 
-Default to `demo-vault-v2/`. If you must use `~/Laputa/` for testing:
+Default to `demo-vault-v2/`. If you must use `~/Bigfoot/` for testing:
 - **Never commit or push** any test notes to the remote vault
-- **Delete all test notes from disk** when done — do not leave untitled or temporary notes on the filesystem. Run `cd ~/Laputa && git checkout -- . && git clean -fd` to restore the vault to its last committed state.
+- **Delete all test notes from disk** when done — do not leave untitled or temporary notes on the filesystem. Run `cd ~/Bigfoot && git checkout -- . && git clean -fd` to restore the vault to its last committed state.
 - **Rationale:** test notes pollute the local vault over time, making it a collection of nonsensical untitled files. The vault must stay clean on disk, not just on the remote.
 
 ### UI components — mandatory rules
@@ -168,7 +168,7 @@ Default to `demo-vault-v2/`. If you must use `~/Laputa/` for testing:
 | Toggle/switch | `Switch` or `ToggleGroup` from shadcn/ui |
 | Dialog/modal | `Dialog` from shadcn/ui |
 
-**When in doubt:** search `src/components/` for an existing component before building new. **Visual language:** all new UI must feel native to Tolaria — if it looks like a browser default, it's wrong.
+**When in doubt:** search `src/components/` for an existing component before building new. **Visual language:** all new UI must feel native to Bigfoot — if it looks like a browser default, it's wrong.
 
 ---
 
@@ -184,9 +184,9 @@ Default to `demo-vault-v2/`. If you must use `~/Laputa/` for testing:
 ### QA scripts
 
 ```bash
-bash ~/.openclaw/skills/tolaria-qa/scripts/focus-app.sh Tolaria
-bash ~/.openclaw/skills/tolaria-qa/scripts/screenshot.sh /tmp/out.png
-bash ~/.openclaw/skills/tolaria-qa/scripts/shortcut.sh "command" "s"
+bash ~/.openclaw/skills/bigfoot-qa/scripts/focus-app.sh Bigfoot
+bash ~/.openclaw/skills/bigfoot-qa/scripts/screenshot.sh /tmp/out.png
+bash ~/.openclaw/skills/bigfoot-qa/scripts/shortcut.sh "command" "s"
 ```
 
 ### Diagrams

@@ -21,7 +21,7 @@ Users want to pin frequently-accessed notes to a dedicated FAVORITES section in 
 ## Options considered
 
 - **Frontmatter per-note (chosen)**: Each note carries its own favorite state. Portable across devices (synced via git). No separate metadata file. Cons: two extra frontmatter writes on reorder.
-- **Separate `.laputa/favorites.json` file**: Central list of favorite paths. Simpler reorder (one file write). Cons: not portable if `.laputa/` is gitignored; path references break on rename.
+- **Separate `.bigfoot/favorites.json` file**: Central list of favorite paths. Simpler reorder (one file write). Cons: not portable if `.bigfoot/` is gitignored; path references break on rename.
 - **SQLite/app-level metadata**: Fast queries. Cons: not synced via git; diverges from frontmatter-first data model established in ADR 0008.
 
 ## Consequences

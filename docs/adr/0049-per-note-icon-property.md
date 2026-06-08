@@ -8,7 +8,7 @@ date: 2026-04-08
 
 ## Context
 
-Laputa already supports type-level icons via the `_icon` system property on type documents (ADR 0008). Every note of a given type inherits the type's icon. Users needed a way to give individual notes a distinct visual identity without changing the type — e.g., marking a specific project with a rocket emoji, or a key person with a star icon — without creating a new type just for one note.
+Bigfoot already supports type-level icons via the `_icon` system property on type documents (ADR 0008). Every note of a given type inherits the type's icon. Users needed a way to give individual notes a distinct visual identity without changing the type — e.g., marking a specific project with a rocket emoji, or a key person with a star icon — without creating a new type just for one note.
 
 ## Decision
 
@@ -39,7 +39,7 @@ The `NoteTitleIcon` component renders the correct element for each kind (span, `
 
 ### Editing
 
-A custom event (`laputa:focus-note-icon-property`) is dispatched from the breadcrumb bar click to focus the `_icon` field in the Properties panel without scrolling. The field uses the existing property editor UI.
+A custom event (`bigfoot:focus-note-icon-property`) is dispatched from the breadcrumb bar click to focus the `_icon` field in the Properties panel without scrolling. The field uses the existing property editor UI.
 
 ## Options considered
 

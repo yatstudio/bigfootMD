@@ -218,13 +218,13 @@ where
         return false;
     }
 
-    spawn_background_task("tolaria-startup-tasks", move || task(vault_path));
+    spawn_background_task("bigfoot-startup-tasks", move || task(vault_path));
     true
 }
 
 #[cfg(desktop)]
 fn spawn_startup_tasks() {
-    let Some(vault_path) = dirs::home_dir().map(|h| h.join("Laputa")) else {
+    let Some(vault_path) = dirs::home_dir().map(|h| h.join("Bigfoot")) else {
         return;
     };
     spawn_startup_tasks_for_vault_with(vault_path, |path| run_startup_tasks_for_vault(&path));
@@ -253,7 +253,7 @@ fn sync_ws_bridge_for_selected_vault(app_handle: &tauri::AppHandle) {
 #[cfg(desktop)]
 fn spawn_initial_ws_bridge_sync(app: &tauri::App) {
     let app_handle = app.handle().clone();
-    spawn_background_task("tolaria-ws-bridge-startup", move || {
+    spawn_background_task("bigfoot-ws-bridge-startup", move || {
         #[cfg(all(desktop, target_os = "linux"))]
         if linux_appimage::is_running() {
             let app_version = app_handle.package_info().version.to_string();

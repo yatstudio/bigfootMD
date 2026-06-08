@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
- * Tolaria MCP Server — lightweight vault tools for AI agents.
+ * Bigfoot MCP Server — lightweight vault tools for AI agents.
  *
- * These MCP tools provide Tolaria-specific capabilities alongside each
+ * These MCP tools provide Bigfoot-specific capabilities alongside each
  * app-managed agent's own Safe / Power User permission profile:
  *
  *   - search_notes: full-text search across vault notes
  *   - get_vault_context: vault structure overview (types, note count, folders)
  *   - get_note: parsed frontmatter + content (convenience over raw cat)
  *   - create_note: create a new markdown note without overwriting existing files
- *   - open_note: signal Tolaria UI to open a note as a tab
+ *   - open_note: signal Bigfoot UI to open a note as a tab
  *   - highlight_editor: visually highlight a UI element (editor, tab, etc.)
  *   - refresh_vault: trigger vault rescan so new/modified files appear
  */
@@ -127,7 +127,7 @@ const TOOLS = [
   },
   {
     name: 'get_vault_context',
-    description: 'Get vault orientation for the active Tolaria vaults: entity types, AGENTS.md instructions, note count, folders, and recent notes.',
+    description: 'Get vault orientation for the active Bigfoot vaults: entity types, AGENTS.md instructions, note count, folders, and recent notes.',
     annotations: LOCAL_READ_ONLY_TOOL_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -138,7 +138,7 @@ const TOOLS = [
   },
   {
     name: 'list_vaults',
-    description: 'List the current active Tolaria vaults available to MCP tools, including whether each vault has AGENTS.md instructions.',
+    description: 'List the current active Bigfoot vaults available to MCP tools, including whether each vault has AGENTS.md instructions.',
     annotations: LOCAL_READ_ONLY_TOOL_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -160,7 +160,7 @@ const TOOLS = [
   },
   {
     name: 'create_note',
-    description: 'Create a new markdown note inside an active Tolaria vault. Does not overwrite existing files. Use content for the full markdown including YAML frontmatter and H1.',
+    description: 'Create a new markdown note inside an active Bigfoot vault. Does not overwrite existing files. Use content for the full markdown including YAML frontmatter and H1.',
     annotations: LOCAL_CREATE_TOOL_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -177,7 +177,7 @@ const TOOLS = [
   },
   {
     name: 'open_note',
-    description: 'Open a note in the Tolaria UI as a new tab. Use after creating or editing a note so the user can see it.',
+    description: 'Open a note in the Bigfoot UI as a new tab. Use after creating or editing a note so the user can see it.',
     annotations: LOCAL_READ_ONLY_TOOL_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -190,7 +190,7 @@ const TOOLS = [
   },
   {
     name: 'highlight_editor',
-    description: 'Visually highlight a UI element in Tolaria (editor, tab, properties panel, or note list). The highlight auto-clears after a short delay.',
+    description: 'Visually highlight a UI element in Bigfoot (editor, tab, properties panel, or note list). The highlight auto-clears after a short delay.',
     annotations: LOCAL_READ_ONLY_TOOL_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -203,7 +203,7 @@ const TOOLS = [
   },
   {
     name: 'refresh_vault',
-    description: 'Trigger a vault rescan so new or modified files appear immediately in the Tolaria note list.',
+    description: 'Trigger a vault rescan so new or modified files appear immediately in the Bigfoot note list.',
     annotations: LOCAL_READ_ONLY_TOOL_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -251,7 +251,7 @@ function handleOpenNote(args) {
   // Refresh vault first so the new/modified note appears in the note list,
   // then signal the UI to open it in a tab.
   const { targetPath } = toolService.openNoteAsTab(args)
-  return { content: [{ type: 'text', text: `Opening ${targetPath} in Tolaria` }] }
+  return { content: [{ type: 'text', text: `Opening ${targetPath} in Bigfoot` }] }
 }
 
 function handleHighlightEditor(args) {
@@ -284,7 +284,7 @@ function callToolHandler(name, args) {
 // --- Server setup ---
 
 const server = new Server(
-  { name: 'tolaria-mcp-server', version: '0.3.0' },
+  { name: 'bigfoot-mcp-server', version: '0.3.0' },
   { capabilities: { tools: {} } },
 )
 
@@ -341,7 +341,7 @@ async function main() {
 
   connectUiBridge()
   await server.connect(transport)
-  console.error('Tolaria MCP server running (vaults resolved per call)')
+  console.error('Bigfoot MCP server running (vaults resolved per call)')
 }
 
 main().catch((error) => {

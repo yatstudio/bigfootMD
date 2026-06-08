@@ -4,7 +4,7 @@ test('closeup: heading marker in gutter', async ({ page }) => {
   await page.goto('http://localhost:5173')
   await page.waitForTimeout(800)
 
-  const noteItem = page.locator('.note-list__item', { hasText: 'Build Laputa App' })
+  const noteItem = page.locator('.note-list__item', { hasText: 'Build Bigfoot App' })
   await noteItem.click()
   await page.waitForTimeout(800)
 

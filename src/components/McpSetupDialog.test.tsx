@@ -4,10 +4,10 @@ import { McpSetupDialog } from './McpSetupDialog'
 
 const MANUAL_CONFIG = JSON.stringify({
   mcpServers: {
-    tolaria: {
+    bigfoot: {
       type: 'stdio',
       command: 'node',
-      args: ['/Applications/Tolaria.app/Contents/Resources/mcp-server/index.js'],
+      args: ['/Applications/Bigfoot.app/Contents/Resources/mcp-server/index.js'],
       env: {
         WS_UI_PORT: '9711',
       },

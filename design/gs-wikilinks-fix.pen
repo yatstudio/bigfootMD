@@ -9,7 +9,7 @@
         {
           "name": "Description",
           "type": "TEXT",
-          "characters": "Wikilinks in Getting Started vault now resolve correctly:\n- path/to/note targets match entry paths ending in /path/to/note.md\n- Display text shows entry title (not raw path)\n- Color reflects the linked note's type (e.g. blue for Note type)\n- Broken links show muted color as expected\n\nBefore: [[note/welcome-to-laputa]] showed raw path, unstyled\nAfter: [[note/welcome-to-laputa]] shows 'Welcome to Laputa' in Note blue"
+          "characters": "Wikilinks in Getting Started vault now resolve correctly:\n- path/to/note targets match entry paths ending in /path/to/note.md\n- Display text shows entry title (not raw path)\n- Color reflects the linked note's type (e.g. blue for Note type)\n- Broken links show muted color as expected\n\nBefore: [[note/welcome-to-bigfoot]] showed raw path, unstyled\nAfter: [[note/welcome-to-bigfoot]] shows 'Welcome to Bigfoot' in Note blue"
         }
       ]
     }

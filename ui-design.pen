@@ -3196,7 +3196,7 @@
                               "id": "r0fdT",
                               "name": "proj1Txt",
                               "fill": "$--accent-red",
-                              "content": "Laputa App",
+                              "content": "Bigfoot App",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -3778,7 +3778,7 @@
                       "id": "E2PMl",
                       "name": "nlTitle",
                       "fill": "$--foreground",
-                      "content": "Laputa App",
+                      "content": "Bigfoot App",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontWeight": "600"
@@ -3879,7 +3879,7 @@
                                   "height": "fit_content"
                                 },
                                 "kQ4LK": {
-                                  "content": "Laputa App",
+                                  "content": "Bigfoot App",
                                   "fontWeight": "600"
                                 },
                                 "pPh0z": {
@@ -4393,7 +4393,7 @@
                                   "id": "VKJX1",
                                   "name": "noteH1",
                                   "fill": "$--foreground",
-                                  "content": "🗓️ Laputa App",
+                                  "content": "🗓️ Bigfoot App",
                                   "lineHeight": 1.2,
                                   "fontFamily": "Inter Tight",
                                   "fontSize": 36,
@@ -4968,7 +4968,7 @@
                                           "y": 19,
                                           "descendants": {
                                             "OTLK6": {
-                                              "content": "Laputa",
+                                              "content": "Bigfoot",
                                               "x": 10,
                                               "y": 6
                                             },
@@ -5022,7 +5022,7 @@
                                             {
                                               "type": "text",
                                               "id": "j7K2C",
-                                              "name": "laputaTxt",
+                                              "name": "bigfootTxt",
                                               "fill": "$--muted-foreground",
                                               "content": "+ Link existing",
                                               "fontFamily": "Inter",
@@ -5116,7 +5116,7 @@
                                             {
                                               "type": "text",
                                               "id": "0c3FL",
-                                              "name": "laputaTxt",
+                                              "name": "bigfootTxt",
                                               "fill": "$--muted-foreground",
                                               "content": "+ Link existing",
                                               "fontFamily": "Inter",
@@ -6445,7 +6445,7 @@
                   "type": "text",
                   "id": "ghv02-search-val",
                   "fill": "$--foreground",
-                  "content": "laputa",
+                  "content": "bigfoot",
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "normal"
@@ -6488,7 +6488,7 @@
                           "type": "text",
                           "id": "ghv02-repo1-name",
                           "fill": "$--foreground",
-                          "content": "lucaong/laputa-vault",
+                          "content": "lucaong/bigfoot-vault",
                           "fontFamily": "Inter",
                           "fontSize": 13,
                           "fontWeight": "normal"
@@ -6558,7 +6558,7 @@
                           "type": "text",
                           "id": "ghv02-repo2-name",
                           "fill": "$--foreground",
-                          "content": "lucaong/laputa-app",
+                          "content": "lucaong/bigfoot-app",
                           "fontFamily": "Inter",
                           "fontSize": 13,
                           "fontWeight": "normal"
@@ -6595,7 +6595,7 @@
                       "type": "text",
                       "id": "ghv02-repo2-desc",
                       "fill": "$--muted-foreground",
-                      "content": "Laputa desktop app — Tauri + React + CodeMirror 6",
+                      "content": "Bigfoot desktop app — Tauri + React + CodeMirror 6",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -6688,7 +6688,7 @@
                       "type": "text",
                       "id": "ghv02-path-val",
                       "fill": "$--foreground",
-                      "content": "~/Vaults/laputa-vault",
+                      "content": "~/Vaults/bigfoot-vault",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -7319,7 +7319,7 @@
               "type": "text",
               "id": "ghv04-status",
               "fill": "$--foreground",
-              "content": "Cloning lucaong/laputa-vault...",
+              "content": "Cloning lucaong/bigfoot-vault...",
               "textAlign": "center",
               "fontFamily": "Inter",
               "fontSize": 14,
@@ -7446,7 +7446,7 @@
           "type": "text",
           "id": "wlc02",
           "fill": "$--foreground",
-          "content": "Build Laputa App",
+          "content": "Build Bigfoot App",
           "fontFamily": "Inter",
           "fontSize": 28,
           "fontWeight": "normal"
@@ -7614,7 +7614,7 @@
               "type": "text",
               "id": "wlc14b",
               "fill": "$--accent-yellow",
-              "content": "Laputa App Design Session",
+              "content": "Bigfoot App Design Session",
               "fontFamily": "Inter",
               "fontSize": 15,
               "fontWeight": "normal"
@@ -9220,7 +9220,7 @@
                       "id": "I9l7N",
                       "name": "proj1Txt",
                       "fill": "$--accent-red",
-                      "content": "Laputa App",
+                      "content": "Bigfoot App",
                       "fontFamily": "Inter",
                       "fontSize": 13,
                       "fontWeight": "500"
@@ -9796,7 +9796,7 @@
               "id": "EVKYQ",
               "name": "nlTitle",
               "fill": "$--foreground",
-              "content": "Laputa App",
+              "content": "Bigfoot App",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "600"
@@ -9897,7 +9897,7 @@
                           "height": "fit_content"
                         },
                         "kQ4LK": {
-                          "content": "Laputa App",
+                          "content": "Bigfoot App",
                           "fontWeight": "600"
                         },
                         "pPh0z": {
@@ -10382,7 +10382,7 @@
                   "id": "PJ1id",
                   "name": "noteH1",
                   "fill": "$--foreground",
-                  "content": "🗓️ Laputa App",
+                  "content": "🗓️ Bigfoot App",
                   "lineHeight": 1.2,
                   "fontFamily": "Inter Tight",
                   "fontSize": 36,
@@ -10959,7 +10959,7 @@
                           "y": 19,
                           "descendants": {
                             "OTLK6": {
-                              "content": "Laputa",
+                              "content": "Bigfoot",
                               "x": 10,
                               "y": 6
                             },
@@ -11013,7 +11013,7 @@
                             {
                               "type": "text",
                               "id": "PjQdA",
-                              "name": "laputaTxt",
+                              "name": "bigfootTxt",
                               "fill": "$--muted-foreground",
                               "content": "+ Link existing",
                               "fontFamily": "Inter",
@@ -11107,7 +11107,7 @@
                             {
                               "type": "text",
                               "id": "f4Knr",
-                              "name": "laputaTxt",
+                              "name": "bigfootTxt",
                               "fill": "$--muted-foreground",
                               "content": "+ Link existing",
                               "fontFamily": "Inter",
@@ -12057,7 +12057,7 @@
                                     {
                                       "type": "frame",
                                       "id": "a5wxq",
-                                      "name": "folder-laputa-app",
+                                      "name": "folder-bigfoot-app",
                                       "width": "fill_container",
                                       "cornerRadius": 5,
                                       "gap": 8,
@@ -12084,7 +12084,7 @@
                                           "id": "TcyzB",
                                           "name": "txtA",
                                           "fill": "$--foreground",
-                                          "content": "laputa-app",
+                                          "content": "bigfoot-app",
                                           "fontFamily": "Inter",
                                           "fontSize": 13,
                                           "fontWeight": "normal"
@@ -12408,7 +12408,7 @@
                       "id": "lG8Gf",
                       "name": "nlTitle",
                       "fill": "$--foreground",
-                      "content": "Laputa App",
+                      "content": "Bigfoot App",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontWeight": "600"
@@ -12509,7 +12509,7 @@
                                   "height": "fit_content"
                                 },
                                 "kQ4LK": {
-                                  "content": "Laputa App",
+                                  "content": "Bigfoot App",
                                   "fontWeight": "600"
                                 },
                                 "pPh0z": {
@@ -13023,7 +13023,7 @@
                                   "id": "q0oqT",
                                   "name": "noteH1",
                                   "fill": "$--foreground",
-                                  "content": "🗓️ Laputa App",
+                                  "content": "🗓️ Bigfoot App",
                                   "lineHeight": 1.2,
                                   "fontFamily": "Inter Tight",
                                   "fontSize": 36,
@@ -13600,7 +13600,7 @@
                                           "y": 19,
                                           "descendants": {
                                             "OTLK6": {
-                                              "content": "Laputa",
+                                              "content": "Bigfoot",
                                               "x": 10,
                                               "y": 6
                                             },
@@ -13654,7 +13654,7 @@
                                             {
                                               "type": "text",
                                               "id": "m6BqZ",
-                                              "name": "laputaTxt",
+                                              "name": "bigfootTxt",
                                               "fill": "$--muted-foreground",
                                               "content": "+ Link existing",
                                               "fontFamily": "Inter",
@@ -13748,7 +13748,7 @@
                                             {
                                               "type": "text",
                                               "id": "gf8IP",
-                                              "name": "laputaTxt",
+                                              "name": "bigfootTxt",
                                               "fill": "$--muted-foreground",
                                               "content": "+ Link existing",
                                               "fontFamily": "Inter",
@@ -14294,7 +14294,7 @@
           "id": "gitignored_visibility_description",
           "name": "sectionDescription",
           "fill": "$--muted-foreground",
-          "content": "Control whether files matched by the vault .gitignore appear in Tolaria.",
+          "content": "Control whether files matched by the vault .gitignore appear in Bigfoot.",
           "fontFamily": "Inter",
           "fontSize": 12,
           "fontWeight": "normal",

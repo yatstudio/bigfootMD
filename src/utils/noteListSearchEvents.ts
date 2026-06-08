@@ -1,5 +1,5 @@
-export const NOTE_LIST_SEARCH_AVAILABILITY_EVENT = 'laputa:note-list-search-availability'
-export const NOTE_LIST_SEARCH_TOGGLE_EVENT = 'laputa:toggle-note-list-search'
+export const NOTE_LIST_SEARCH_AVAILABILITY_EVENT = 'bigfoot:note-list-search-availability'
+export const NOTE_LIST_SEARCH_TOGGLE_EVENT = 'bigfoot:toggle-note-list-search'
 
 interface NoteListSearchAvailabilityDetail {
   enabled: boolean

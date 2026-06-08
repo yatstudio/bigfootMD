@@ -9,7 +9,7 @@ date: 2026-03-01
 
 ## Context
 
-Laputa needs two distinct AI interaction modes: a lightweight chat for quick questions about the current note (no tool access, fast responses), and a full agent that can search, read, create, and modify vault notes via MCP tools. These have fundamentally different requirements — the chat needs low latency and simple streaming, while the agent needs tool calling, conversation state, and MCP integration.
+Bigfoot needs two distinct AI interaction modes: a lightweight chat for quick questions about the current note (no tool access, fast responses), and a full agent that can search, read, create, and modify vault notes via MCP tools. These have fundamentally different requirements — the chat needs low latency and simple streaming, while the agent needs tool calling, conversation state, and MCP integration.
 
 ## Decision
 

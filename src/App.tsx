@@ -91,7 +91,7 @@ import { trackEvent } from './lib/telemetry'
 import { areAiFeaturesEnabled } from './lib/aiFeatures'
 import { areGitFeaturesEnabled } from './lib/gitSettings'
 import { useAppCommandAiActions } from './hooks/useAppCommandAiActions'
-import { TOLARIA_DOCS_URL } from './constants/feedback'
+import { BIGFOOT_DOCS_URL } from './constants/feedback'
 import { openExternalUrl } from './utils/url'
 import {
   translate,
@@ -191,7 +191,7 @@ function MainApp({ noteWindowParams }: { noteWindowParams: NoteWindowParams | nu
   const openFeedback = useCallback(() => setShowFeedback(true), [])
   const closeFeedback = useCallback(() => setShowFeedback(false), [])
   const openDocs = useCallback(() => {
-    void openExternalUrl(TOLARIA_DOCS_URL)
+    void openExternalUrl(BIGFOOT_DOCS_URL)
   }, [])
   const networkStatus = useNetworkStatus()
   const { settings, loaded: settingsLoaded, saveSettings } = useSettings()
@@ -528,7 +528,7 @@ function MainApp({ noteWindowParams }: { noteWindowParams: NoteWindowParams | nu
   const noteActiveTabPath = notes.activeTabPath
   const noteActiveTabPathRef = notes.activeTabPathRef
   const refocusActiveEditor = useCallback((path: string) => {
-    window.dispatchEvent(new CustomEvent('laputa:focus-editor', { detail: { path } }))
+    window.dispatchEvent(new CustomEvent('bigfoot:focus-editor', { detail: { path } }))
   }, [])
   useNoteWindowLifecycle({
     activeTabPath: notes.activeTabPath,
@@ -1037,15 +1037,15 @@ function MainApp({ noteWindowParams }: { noteWindowParams: NoteWindowParams | nu
   }, [loadModifiedFiles, notes.activeTabPath, notes.tabs, recordAutoGitActivity, resolvedPath])
 
   useEffect(() => {
-    window.__laputaTest = {
-      ...window.__laputaTest,
+    window.__bigfootTest = {
+      ...window.__bigfootTest,
       activeTabPath: notes.activeTabPath,
       seedAutoGitSavedChange,
     }
 
     return () => {
-      if (window.__laputaTest?.seedAutoGitSavedChange === seedAutoGitSavedChange) {
-        delete window.__laputaTest.seedAutoGitSavedChange
+      if (window.__bigfootTest?.seedAutoGitSavedChange === seedAutoGitSavedChange) {
+        delete window.__bigfootTest.seedAutoGitSavedChange
       }
     }
   }, [notes.activeTabPath, seedAutoGitSavedChange])
@@ -1153,7 +1153,7 @@ function MainApp({ noteWindowParams }: { noteWindowParams: NoteWindowParams | nu
       const checkedChannel = normalizeReleaseChannel(settings.release_channel)
       setToastMessage(`No newer ${checkedChannel} update is available right now`)
     } else if (result.kind === 'available') {
-      setToastMessage(`Tolaria ${result.displayVersion} is available`)
+      setToastMessage(`Bigfoot ${result.displayVersion} is available`)
     } else {
       setToastMessage(result.message)
     }
@@ -1172,7 +1172,7 @@ function MainApp({ noteWindowParams }: { noteWindowParams: NoteWindowParams | nu
     }
   }, [refreshVaultAiGuidance, resolvedPath, vault])
 
-  const restoreVaultAiGuidance = useCallback(async (successToast: string | null = 'Tolaria AI guidance restored') => {
+  const restoreVaultAiGuidance = useCallback(async (successToast: string | null = 'Bigfoot AI guidance restored') => {
     if (!resolvedPath) return
     try {
       const tauriInvoke = isTauri() ? invoke : mockInvoke
@@ -1181,7 +1181,7 @@ function MainApp({ noteWindowParams }: { noteWindowParams: NoteWindowParams | nu
       await refreshVaultAiGuidance()
       if (successToast) setToastMessage(successToast)
     } catch (err) {
-      setToastMessage(`Failed to restore Tolaria AI guidance: ${err}`)
+      setToastMessage(`Failed to restore Bigfoot AI guidance: ${err}`)
     }
   }, [refreshVaultAiGuidance, resolvedPath, vault])
 

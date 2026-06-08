@@ -117,8 +117,8 @@ pub fn init_sentry_from_settings() -> bool {
             id: Some(anonymous_id),
             ..Default::default()
         }));
-        scope.set_tag("tolaria.build_version", build_version);
-        scope.set_tag("tolaria.release_kind", sentry_release_kind(build_version));
+        scope.set_tag("bigfoot.build_version", build_version);
+        scope.set_tag("bigfoot.release_kind", sentry_release_kind(build_version));
     });
 
     *SENTRY_GUARD.lock().unwrap() = Some(guard);
@@ -140,7 +140,7 @@ mod tests {
     #[test]
     fn test_scrub_paths_unix() {
         assert_eq!(
-            scrub_paths("Error at /Users/luca/Laputa/note.md"),
+            scrub_paths("Error at /Users/luca/Bigfoot/note.md"),
             "Error at <redacted-path>"
         );
     }

@@ -64,11 +64,11 @@ describe('refreshPulledVaultState', () => {
   })
 
   it('matches macOS /tmp and /private/tmp aliases when reloading the active tab entry', async () => {
-    const activeEntry = makeEntry('/private/tmp/tolaria/active.md', 'Active')
+    const activeEntry = makeEntry('/private/tmp/bigfoot/active.md', 'Active')
     const options = makeOptions({
       activeTabPath: activeEntry.path,
       reloadVault: vi.fn().mockResolvedValue([activeEntry]),
-      vaultPath: '/tmp/tolaria',
+      vaultPath: '/tmp/bigfoot',
     })
 
     await refreshPulledVaultState(options)

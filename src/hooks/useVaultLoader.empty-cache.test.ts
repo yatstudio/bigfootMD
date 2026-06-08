@@ -62,10 +62,10 @@ describe('useVaultLoader empty cache recovery', () => {
   })
 
   it('keeps mounted workspace entries visible while a newly active empty workspace loads', async () => {
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
-    const refactoring = { label: 'Refactoring', path: '/refactoring', alias: 'refactoring', available: true, mounted: true }
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
+    const refactoring = { label: 'Bigfoot Capital', path: '/refactoring', alias: 'refactoring', available: true, mounted: true }
     const commandResults = new Map<string, unknown>([
-      ['reload_vault:/laputa', [makeEntry('/laputa/note/hello.md', 'Laputa Hello')]],
+      ['reload_vault:/bigfoot', [makeEntry('/bigfoot/note/hello.md', 'Bigfoot Hello')]],
       ['reload_vault:/refactoring', []],
       ['list_vault:/refactoring', []],
       ['get_modified_files:', []],
@@ -79,28 +79,28 @@ describe('useVaultLoader empty cache recovery', () => {
 
     const { result, rerender } = renderHook(
       ({ activePath, vaults }) => useVaultLoader(activePath, vaults, activePath, vaults),
-      { initialProps: { activePath: '/laputa', vaults: [laputa] } },
+      { initialProps: { activePath: '/bigfoot', vaults: [bigfoot] } },
     )
 
     await waitFor(() => {
-      expect(result.current.entries.map((entry) => entry.title)).toEqual(['Laputa Hello'])
+      expect(result.current.entries.map((entry) => entry.title)).toEqual(['Bigfoot Hello'])
     })
 
-    rerender({ activePath: '/refactoring', vaults: [laputa, refactoring] })
+    rerender({ activePath: '/refactoring', vaults: [bigfoot, refactoring] })
 
-    expect(result.current.entries.map((entry) => entry.title)).toContain('Laputa Hello')
+    expect(result.current.entries.map((entry) => entry.title)).toContain('Bigfoot Hello')
     await waitFor(() => {
-      expect(result.current.entries.map((entry) => entry.title)).toContain('Laputa Hello')
+      expect(result.current.entries.map((entry) => entry.title)).toContain('Bigfoot Hello')
     })
   })
 
   it('reloads a background workspace when its cached startup listing is empty in Tauri mode', async () => {
     const brian = { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: true }
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
     const commandResults = new Map<string, unknown>([
       ['reload_vault:/brian', [makeEntry('/brian/note/hello.md', 'Brian Hello')]],
-      ['list_vault:/laputa', []],
-      ['reload_vault:/laputa', [makeEntry('/laputa/note/hello.md', 'Laputa Hello')]],
+      ['list_vault:/bigfoot', []],
+      ['reload_vault:/bigfoot', [makeEntry('/bigfoot/note/hello.md', 'Bigfoot Hello')]],
       ['get_modified_files:', []],
       ['list_vault_folders:', []],
       ['list_views:', []],
@@ -110,18 +110,18 @@ describe('useVaultLoader empty cache recovery', () => {
       return Promise.resolve(commandResults.get(commandKey(command, args)) ?? null)
     })
 
-    const vaults = [brian, laputa]
+    const vaults = [brian, bigfoot]
     const { result } = renderHook(() => useVaultLoader('/brian', vaults, '/brian', vaults))
 
     await waitFor(() => {
-      expect(result.current.entries.map((entry) => entry.title).sort()).toEqual(['Brian Hello', 'Laputa Hello'])
+      expect(result.current.entries.map((entry) => entry.title).sort()).toEqual(['Brian Hello', 'Bigfoot Hello'])
     })
 
-    const laputaLoads = backendInvokeFn.mock.calls
+    const bigfootLoads = backendInvokeFn.mock.calls
       .filter(([command, args]) => {
-        return args?.path === '/laputa' && (command === 'list_vault' || command === 'reload_vault')
+        return args?.path === '/bigfoot' && (command === 'list_vault' || command === 'reload_vault')
       })
       .map(([command]) => command)
-    expect(laputaLoads).toEqual(['list_vault', 'reload_vault'])
+    expect(bigfootLoads).toEqual(['list_vault', 'reload_vault'])
   })
 })

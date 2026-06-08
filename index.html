@@ -80,13 +80,13 @@
         box-shadow: 0 12px 26px rgba(0, 0, 0, 0.30), 0 1px 4px rgba(0, 0, 0, 0.22);
       }
     </style>
-    <title>Tolaria</title>
+    <title>Bigfoot</title>
   </head>
   <body>
     <script>
       (function () {
-        var key = 'tolaria-theme';
-        var legacyKey = 'laputa-theme';
+        var key = 'bigfoot-theme';
+        var legacyKey = 'bigfoot-theme';
         var systemDarkQuery = '(prefers-color-scheme: dark)';
         function normalizeTheme(value) {
           return value === 'dark' || value === 'light' || value === 'system' ? value : null;
@@ -122,8 +122,8 @@
     </script>
     <script>
       (function () {
-        var readyEventName = 'tolaria:frontend-ready';
-        var reloadAttemptKey = 'tolaria:startup-reload-attempted';
+        var readyEventName = 'bigfoot:frontend-ready';
+        var reloadAttemptKey = 'bigfoot:startup-reload-attempted';
         var startupTimeoutMs = 10000;
         var isTauri = '__TAURI__' in window || '__TAURI_INTERNALS__' in window;
 
@@ -156,7 +156,7 @@
 
         window.addEventListener(readyEventName, clearReloadAttempt, { once: true });
         window.setTimeout(function () {
-          if (window.__tolariaFrontendReady === true) return;
+          if (window.__bigfootFrontendReady === true) return;
           if (hasReloadAttempted()) return;
           if (!markReloadAttempted()) return;
 

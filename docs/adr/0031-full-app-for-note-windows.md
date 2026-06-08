@@ -8,7 +8,7 @@ date: 2026-03-31
 
 ## Context
 
-Laputa supports opening a note in a secondary window ("Open in New Window"). The original implementation used a dedicated `NoteWindow` component — a thin shell that rendered only the editor, duplicating some App-level logic (vault loading, settings, keyboard shortcuts) in a simplified but diverging form. As the main App gained features (properties editing, zoom, command palette, keyboard shortcuts), the `NoteWindow` shell fell behind, requiring ongoing maintenance to keep parity.
+Bigfoot supports opening a note in a secondary window ("Open in New Window"). The original implementation used a dedicated `NoteWindow` component — a thin shell that rendered only the editor, duplicating some App-level logic (vault loading, settings, keyboard shortcuts) in a simplified but diverging form. As the main App gained features (properties editing, zoom, command palette, keyboard shortcuts), the `NoteWindow` shell fell behind, requiring ongoing maintenance to keep parity.
 
 ## Decision
 

@@ -392,7 +392,7 @@ describe('AiPanel', () => {
     mockMessages = [{
       userMessage: 'Tell me about notes',
       actions: [],
-      response: 'Check out [[Build Laputa App]] for details.',
+      response: 'Check out [[Build Bigfoot App]] for details.',
       id: 'msg-1',
     }]
     const onOpenNote = vi.fn()
@@ -401,9 +401,9 @@ describe('AiPanel', () => {
     )
     const wikilink = container.querySelector('.chat-wikilink')
     expect(wikilink).toBeTruthy()
-    expect(wikilink!.textContent).toBe('Build Laputa App')
+    expect(wikilink!.textContent).toBe('Build Bigfoot App')
     fireEvent.click(wikilink!)
-    expect(onOpenNote).toHaveBeenCalledWith('Build Laputa App')
+    expect(onOpenNote).toHaveBeenCalledWith('Build Bigfoot App')
   })
 
   it('renders wikilinks with special characters and clicking works', () => {

@@ -4,8 +4,8 @@ import type { AgentStatus, AiAgentMessage } from './aiAgentConversation'
 import { isTauri } from '../mock-tauri'
 import { createCrossWindowPersistedStore, type CrossWindowStoreReadReason } from './crossWindowPersistedStore'
 
-const STORAGE_KEY = 'tolaria:ai-workspace-sessions:v1'
-const BROADCAST_CHANNEL = 'tolaria-ai-workspace-sessions'
+const STORAGE_KEY = 'bigfoot:ai-workspace-sessions:v1'
+const BROADCAST_CHANNEL = 'bigfoot-ai-workspace-sessions'
 const NATIVE_WRITE_DEBOUNCE_MS = 250
 
 export interface AiWorkspaceSessionSnapshot {

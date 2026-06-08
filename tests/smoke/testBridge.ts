@@ -7,14 +7,14 @@ import type {
 
 async function waitForDispatchBrowserMenuCommand(page: Page): Promise<void> {
   await page.waitForFunction(
-    () => typeof window.__laputaTest?.dispatchBrowserMenuCommand === 'function',
+    () => typeof window.__bigfootTest?.dispatchBrowserMenuCommand === 'function',
     undefined,
     { timeout: 5_000 },
   )
 }
 
 async function attemptTriggerMenuCommandInPage(commandId: string): Promise<boolean> {
-  const triggerMenuCommand = window.__laputaTest?.triggerMenuCommand
+  const triggerMenuCommand = window.__bigfootTest?.triggerMenuCommand
   if (typeof triggerMenuCommand !== 'function') {
     return false
   }
@@ -32,9 +32,9 @@ async function attemptTriggerMenuCommandInPage(commandId: string): Promise<boole
 }
 
 function dispatchMenuCommandFallbackInPage(commandId: string): void {
-  const dispatchBrowserMenuCommand = window.__laputaTest?.dispatchBrowserMenuCommand
+  const dispatchBrowserMenuCommand = window.__bigfootTest?.dispatchBrowserMenuCommand
   if (typeof dispatchBrowserMenuCommand !== 'function') {
-    throw new Error('Tolaria test bridge is missing dispatchBrowserMenuCommand')
+    throw new Error('Bigfoot test bridge is missing dispatchBrowserMenuCommand')
   }
   dispatchBrowserMenuCommand(commandId)
 }
@@ -53,9 +53,9 @@ export async function seedBlockNoteTable(
   columnWidths?: Array<number | null>,
 ): Promise<void> {
   await page.evaluate((widths) => {
-    const bridge = window.__laputaTest?.seedBlockNoteTable
+    const bridge = window.__bigfootTest?.seedBlockNoteTable
     if (typeof bridge !== 'function') {
-      throw new Error('Tolaria test bridge is missing seedBlockNoteTable')
+      throw new Error('Bigfoot test bridge is missing seedBlockNoteTable')
     }
     return bridge(widths ?? undefined)
   }, columnWidths)
@@ -63,9 +63,9 @@ export async function seedBlockNoteTable(
 
 export async function seedAutoGitSavedChange(page: Page): Promise<void> {
   await page.evaluate(async () => {
-    const bridge = window.__laputaTest?.seedAutoGitSavedChange
+    const bridge = window.__bigfootTest?.seedAutoGitSavedChange
     if (typeof bridge !== 'function') {
-      throw new Error('Tolaria test bridge is missing seedAutoGitSavedChange')
+      throw new Error('Bigfoot test bridge is missing seedAutoGitSavedChange')
     }
     await bridge()
   })
@@ -73,9 +73,9 @@ export async function seedAutoGitSavedChange(page: Page): Promise<void> {
 
 export async function openDeepLink(page: Page, url: string): Promise<void> {
   await page.evaluate((deepLinkUrl) => {
-    const bridge = window.__laputaTest?.openDeepLink
+    const bridge = window.__bigfootTest?.openDeepLink
     if (typeof bridge !== 'function') {
-      throw new Error('Tolaria test bridge is missing openDeepLink')
+      throw new Error('Bigfoot test bridge is missing openDeepLink')
     }
     bridge(deepLinkUrl)
   }, url)
@@ -86,9 +86,9 @@ export async function dispatchShortcutEvent(
   init: AppCommandShortcutEventInit,
 ): Promise<void> {
   await page.evaluate((eventInit) => {
-    const bridge = window.__laputaTest?.dispatchShortcutEvent
+    const bridge = window.__bigfootTest?.dispatchShortcutEvent
     if (typeof bridge !== 'function') {
-      throw new Error('Tolaria test bridge is missing dispatchShortcutEvent')
+      throw new Error('Bigfoot test bridge is missing dispatchShortcutEvent')
     }
     bridge(eventInit)
   }, init)
@@ -100,9 +100,9 @@ export async function triggerShortcutCommand(
   options?: AppCommandShortcutEventOptions,
 ): Promise<void> {
   await page.evaluate((payload) => {
-    const bridge = window.__laputaTest?.triggerShortcutCommand
+    const bridge = window.__bigfootTest?.triggerShortcutCommand
     if (typeof bridge !== 'function') {
-      throw new Error('Tolaria test bridge is missing triggerShortcutCommand')
+      throw new Error('Bigfoot test bridge is missing triggerShortcutCommand')
     }
     bridge(payload.id, payload.options)
   }, { id, options })

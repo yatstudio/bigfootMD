@@ -2,8 +2,8 @@ import { existsSync, readFileSync } from 'node:fs'
 import { homedir, platform } from 'node:os'
 import { join } from 'node:path'
 
-const APP_CONFIG_DIR = 'com.tolaria.app'
-const LEGACY_APP_CONFIG_DIR = 'com.laputa.app'
+const APP_CONFIG_DIR = 'com.bigfoot.app'
+const LEGACY_APP_CONFIG_DIR = 'com.bigfoot.app'
 
 function parseVaultPathList(rawValue) {
   if (!rawValue?.trim()) return []
@@ -78,7 +78,7 @@ export function requireVaultPaths(env = process.env, options = {}) {
   if (vaultPaths.length === 0) {
     const configuredPaths = configuredVaultPaths(options)
     if (configuredPaths.length > 0) return configuredPaths
-    throw new Error('VAULT_PATH is required. Open a vault in Tolaria before starting MCP tools.')
+    throw new Error('VAULT_PATH is required. Open a vault in Bigfoot before starting MCP tools.')
   }
   return vaultPaths
 }

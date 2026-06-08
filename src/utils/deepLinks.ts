@@ -2,7 +2,7 @@ import type { VaultEntry } from '../types'
 import { joinVaultPath, normalizeNotePathForCollision, normalizeNotePathForIdentity, normalizeNotePathSeparators } from './notePathIdentity'
 import { workspaceAliasFromOption } from './workspaces'
 
-export const TOLARIA_DEEP_LINK_SCHEME = 'tolaria'
+export const BIGFOOT_DEEP_LINK_SCHEME = 'bigfoot'
 
 export interface DeepLinkVault {
   alias?: string | null
@@ -15,19 +15,19 @@ export type DeepLinkParseError = 'invalid_scheme' | 'missing_vault' | 'missing_p
 export type DeepLinkOpenError = DeepLinkParseError | 'unknown_vault' | 'ambiguous_vault' | 'unavailable_vault' | 'missing_file'
 export type DeepLinkBuildError = 'unknown_vault' | 'unavailable_vault' | 'outside_vault' | 'unsafe_path'
 
-export type ParsedTolariaDeepLink =
+export type ParsedBigfootDeepLink =
   | { ok: true; relativePath: string; slug: string; url: string }
   | { ok: false; error: DeepLinkParseError }
 
-export type ResolvedTolariaDeepLink =
+export type ResolvedBigfootDeepLink =
   | { ok: true; absolutePath: string; relativePath: string; vault: DeepLinkVault }
   | { ok: false; error: DeepLinkOpenError }
 
-export type BuiltTolariaDeepLink =
+export type BuiltBigfootDeepLink =
   | { ok: true; url: string }
   | { ok: false; error: DeepLinkBuildError }
 
-interface TolariaDeepLinkInput {
+interface BigfootDeepLinkInput {
   rawUrl: string
 }
 
@@ -50,11 +50,11 @@ interface VaultSlugLookupInput {
   vaults: readonly DeepLinkVault[]
 }
 
-interface TolariaDeepLinkResolveInput extends TolariaDeepLinkInput {
+interface BigfootDeepLinkResolveInput extends BigfootDeepLinkInput {
   vaults: readonly DeepLinkVault[]
 }
 
-interface TolariaDeepLinkBuildInput extends VaultPathLookupInput {
+interface BigfootDeepLinkBuildInput extends VaultPathLookupInput {
   entry: Pick<VaultEntry, 'path'>
 }
 
@@ -138,8 +138,8 @@ function decodeRelativePath({ path }: VaultRelativePathInput): string | null {
   return decodedSegments.join('/')
 }
 
-function rawPathnameForTolariaUrl({ rawUrl }: TolariaDeepLinkInput): string | null {
-  return rawUrl.match(/^tolaria:\/\/[^/?#]+(\/[^?#]*)/iu)?.[1] ?? null
+function rawPathnameForBigfootUrl({ rawUrl }: BigfootDeepLinkInput): string | null {
+  return rawUrl.match(/^bigfoot:\/\/[^/?#]+(\/[^?#]*)/iu)?.[1] ?? null
 }
 
 function isSafePathSegment({ segment }: { segment: string }): boolean {
@@ -173,7 +173,7 @@ function findVaultByPath({ vaultPath, vaults }: VaultPathLookupInput): DeepLinkV
   return uniqueVaults(vaults).find((vault) => normalizedVaultPath(vault) === targetPath)
 }
 
-function resolveVaultForSlug({ slug, vaults }: VaultSlugLookupInput): ResolvedTolariaDeepLink | DeepLinkVault {
+function resolveVaultForSlug({ slug, vaults }: VaultSlugLookupInput): ResolvedBigfootDeepLink | DeepLinkVault {
   const normalizedSlug = slug.trim().toLocaleLowerCase()
   const entries = vaultSlugEntries(vaults)
   const exactSlugMatches = entries.filter((entry) => entry.slug === normalizedSlug)
@@ -186,11 +186,11 @@ function resolveVaultForSlug({ slug, vaults }: VaultSlugLookupInput): ResolvedTo
   return { ok: false, error: 'unknown_vault' }
 }
 
-function resolvedAvailableVault(vault: DeepLinkVault): DeepLinkVault | ResolvedTolariaDeepLink {
+function resolvedAvailableVault(vault: DeepLinkVault): DeepLinkVault | ResolvedBigfootDeepLink {
   return vault.available === false ? { ok: false, error: 'unavailable_vault' } : vault
 }
 
-export function parseTolariaDeepLink({ rawUrl }: TolariaDeepLinkInput): ParsedTolariaDeepLink {
+export function parseBigfootDeepLink({ rawUrl }: BigfootDeepLinkInput): ParsedBigfootDeepLink {
   let parsed: URL
   try {
     parsed = new URL(rawUrl)
@@ -198,10 +198,10 @@ export function parseTolariaDeepLink({ rawUrl }: TolariaDeepLinkInput): ParsedTo
     return { ok: false, error: 'malformed_url' }
   }
 
-  if (parsed.protocol !== `${TOLARIA_DEEP_LINK_SCHEME}:`) return { ok: false, error: 'invalid_scheme' }
+  if (parsed.protocol !== `${BIGFOOT_DEEP_LINK_SCHEME}:`) return { ok: false, error: 'invalid_scheme' }
   if (!parsed.hostname) return { ok: false, error: 'missing_vault' }
 
-  const rawPathname = rawPathnameForTolariaUrl({ rawUrl })
+  const rawPathname = rawPathnameForBigfootUrl({ rawUrl })
   if (!rawPathname) return { ok: false, error: 'missing_path' }
 
   const relativePath = decodeRelativePath({ path: rawPathname })
@@ -209,8 +209,8 @@ export function parseTolariaDeepLink({ rawUrl }: TolariaDeepLinkInput): ParsedTo
   return { ok: true, relativePath, slug: parsed.hostname, url: rawUrl }
 }
 
-export function resolveTolariaDeepLink({ rawUrl, vaults }: TolariaDeepLinkResolveInput): ResolvedTolariaDeepLink {
-  const parsed = parseTolariaDeepLink({ rawUrl })
+export function resolveBigfootDeepLink({ rawUrl, vaults }: BigfootDeepLinkResolveInput): ResolvedBigfootDeepLink {
+  const parsed = parseBigfootDeepLink({ rawUrl })
   if (!parsed.ok) return parsed
 
   const resolvedVault = resolveVaultForSlug({ slug: parsed.slug, vaults })
@@ -223,11 +223,11 @@ export function resolveTolariaDeepLink({ rawUrl, vaults }: TolariaDeepLinkResolv
   }
 }
 
-export function buildTolariaDeepLinkForEntry({
+export function buildBigfootDeepLinkForEntry({
   entry,
   vaultPath,
   vaults,
-}: TolariaDeepLinkBuildInput): BuiltTolariaDeepLink {
+}: BigfootDeepLinkBuildInput): BuiltBigfootDeepLink {
   const vault = findVaultByPath({ vaultPath, vaults })
   if (!vault) return { ok: false, error: 'unknown_vault' }
   if (vault.available === false) return { ok: false, error: 'unavailable_vault' }
@@ -239,6 +239,6 @@ export function buildTolariaDeepLinkForEntry({
   const slug = vaultDeepLinkSlug(vault, vaults)
   return {
     ok: true,
-    url: `${TOLARIA_DEEP_LINK_SCHEME}://${slug}/${encodeRelativePath({ path: relativePath })}`,
+    url: `${BIGFOOT_DEEP_LINK_SCHEME}://${slug}/${encodeRelativePath({ path: relativePath })}`,
   }
 }

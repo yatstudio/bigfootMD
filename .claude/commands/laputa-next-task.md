@@ -1,6 +1,6 @@
-# /laputa-next-task
+# /bigfoot-next-task
 
-Pick the next Laputa task from Todoist and move it to In Progress.
+Pick the next Bigfoot task from Todoist and move it to In Progress.
 
 Priority order: **To Rework** first, then **Open** (sorted by Todoist priority p1→p4).
 

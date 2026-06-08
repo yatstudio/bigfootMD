@@ -6,13 +6,13 @@ import { isTauri } from '../mock-tauri'
 import type { VaultEntry } from '../types'
 import { writeClipboardText } from '../utils/clipboardText'
 import {
-  buildTolariaDeepLinkForEntry,
+  buildBigfootDeepLinkForEntry,
   relativePathForVaultItem,
-  resolveTolariaDeepLink,
+  resolveBigfootDeepLink,
   type DeepLinkBuildError,
   type DeepLinkOpenError,
   type DeepLinkVault,
-  type ResolvedTolariaDeepLink,
+  type ResolvedBigfootDeepLink,
 } from '../utils/deepLinks'
 import { notePathsMatch } from '../utils/notePathIdentity'
 import { vaultPathForEntry } from '../utils/workspaces'
@@ -113,7 +113,7 @@ function useDeepLinkResolver({
   setToastMessage,
   vaultListLoaded,
 }: DeepLinkResolverConfig) {
-  const openResolvedDeepLink = useCallback((request: Extract<ResolvedTolariaDeepLink, { ok: true }>) => {
+  const openResolvedDeepLink = useCallback((request: Extract<ResolvedBigfootDeepLink, { ok: true }>) => {
     const nextNavigation = {
       absolutePath: request.absolutePath,
       relativePath: request.relativePath,
@@ -128,7 +128,7 @@ function useDeepLinkResolver({
   useEffect(() => {
     if (!enabled || !pendingUrl || !vaultListLoaded) return
 
-    const resolved = resolveTolariaDeepLink({ rawUrl: pendingUrl, vaults: knownVaults })
+    const resolved = resolveBigfootDeepLink({ rawUrl: pendingUrl, vaults: knownVaults })
     setPendingUrl(null)
     if (!resolved.ok) {
       setToastMessage(deepLinkOpenErrorMessage(resolved.error, locale))
@@ -328,13 +328,13 @@ function useDeepLinkTestBridge({
 }) {
   useEffect(() => {
     if (!enabled) return undefined
-    window.__laputaTest = {
-      ...window.__laputaTest,
+    window.__bigfootTest = {
+      ...window.__bigfootTest,
       openDeepLink,
     }
     return () => {
-      if (window.__laputaTest?.openDeepLink === openDeepLink) {
-        delete window.__laputaTest.openDeepLink
+      if (window.__bigfootTest?.openDeepLink === openDeepLink) {
+        delete window.__bigfootTest.openDeepLink
       }
     }
   }, [enabled, openDeepLink])
@@ -359,7 +359,7 @@ function useDeepLinkCopyActions({
 }: DeepLinkCopyActionsConfig) {
   const copyEntryDeepLink = useCallback((entry: VaultEntry) => {
     const vaultPath = vaultPathForEntry(entry, currentVaultPath)
-    const result = buildTolariaDeepLinkForEntry({ entry, vaultPath, vaults: knownVaults })
+    const result = buildBigfootDeepLinkForEntry({ entry, vaultPath, vaults: knownVaults })
     if (!result.ok) {
       setToastMessage(deepLinkBuildErrorMessage(result.error, locale))
       trackEvent('deep_link_copied', { outcome: 'failed', reason: result.error })

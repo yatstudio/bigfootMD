@@ -1,6 +1,6 @@
-# /laputa-done <task_id>
+# /bigfoot-done <task_id>
 
-Mark a Laputa task as done: add completion comment, move to In Review, then self-dispatch the next task.
+Mark a Bigfoot task as done: add completion comment, move to In Review, then self-dispatch the next task.
 
 Run this after Phase 1 (Playwright) and Phase 2 (native app QA) both pass **and `git push origin main` has succeeded**.
 
@@ -37,6 +37,6 @@ curl -s -X POST "https://api.todoist.com/api/v1/tasks/$ARGUMENTS/move" \
 
 **3. Pick the next task**
 
-Run `/laputa-next-task` to get the next task and start working on it immediately.
+Run `/bigfoot-next-task` to get the next task and start working on it immediately.
 
-If there are no tasks, `/laputa-next-task` will wait 10 minutes and retry automatically. Do NOT exit — stay alive and let it loop.
+If there are no tasks, `/bigfoot-next-task` will wait 10 minutes and retry automatically. Do NOT exit — stay alive and let it loop.

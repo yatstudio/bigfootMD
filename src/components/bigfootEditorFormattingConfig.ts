@@ -34,8 +34,8 @@ import { MATH_BLOCK_TYPE } from '../utils/mathMarkdown'
 import { MERMAID_BLOCK_TYPE, mermaidFenceSource } from '../utils/mermaidMarkdown'
 import { TLDRAW_BLOCK_TYPE, TLDRAW_DEFAULT_HEIGHT } from '../utils/tldrawMarkdown'
 
-type TolariaSlashMenuItem = DefaultReactSuggestionItem & { key: string }
-type TolariaBlockTypeSelectItem = {
+type BigfootSlashMenuItem = DefaultReactSuggestionItem & { key: string }
+type BigfootBlockTypeSelectItem = {
   name: string
   type: string
   props?: Record<string, boolean | number | string>
@@ -53,7 +53,7 @@ type BlockSlashMenuItemConfig = {
   title: string
   type: string
 }
-type TolariaSlashMenuLabels = {
+type BigfootSlashMenuLabels = {
   mathTitle: string
 }
 
@@ -81,7 +81,7 @@ const UNSUPPORTED_SLASH_MENU_KEYS = new Set([
   'toggle_list',
 ])
 
-const TOLARIA_BLOCK_TYPE_SELECT_ITEMS: TolariaBlockTypeSelectItem[] = [
+const BIGFOOT_BLOCK_TYPE_SELECT_ITEMS: BigfootBlockTypeSelectItem[] = [
   { name: 'Paragraph', type: 'paragraph', icon: Paragraph },
   { name: 'Heading 1', type: 'heading', props: { level: 1 }, icon: TextHOne },
   { name: 'Heading 2', type: 'heading', props: { level: 2 }, icon: TextHTwo },
@@ -96,7 +96,7 @@ const TOLARIA_BLOCK_TYPE_SELECT_ITEMS: TolariaBlockTypeSelectItem[] = [
   { name: 'Code Block', type: 'codeBlock', icon: CodeBlock },
 ]
 
-const TOLARIA_SLASH_MENU_ICONS: Partial<Record<string, PhosphorIcon>> = {
+const BIGFOOT_SLASH_MENU_ICONS: Partial<Record<string, PhosphorIcon>> = {
   audio: SpeakerHigh,
   bullet_list: ListBullets,
   check_list: ListChecks,
@@ -132,7 +132,7 @@ function createBoardId(): string {
 
 function createWhiteboardSlashMenuItem(
   editor: Parameters<typeof getDefaultReactSlashMenuItems>[0],
-): TolariaSlashMenuItem {
+): BigfootSlashMenuItem {
   return createBlockSlashMenuItem(editor, {
     key: 'whiteboard',
     title: 'Whiteboard',
@@ -149,7 +149,7 @@ function createWhiteboardSlashMenuItem(
 
 function createMermaidSlashMenuItem(
   editor: Parameters<typeof getDefaultReactSlashMenuItems>[0],
-): TolariaSlashMenuItem {
+): BigfootSlashMenuItem {
   return createBlockSlashMenuItem(editor, {
     key: 'mermaid',
     title: 'Mermaid',
@@ -164,8 +164,8 @@ function createMermaidSlashMenuItem(
 
 export function createMathSlashMenuItem(
   editor: Parameters<typeof getDefaultReactSlashMenuItems>[0],
-  labels: TolariaSlashMenuLabels = { mathTitle: 'Math' },
-): TolariaSlashMenuItem {
+  labels: BigfootSlashMenuLabels = { mathTitle: 'Math' },
+): BigfootSlashMenuItem {
   return createBlockSlashMenuItem(editor, {
     key: 'math',
     title: labels.mathTitle,
@@ -181,7 +181,7 @@ export function createMathSlashMenuItem(
 function createBlockSlashMenuItem(
   editor: Parameters<typeof getDefaultReactSlashMenuItems>[0],
   config: BlockSlashMenuItemConfig,
-): TolariaSlashMenuItem {
+): BigfootSlashMenuItem {
   const blockEditor = editor as unknown as SlashInsertEditor
 
   return {
@@ -197,13 +197,13 @@ function createBlockSlashMenuItem(
       })
       if (config.eventName) trackEvent(config.eventName)
     },
-  } as TolariaSlashMenuItem
+  } as BigfootSlashMenuItem
 }
 
 export function addItemsToMediaGroup(
-  items: TolariaSlashMenuItem[],
-  mediaItems: TolariaSlashMenuItem[],
-): TolariaSlashMenuItem[] {
+  items: BigfootSlashMenuItem[],
+  mediaItems: BigfootSlashMenuItem[],
+): BigfootSlashMenuItem[] {
   const nextItems = [...items]
   const insertIndex = nextItems.findIndex((item) => item.key === 'emoji')
 
@@ -216,30 +216,30 @@ export function addItemsToMediaGroup(
   return nextItems
 }
 
-function createTolariaSlashMenuIcon(Icon: PhosphorIcon) {
+function createBigfootSlashMenuIcon(Icon: PhosphorIcon) {
   return createElement(
     'span',
-    { className: 'tolaria-slash-menu-icon' },
+    { className: 'bigfoot-slash-menu-icon' },
     createElement(Icon, {
       'aria-hidden': true,
-      className: 'tolaria-slash-menu-icon__regular',
+      className: 'bigfoot-slash-menu-icon__regular',
       size: 18,
       weight: 'regular',
     }),
     createElement(Icon, {
       'aria-hidden': true,
-      className: 'tolaria-slash-menu-icon__fill',
+      className: 'bigfoot-slash-menu-icon__fill',
       size: 18,
       weight: 'fill',
     }),
   )
 }
 
-export function getTolariaBlockTypeSelectItems() {
-  return TOLARIA_BLOCK_TYPE_SELECT_ITEMS
+export function getBigfootBlockTypeSelectItems() {
+  return BIGFOOT_BLOCK_TYPE_SELECT_ITEMS
 }
 
-export function filterTolariaFormattingToolbarItems<T extends ReactElement>(
+export function filterBigfootFormattingToolbarItems<T extends ReactElement>(
   items: T[],
 ): T[] {
   return items.filter(
@@ -247,29 +247,29 @@ export function filterTolariaFormattingToolbarItems<T extends ReactElement>(
   )
 }
 
-export function filterTolariaSlashMenuItems<T extends TolariaSlashMenuItem>(
+export function filterBigfootSlashMenuItems<T extends BigfootSlashMenuItem>(
   items: T[],
 ): T[] {
   return items
     .filter((item) => !UNSUPPORTED_SLASH_MENU_KEYS.has(item.key))
     .map((item) => {
-      const TolariaIcon = TOLARIA_SLASH_MENU_ICONS[item.key]
+      const BigfootIcon = BIGFOOT_SLASH_MENU_ICONS[item.key]
 
       return {
         ...item,
-        icon: TolariaIcon ? createTolariaSlashMenuIcon(TolariaIcon) : item.icon,
+        icon: BigfootIcon ? createBigfootSlashMenuIcon(BigfootIcon) : item.icon,
         subtext: undefined,
       }
     }) as T[]
 }
 
-export function getTolariaSlashMenuItems(
+export function getBigfootSlashMenuItems(
   editor: Parameters<typeof getDefaultReactSlashMenuItems>[0],
   query: string,
-  labels?: TolariaSlashMenuLabels,
+  labels?: BigfootSlashMenuLabels,
 ) {
   const items = addItemsToMediaGroup(
-    getDefaultReactSlashMenuItems(editor) as TolariaSlashMenuItem[],
+    getDefaultReactSlashMenuItems(editor) as BigfootSlashMenuItem[],
     [
       createMermaidSlashMenuItem(editor),
       createMathSlashMenuItem(editor, labels),
@@ -278,7 +278,7 @@ export function getTolariaSlashMenuItems(
   )
 
   return filterSuggestionItems(
-    filterTolariaSlashMenuItems(
+    filterBigfootSlashMenuItems(
       items,
     ),
     query,

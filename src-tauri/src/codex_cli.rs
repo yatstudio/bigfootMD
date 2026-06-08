@@ -192,7 +192,7 @@ where
     F: FnMut(AiAgentStreamEvent),
 {
     let last_message_dir = tempfile::Builder::new()
-        .prefix("tolaria-codex-last-message-")
+        .prefix("bigfoot-codex-last-message-")
         .tempdir()
         .map_err(|error| format!("Failed to create Codex output directory: {error}"))?;
     let last_message_path = last_message_dir.path().join("last-message.txt");
@@ -282,9 +282,9 @@ fn build_codex_args(
         "-C".into(),
         request.vault_path.clone(),
         "-c".into(),
-        codex_config_string("mcp_servers.tolaria.command", &node_path.to_string_lossy()),
+        codex_config_string("mcp_servers.bigfoot.command", &node_path.to_string_lossy()),
         "-c".into(),
-        codex_config_string_list("mcp_servers.tolaria.args", &[mcp_server_path.as_str()]),
+        codex_config_string_list("mcp_servers.bigfoot.args", &[mcp_server_path.as_str()]),
         "-c".into(),
         codex_mcp_env_config(request),
     ];
@@ -316,7 +316,7 @@ fn codex_mcp_env_config(request: &AgentStreamRequest) -> String {
         &request.vault_paths,
     );
     format!(
-        r#"mcp_servers.tolaria.env={{VAULT_PATH="{}",VAULT_PATHS="{}",WS_UI_PORT="9711"}}"#,
+        r#"mcp_servers.bigfoot.env={{VAULT_PATH="{}",VAULT_PATHS="{}",WS_UI_PORT="9711"}}"#,
         toml_escape(&request.vault_path),
         toml_escape(&vault_paths)
     )
@@ -643,12 +643,12 @@ mod tests {
                 vault_paths: Vec::new(),
                 permission_mode: AiAgentPermissionMode::Safe,
             },
-            Some(Path::new("/tmp/tolaria-codex-last-message.txt")),
+            Some(Path::new("/tmp/bigfoot-codex-last-message.txt")),
         ) {
             assert!(args.windows(2).any(|window| window
                 == [
                     "--output-last-message",
-                    "/tmp/tolaria-codex-last-message.txt",
+                    "/tmp/bigfoot-codex-last-message.txt",
                 ]));
         }
     }
@@ -669,12 +669,12 @@ mod tests {
 
         let command_override = args
             .iter()
-            .find(|arg| arg.starts_with("mcp_servers.tolaria.command="))
-            .expect("Codex should receive a transient Tolaria MCP command");
+            .find(|arg| arg.starts_with("mcp_servers.bigfoot.command="))
+            .expect("Codex should receive a transient Bigfoot MCP command");
 
         assert!(
             !command_override.ends_with(r#""node""#),
-            "Codex MCP command should use Tolaria's resolved Node path, got {command_override}"
+            "Codex MCP command should use Bigfoot's resolved Node path, got {command_override}"
         );
         assert!(
             command_override.contains('/'),
@@ -751,7 +751,7 @@ mod tests {
             vec![
                 "exec".to_string(),
                 "-c".to_string(),
-                r#"mcp_servers.tolaria.command="C:\\Program Files\\node.exe""#.to_string(),
+                r#"mcp_servers.bigfoot.command="C:\\Program Files\\node.exe""#.to_string(),
             ],
             "Summarize".into(),
             "/tmp/vault",
@@ -860,7 +860,7 @@ exit 2
             .arg("codex_stdin_probe_parent_child")
             .arg("--ignored")
             .arg("--nocapture")
-            .env("TOLARIA_CODEX_STDIN_PROBE_PARENT_CHILD", "1")
+            .env("BIGFOOT_CODEX_STDIN_PROBE_PARENT_CHILD", "1")
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::piped())
@@ -899,7 +899,7 @@ exit 2
     #[ignore = "spawned by run_codex_agent_stream_closes_stdin_even_when_parent_stdin_pipe_is_open"]
     #[test]
     fn codex_stdin_probe_parent_child() {
-        if std::env::var_os("TOLARIA_CODEX_STDIN_PROBE_PARENT_CHILD").is_none() {
+        if std::env::var_os("BIGFOOT_CODEX_STDIN_PROBE_PARENT_CHILD").is_none() {
             return;
         }
 
@@ -1124,7 +1124,7 @@ printf '%s\n' '{"type":"item.completed","item":{"id":"msg_1","type":"agent_messa
             "item": {
                 "id": "item_1",
                 "type": "mcp_tool_call",
-                "server": "tolaria",
+                "server": "bigfoot",
                 "tool": "search_notes",
                 "arguments": { "query": "meeting", "limit": 5 },
                 "status": "in_progress"
@@ -1135,7 +1135,7 @@ printf '%s\n' '{"type":"item.completed","item":{"id":"msg_1","type":"agent_messa
             "item": {
                 "id": "item_1",
                 "type": "mcp_tool_call",
-                "server": "tolaria",
+                "server": "bigfoot",
                 "tool": "search_notes",
                 "arguments": { "query": "meeting", "limit": 5 },
                 "result": [{ "title": "Meeting notes" }],

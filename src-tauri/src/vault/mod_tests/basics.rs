@@ -1,6 +1,6 @@
 use super::*;
 
-const FULL_FM_CONTENT: &str = "---\ntitle: Laputa Project\nIs A: Project\naliases:\n  - Laputa\n  - Castle in the Sky\nBelongs to:\n  - Studio Ghibli\nRelated to:\n  - Miyazaki\nStatus: Active\nOwner: Luca\nCadence: Weekly\n---\n# Laputa Project\n\nThis is a project note.\n";
+const FULL_FM_CONTENT: &str = "---\ntitle: Bigfoot Project\nIs A: Project\naliases:\n  - Bigfoot\n  - Castle in the Sky\nBelongs to:\n  - Studio Ghibli\nRelated to:\n  - Miyazaki\nStatus: Active\nOwner: Luca\nCadence: Weekly\n---\n# Bigfoot Project\n\nThis is a project note.\n";
 
 #[test]
 fn test_reload_entry_returns_fresh_data() {
@@ -33,17 +33,17 @@ fn test_reload_entry_nonexistent_file() {
 #[test]
 fn test_parse_full_frontmatter_identity() {
     let dir = TempDir::new().unwrap();
-    let entry = parse_test_entry(&dir, "laputa.md", FULL_FM_CONTENT);
-    assert_eq!(entry.title, "Laputa Project");
+    let entry = parse_test_entry(&dir, "bigfoot.md", FULL_FM_CONTENT);
+    assert_eq!(entry.title, "Bigfoot Project");
     assert_eq!(entry.is_a, Some("Project".to_string()));
-    assert_eq!(entry.filename, "laputa.md");
+    assert_eq!(entry.filename, "bigfoot.md");
 }
 
 #[test]
 fn test_parse_full_frontmatter_lists() {
     let dir = TempDir::new().unwrap();
-    let entry = parse_test_entry(&dir, "laputa.md", FULL_FM_CONTENT);
-    assert_eq!(entry.aliases, vec!["Laputa", "Castle in the Sky"]);
+    let entry = parse_test_entry(&dir, "bigfoot.md", FULL_FM_CONTENT);
+    assert_eq!(entry.aliases, vec!["Bigfoot", "Castle in the Sky"]);
     assert!(!entry.relationships.contains_key("Belongs to"));
     assert!(!entry.relationships.contains_key("Related to"));
 }
@@ -51,7 +51,7 @@ fn test_parse_full_frontmatter_lists() {
 #[test]
 fn test_parse_full_frontmatter_scalars() {
     let dir = TempDir::new().unwrap();
-    let entry = parse_test_entry(&dir, "laputa.md", FULL_FM_CONTENT);
+    let entry = parse_test_entry(&dir, "bigfoot.md", FULL_FM_CONTENT);
     assert_eq!(entry.status, Some("Active".to_string()));
     assert_eq!(
         entry

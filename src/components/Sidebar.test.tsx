@@ -8,7 +8,7 @@ const mockEntries: VaultEntry[] = [
   {
     path: '/vault/project/build-app.md',
     filename: 'build-app.md',
-    title: 'Build Laputa App',
+    title: 'Build Bigfoot App',
     isA: 'Project',
     aliases: [],
     belongsTo: [],
@@ -240,7 +240,7 @@ describe('Sidebar', () => {
   it('does not show inline entity names — sections are flat rows', () => {
     render(<Sidebar entries={mockEntries} selection={defaultSelection} onSelect={() => {}} />)
     // Individual entries should NOT appear inline in the sidebar
-    expect(screen.queryByText('Build Laputa App')).not.toBeInTheDocument()
+    expect(screen.queryByText('Build Bigfoot App')).not.toBeInTheDocument()
     expect(screen.queryByText('Grow Newsletter')).not.toBeInTheDocument()
   })
 
@@ -1157,11 +1157,11 @@ describe('Sidebar', () => {
     })
 
     it('preserves plain square brackets in favorite titles', () => {
-      const bracketedFavorite = { ...favEntry, title: '[26Q2] Tolaria MVP' }
+      const bracketedFavorite = { ...favEntry, title: '[26Q2] Bigfoot MVP' }
 
       render(<Sidebar entries={[...mockEntries, bracketedFavorite]} selection={defaultSelection} onSelect={() => {}} />)
 
-      expect(screen.getByText('[26Q2] Tolaria MVP')).toBeInTheDocument()
+      expect(screen.getByText('[26Q2] Bigfoot MVP')).toBeInTheDocument()
     })
 
     it('hides FAVORITES section when no favorites', () => {

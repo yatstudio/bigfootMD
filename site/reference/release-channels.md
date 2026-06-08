@@ -1,6 +1,6 @@
 # Release Channels
 
-Tolaria publishes Stable and Alpha release metadata to GitHub Pages.
+Bigfoot publishes Stable and Alpha release metadata to GitHub Pages.
 
 ## Stable
 

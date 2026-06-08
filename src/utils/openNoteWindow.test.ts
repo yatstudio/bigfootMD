@@ -42,7 +42,7 @@ function expectNoteWindowRoute(parsed: URL): void {
   expect(parsed.pathname).toBe('/')
   expect(parsed.searchParams.get('window')).toBe('note')
   expect(parsed.searchParams.get('path')).toBe('/vault/Folder/My Note.md')
-  expect(parsed.searchParams.get('vault')).toBe('/Users/luca/Laputa Vault')
+  expect(parsed.searchParams.get('vault')).toBe('/Users/luca/Bigfoot Vault')
   expect(parsed.searchParams.get('title')).toBe('AI / ML')
 }
 
@@ -57,14 +57,14 @@ describe('openNoteWindow', () => {
   })
 
   it('builds a root-app route that preserves the note window params', () => {
-    const url = buildNoteWindowUrl('/vault/Folder/My Note.md', '/Users/luca/Laputa Vault', 'AI / ML')
-    const parsed = new URL(url, 'https://tolaria.localhost')
+    const url = buildNoteWindowUrl('/vault/Folder/My Note.md', '/Users/luca/Bigfoot Vault', 'AI / ML')
+    const parsed = new URL(url, 'https://bigfoot.localhost')
 
     expectNoteWindowRoute(parsed)
   })
 
   it('resolves the runtime route against the current app origin', () => {
-    const url = buildRuntimeNoteWindowUrl('/vault/Folder/My Note.md', '/Users/luca/Laputa Vault', 'AI / ML')
+    const url = buildRuntimeNoteWindowUrl('/vault/Folder/My Note.md', '/Users/luca/Bigfoot Vault', 'AI / ML')
     const parsed = new URL(url)
 
     expect(parsed.origin).toBe(window.location.origin)
@@ -80,8 +80,8 @@ describe('openNoteWindow', () => {
   it('opens a new Tauri window with the encoded note route', async () => {
     vi.mocked(isTauri).mockReturnValue(true)
 
-    await openNoteInNewWindow('/vault/Folder/My Note.md', '/Users/luca/Laputa Vault', 'AI / ML')
-    const expectedUrl = `${window.location.origin}/?window=note&path=%2Fvault%2FFolder%2FMy+Note.md&vault=%2FUsers%2Fluca%2FLaputa+Vault&title=AI+%2F+ML&windowLabel=note-1776182400000`
+    await openNoteInNewWindow('/vault/Folder/My Note.md', '/Users/luca/Bigfoot Vault', 'AI / ML')
+    const expectedUrl = `${window.location.origin}/?window=note&path=%2Fvault%2FFolder%2FMy+Note.md&vault=%2FUsers%2Fluca%2FBigfoot+Vault&title=AI+%2F+ML&windowLabel=note-1776182400000`
 
     expect(webviewWindowCalls).toHaveBeenCalledWith(
       'note-1776182400000',
@@ -97,9 +97,9 @@ describe('openNoteWindow', () => {
         decorations: true,
       }),
     )
-    expect(JSON.parse(localStorage.getItem('tolaria:note-window:note-1776182400000') ?? '{}')).toEqual({
+    expect(JSON.parse(localStorage.getItem('bigfoot:note-window:note-1776182400000') ?? '{}')).toEqual({
       notePath: '/vault/Folder/My Note.md',
-      vaultPath: '/Users/luca/Laputa Vault',
+      vaultPath: '/Users/luca/Bigfoot Vault',
       noteTitle: 'AI / ML',
     })
   })

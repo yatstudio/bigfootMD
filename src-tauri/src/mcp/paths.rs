@@ -33,12 +33,12 @@ fn runtime_resource_roots_for_env_and_exe(
     }
     if let Some(appdir) = appdir {
         push_resource_root(&mut roots, appdir.join("usr"));
-        push_resource_root(&mut roots, appdir.join("usr/lib/tolaria"));
-        push_resource_root(&mut roots, appdir.join("usr/lib/Tolaria"));
+        push_resource_root(&mut roots, appdir.join("usr/lib/bigfoot"));
+        push_resource_root(&mut roots, appdir.join("usr/lib/Bigfoot"));
     }
     if let Some(local_app_data) = local_app_data {
-        push_resource_root(&mut roots, local_app_data.join("Tolaria"));
-        push_resource_root(&mut roots, local_app_data.join("tolaria"));
+        push_resource_root(&mut roots, local_app_data.join("Bigfoot"));
+        push_resource_root(&mut roots, local_app_data.join("bigfoot"));
     }
 
     roots
@@ -94,12 +94,12 @@ mod tests {
     #[test]
     fn includes_windows_install_locations() {
         let local_app_data = PathBuf::from(r"C:\Users\alex\AppData\Local");
-        let install_dir = local_app_data.join("Tolaria");
+        let install_dir = local_app_data.join("Bigfoot");
         let roots =
             runtime_resource_roots_for_env_and_exe(None, None, Some(local_app_data.clone()), None);
 
         assert_eq!(roots.iter().filter(|root| *root == &install_dir).count(), 1);
-        assert!(roots.contains(&local_app_data.join("tolaria")));
+        assert!(roots.contains(&local_app_data.join("bigfoot")));
 
         let candidates =
             super::super::mcp_server_dir_candidates(Path::new("/repo/mcp-server"), &roots);
@@ -108,17 +108,17 @@ mod tests {
 
     #[test]
     fn includes_macos_app_bundle_resources_from_executable_path() {
-        let executable = PathBuf::from("/Applications/Tolaria.app/Contents/MacOS/Tolaria");
+        let executable = PathBuf::from("/Applications/Bigfoot.app/Contents/MacOS/Bigfoot");
         let roots = runtime_resource_roots_for_env_and_exe(None, None, None, Some(&executable));
 
         assert!(roots.contains(&PathBuf::from(
-            "/Applications/Tolaria.app/Contents/Resources"
+            "/Applications/Bigfoot.app/Contents/Resources"
         )));
 
         let candidates =
             super::super::mcp_server_dir_candidates(Path::new("/repo/mcp-server"), &roots);
         assert!(candidates.contains(&PathBuf::from(
-            "/Applications/Tolaria.app/Contents/Resources/mcp-server"
+            "/Applications/Bigfoot.app/Contents/Resources/mcp-server"
         )));
     }
 }

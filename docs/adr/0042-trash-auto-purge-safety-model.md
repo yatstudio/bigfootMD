@@ -15,7 +15,7 @@ This is one of the most dangerous operations in the app: a bug could cause irrev
 
 ## Decision
 
-**Auto-purge trashed notes older than 30 days on app launch and window focus (max once per hour), using OS trash (`trash::delete`) for soft-deletion, with mandatory 5-point safety validation per file and an audit log at `.laputa/purge.log`.**
+**Auto-purge trashed notes older than 30 days on app launch and window focus (max once per hour), using OS trash (`trash::delete`) for soft-deletion, with mandatory 5-point safety validation per file and an audit log at `.bigfoot/purge.log`.**
 
 ### Safety checks (all must pass before deleting any file)
 
@@ -38,13 +38,13 @@ Use the `trash` crate (`trash::delete`) to move files to the OS trash (macOS Tra
 
 ### Audit log
 
-Every purge run appends to `.laputa/purge.log` with timestamp, files checked count, files purged count, and each purged file path. Users can inspect this file to audit what was deleted and when.
+Every purge run appends to `.bigfoot/purge.log` with timestamp, files checked count, files purged count, and each purged file path. Users can inspect this file to audit what was deleted and when.
 
 ## Options considered
 
 - **Option A — OS trash via `trash` crate** (chosen): moves to OS trash, user can recover from Trash app. Adds a ~small dependency. Safe default.
 - **Option B — `fs::remove_file` (permanent)**: simpler, no dependency, but no recovery path. Too risky for an automatic background operation.
-- **Option C — Move to `.laputa/purged/` archive folder**: custom recovery mechanism, but clutters vault directory and users wouldn't know to look there.
+- **Option C — Move to `.bigfoot/purged/` archive folder**: custom recovery mechanism, but clutters vault directory and users wouldn't know to look there.
 
 ## Consequences
 

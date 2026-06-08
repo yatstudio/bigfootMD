@@ -19,22 +19,22 @@ describe('release workflow macOS artifact names', () => {
     )
 
     expect(alphaWorkflow).toContain(
-      'Tolaria_${{ needs.version.outputs.version }}_macOS_Silicon.app.tar.gz',
+      'Bigfoot_${{ needs.version.outputs.version }}_macOS_Silicon.app.tar.gz',
     )
     expect(alphaWorkflow).toContain(
-      'Tolaria_${{ needs.version.outputs.version }}_macOS_Intel.app.tar.gz',
+      'Bigfoot_${{ needs.version.outputs.version }}_macOS_Intel.app.tar.gz',
     )
     expect(stableWorkflow).toContain(
-      'Tolaria_${{ needs.version.outputs.version }}_macOS_Silicon.app.tar.gz',
+      'Bigfoot_${{ needs.version.outputs.version }}_macOS_Silicon.app.tar.gz',
     )
     expect(stableWorkflow).toContain(
-      'Tolaria_${{ needs.version.outputs.version }}_macOS_Intel.app.tar.gz',
+      'Bigfoot_${{ needs.version.outputs.version }}_macOS_Intel.app.tar.gz',
     )
     expect(stableWorkflow).toContain(
-      'Tolaria_${{ needs.version.outputs.version }}_macOS_Silicon.dmg',
+      'Bigfoot_${{ needs.version.outputs.version }}_macOS_Silicon.dmg',
     )
     expect(stableWorkflow).toContain(
-      'Tolaria_${{ needs.version.outputs.version }}_macOS_Intel.dmg',
+      'Bigfoot_${{ needs.version.outputs.version }}_macOS_Intel.dmg',
     )
   })
 
@@ -86,35 +86,35 @@ describe('extractStableDownloadTargets', () => {
       extractStableDownloadTargets({
         platforms: {
           'darwin-aarch64': {
-            download_url: 'https://example.com/Tolaria-aarch64.dmg',
+            download_url: 'https://example.com/Bigfoot-aarch64.dmg',
           },
           'darwin-x86_64': {
-            download_url: 'https://example.com/Tolaria-x64.dmg',
+            download_url: 'https://example.com/Bigfoot-x64.dmg',
           },
           'linux-x86_64': {
-            download_url: 'https://example.com/Tolaria.AppImage',
+            download_url: 'https://example.com/Bigfoot.AppImage',
           },
           'windows-x86_64': {
-            url: 'https://example.com/Tolaria-setup.exe',
+            url: 'https://example.com/Bigfoot-setup.exe',
           },
         },
       }),
     ).toMatchObject({
       'darwin-aarch64': {
         label: 'macOS Apple Silicon',
-        url: 'https://example.com/Tolaria-aarch64.dmg',
+        url: 'https://example.com/Bigfoot-aarch64.dmg',
       },
       'darwin-x86_64': {
         label: 'macOS Intel',
-        url: 'https://example.com/Tolaria-x64.dmg',
+        url: 'https://example.com/Bigfoot-x64.dmg',
       },
       'linux-x86_64': {
         label: 'Linux AppImage',
-        url: 'https://example.com/Tolaria.AppImage',
+        url: 'https://example.com/Bigfoot.AppImage',
       },
       'windows-x86_64': {
         label: 'Windows',
-        url: 'https://example.com/Tolaria-setup.exe',
+        url: 'https://example.com/Bigfoot-setup.exe',
       },
     })
   })
@@ -124,32 +124,32 @@ describe('buildStableDownloadRedirectPage', () => {
   it('builds a redirect page with platform-specific download links', () => {
     const html = buildStableDownloadRedirectPage({
       'darwin-aarch64': {
-        buttonLabel: 'Download Tolaria for macOS Apple Silicon',
+        buttonLabel: 'Download Bigfoot for macOS Apple Silicon',
         label: 'macOS Apple Silicon',
-        url: 'https://example.com/Tolaria-aarch64.dmg',
+        url: 'https://example.com/Bigfoot-aarch64.dmg',
       },
       'darwin-x86_64': {
-        buttonLabel: 'Download Tolaria for Intel Mac',
+        buttonLabel: 'Download Bigfoot for Intel Mac',
         label: 'macOS Intel',
-        url: 'https://example.com/Tolaria-x64.dmg',
+        url: 'https://example.com/Bigfoot-x64.dmg',
       },
       'windows-x86_64': {
-        buttonLabel: 'Download Tolaria for Windows',
+        buttonLabel: 'Download Bigfoot for Windows',
         label: 'Windows',
-        url: 'https://example.com/Tolaria-setup.exe',
+        url: 'https://example.com/Bigfoot-setup.exe',
       },
     })
 
-    expect(html).toContain('Tolaria Stable Download')
+    expect(html).toContain('Bigfoot Stable Download')
     expect(html).toContain('DOWNLOAD_TARGETS')
-    expect(html).toContain('Download Tolaria for Windows')
+    expect(html).toContain('Download Bigfoot for Windows')
     expect(html).toContain('Windows installers are Authenticode-signed')
-    expect(html).toContain('Download Tolaria for macOS Apple Silicon')
-    expect(html).toContain('Download Tolaria for Intel Mac')
+    expect(html).toContain('Download Bigfoot for macOS Apple Silicon')
+    expect(html).toContain('Download Bigfoot for Intel Mac')
     expect(html).toContain('hasMultipleMacDownloads')
     expect(html).toContain('Choose the Apple Silicon or Intel Mac download below.')
     expect(html).toContain('requiresWindowsInstallChoice')
-    expect(html).toContain('tolaria-download-frame')
+    expect(html).toContain('bigfoot-download-frame')
     expect(html).toContain('color-scheme: light dark')
     expect(html).toContain('@media (prefers-color-scheme: dark)')
     expect(html).toContain('background: var(--download-surface-page)')
@@ -158,14 +158,14 @@ describe('buildStableDownloadRedirectPage', () => {
   it('starts platform downloads without navigating away from the download page', () => {
     const html = buildStableDownloadRedirectPage({
       'windows-x86_64': {
-        buttonLabel: 'Download Tolaria for Windows',
+        buttonLabel: 'Download Bigfoot for Windows',
         label: 'Windows',
-        url: 'https://example.com/Tolaria-setup.exe',
+        url: 'https://example.com/Bigfoot-setup.exe',
       },
     })
 
-    expect(html).toContain('name="tolaria-download-frame"')
-    expect(html).toContain('target="tolaria-download-frame"')
+    expect(html).toContain('name="bigfoot-download-frame"')
+    expect(html).toContain('target="bigfoot-download-frame"')
     expect(html).toContain('sandbox="allow-downloads"')
     expect(html).toContain('startDownload(target)')
     expect(html).toContain('Company-managed devices may require IT approval')
@@ -175,10 +175,10 @@ describe('buildStableDownloadRedirectPage', () => {
   it('builds a fallback page when no stable downloads exist yet', () => {
     const html = buildStableDownloadRedirectPage({})
 
-    expect(html).toContain('Tolaria Stable Download Unavailable')
+    expect(html).toContain('Bigfoot Stable Download Unavailable')
     expect(html).toContain('View release history')
-    expect(html).toContain('https://tolaria.md/releases/')
-    expect(html).not.toContain('https://refactoringhq.github.io/tolaria/')
+    expect(html).toContain('https://bigfoot.md/releases/')
+    expect(html).not.toContain('https://bigfoot.capital/bigfootMD/')
     expect(html).not.toContain('DOWNLOAD_TARGETS')
   })
 })
@@ -188,7 +188,7 @@ describe('resolveStableDownloadTargets', () => {
     const latestPayload = {
       platforms: {
         'darwin-aarch64': {
-          download_url: 'https://example.com/Tolaria-aarch64.dmg',
+          download_url: 'https://example.com/Bigfoot-aarch64.dmg',
         },
       },
     }
@@ -197,20 +197,20 @@ describe('resolveStableDownloadTargets', () => {
         prerelease: false,
         assets: [
           {
-            name: 'Tolaria_x64.dmg',
-            browser_download_url: 'https://example.com/Tolaria-x64.dmg',
+            name: 'Bigfoot_x64.dmg',
+            browser_download_url: 'https://example.com/Bigfoot-x64.dmg',
           },
           {
-            name: 'Tolaria-setup.exe',
-            browser_download_url: 'https://example.com/Tolaria-setup.exe',
+            name: 'Bigfoot-setup.exe',
+            browser_download_url: 'https://example.com/Bigfoot-setup.exe',
           },
           {
-            name: 'Tolaria.AppImage',
-            browser_download_url: 'https://example.com/Tolaria.AppImage',
+            name: 'Bigfoot.AppImage',
+            browser_download_url: 'https://example.com/Bigfoot.AppImage',
           },
           {
-            name: 'Tolaria.rpm',
-            browser_download_url: 'https://example.com/Tolaria.rpm',
+            name: 'Bigfoot.rpm',
+            browser_download_url: 'https://example.com/Bigfoot.rpm',
           },
         ],
       },
@@ -218,35 +218,35 @@ describe('resolveStableDownloadTargets', () => {
 
     expect(extractStableDownloadTargetsFromReleases(releasesPayload)).toMatchObject({
       'darwin-x86_64': {
-        url: 'https://example.com/Tolaria-x64.dmg',
+        url: 'https://example.com/Bigfoot-x64.dmg',
       },
       'linux-x86_64': {
-        url: 'https://example.com/Tolaria.AppImage',
+        url: 'https://example.com/Bigfoot.AppImage',
       },
       'linux-x86_64-rpm': {
         label: 'Linux RPM',
-        url: 'https://example.com/Tolaria.rpm',
+        url: 'https://example.com/Bigfoot.rpm',
       },
       'windows-x86_64': {
-        url: 'https://example.com/Tolaria-setup.exe',
+        url: 'https://example.com/Bigfoot-setup.exe',
       },
     })
     expect(resolveStableDownloadTargets(latestPayload, releasesPayload)).toMatchObject({
       'darwin-aarch64': {
-        url: 'https://example.com/Tolaria-aarch64.dmg',
+        url: 'https://example.com/Bigfoot-aarch64.dmg',
       },
       'darwin-x86_64': {
-        url: 'https://example.com/Tolaria-x64.dmg',
+        url: 'https://example.com/Bigfoot-x64.dmg',
       },
       'linux-x86_64': {
-        url: 'https://example.com/Tolaria.AppImage',
+        url: 'https://example.com/Bigfoot.AppImage',
       },
       'linux-x86_64-rpm': {
         label: 'Linux RPM',
-        url: 'https://example.com/Tolaria.rpm',
+        url: 'https://example.com/Bigfoot.rpm',
       },
       'windows-x86_64': {
-        url: 'https://example.com/Tolaria-setup.exe',
+        url: 'https://example.com/Bigfoot-setup.exe',
       },
     })
   })
@@ -254,14 +254,14 @@ describe('resolveStableDownloadTargets', () => {
   it('keeps AppImage as the Linux auto-download while exposing RPM manually', () => {
     const html = buildStableDownloadRedirectPage({
       'linux-x86_64': {
-        buttonLabel: 'Download Tolaria AppImage for Linux',
+        buttonLabel: 'Download Bigfoot AppImage for Linux',
         label: 'Linux AppImage',
-        url: 'https://example.com/Tolaria.AppImage',
+        url: 'https://example.com/Bigfoot.AppImage',
       },
       'linux-x86_64-rpm': {
-        buttonLabel: 'Download Tolaria RPM for Linux',
+        buttonLabel: 'Download Bigfoot RPM for Linux',
         label: 'Linux RPM',
-        url: 'https://example.com/Tolaria.rpm',
+        url: 'https://example.com/Bigfoot.rpm',
       },
     })
 

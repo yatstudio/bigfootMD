@@ -17,12 +17,12 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import {
-  REFACTORING_HOME_URL,
-  TOLARIA_GITHUB_CONTRIBUTING_URL,
-  TOLARIA_GITHUB_DISCUSSIONS_URL,
-  TOLARIA_GITHUB_ISSUES_URL,
-  TOLARIA_GITHUB_PULL_REQUESTS_URL,
-  TOLARIA_PRODUCT_BOARD_URL,
+  BIGFOOT_HOME_URL,
+  BIGFOOT_GITHUB_CONTRIBUTING_URL,
+  BIGFOOT_GITHUB_DISCUSSIONS_URL,
+  BIGFOOT_GITHUB_ISSUES_URL,
+  BIGFOOT_GITHUB_PULL_REQUESTS_URL,
+  BIGFOOT_PRODUCT_BOARD_URL,
 } from '../constants/feedback'
 import {
   buildSanitizedDiagnosticBundle,
@@ -104,7 +104,7 @@ const SPONSOR_SUPPORT_PATH = {
   descriptionKey: 'feedback.sponsor.description',
   ctaLabelKey: 'feedback.sponsor.cta',
   labelKey: 'feedback.sponsor.linkLabel',
-  url: REFACTORING_HOME_URL,
+  url: BIGFOOT_HOME_URL,
   icon: Newspaper,
   tone: 'blue',
 } satisfies ContributionPath
@@ -115,7 +115,7 @@ const CONTRIBUTION_PATHS: ContributionPath[] = [
     descriptionKey: 'feedback.featureRequests.description',
     ctaLabelKey: 'feedback.featureRequests.cta',
     labelKey: 'feedback.featureRequests.linkLabel',
-    url: TOLARIA_PRODUCT_BOARD_URL,
+    url: BIGFOOT_PRODUCT_BOARD_URL,
     icon: Lightbulb,
     tone: 'green',
   },
@@ -124,7 +124,7 @@ const CONTRIBUTION_PATHS: ContributionPath[] = [
     descriptionKey: 'feedback.discussions.description',
     ctaLabelKey: 'feedback.discussions.cta',
     labelKey: 'feedback.discussions.linkLabel',
-    url: TOLARIA_GITHUB_DISCUSSIONS_URL,
+    url: BIGFOOT_GITHUB_DISCUSSIONS_URL,
     icon: MessagesSquare,
     tone: 'purple',
   },
@@ -133,13 +133,13 @@ const CONTRIBUTION_PATHS: ContributionPath[] = [
     descriptionKey: 'feedback.contributeCode.description',
     ctaLabelKey: 'feedback.contributeCode.cta',
     labelKey: 'feedback.contributeCode.linkLabel',
-    url: TOLARIA_GITHUB_PULL_REQUESTS_URL,
+    url: BIGFOOT_GITHUB_PULL_REQUESTS_URL,
     icon: GitPullRequest,
     tone: 'yellow',
     secondaryLink: {
       ctaLabelKey: 'feedback.contributingGuide.cta',
       labelKey: 'feedback.contributingGuide.linkLabel',
-      url: TOLARIA_GITHUB_CONTRIBUTING_URL,
+      url: BIGFOOT_GITHUB_CONTRIBUTING_URL,
     },
   },
 ]
@@ -397,7 +397,7 @@ function ContributionGrid({
         ctaLabel={t('feedback.reportBug.cta')}
         icon={Bug}
         tone="red"
-        onAction={() => onOpenLink(t('feedback.reportBug.linkLabel'), TOLARIA_GITHUB_ISSUES_URL)}
+        onAction={() => onOpenLink(t('feedback.reportBug.linkLabel'), BIGFOOT_GITHUB_ISSUES_URL)}
         secondaryAction={(
           <BugReportActions
             copyState={copyState}

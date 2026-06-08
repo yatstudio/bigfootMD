@@ -13,11 +13,11 @@ interface PersistedState {
 }
 
 const GETTING_STARTED_PATH = '/Users/mock/Documents/Getting Started'
-const STATE_KEY = 'tolaria:test-vault-state'
+const STATE_KEY = 'bigfoot:test-vault-state'
 
 async function installOnboardingVaultMocks(page: Page, config: MockConfig) {
   await page.addInitScript((mockConfig) => {
-    const stateKey = 'tolaria:test-vault-state'
+    const stateKey = 'bigfoot:test-vault-state'
     const defaultSettings = {
       auto_pull_interval_minutes: null,
       telemetry_consent: true,
@@ -69,8 +69,8 @@ async function installOnboardingVaultMocks(page: Page, config: MockConfig) {
       localStorage.setItem(stateKey, JSON.stringify(state))
     }
 
-    localStorage.setItem('tolaria:ai-agents-onboarding-dismissed', '1')
-    localStorage.setItem('tolaria:claude-code-onboarding-dismissed', '1')
+    localStorage.setItem('bigfoot:ai-agents-onboarding-dismissed', '1')
+    localStorage.setItem('bigfoot:claude-code-onboarding-dismissed', '1')
     if (!localStorage.getItem(stateKey)) {
       writeState(defaultState)
     }

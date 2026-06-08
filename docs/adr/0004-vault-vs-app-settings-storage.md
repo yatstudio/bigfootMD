@@ -8,7 +8,7 @@ date: 2026-03-24
 
 ## Context
 
-As features were added, there was recurring ambiguity about where to persist configuration and state: in the vault (as frontmatter in `.md` files) or in app settings (`~/.config/com.laputa.app/settings.json` / localStorage). Without a clear rule, some decisions were inconsistent.
+As features were added, there was recurring ambiguity about where to persist configuration and state: in the vault (as frontmatter in `.md` files) or in app settings (`~/.config/com.bigfoot.app/settings.json` / localStorage). Without a clear rule, some decisions were inconsistent.
 
 ## Decision
 

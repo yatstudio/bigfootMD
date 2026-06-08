@@ -64,7 +64,7 @@
                 {
                   "type": "text",
                   "id": "welcome_title",
-                  "content": "Welcome to Laputa",
+                  "content": "Welcome to Bigfoot",
                   "fill": "#37352F",
                   "fontFamily": "Inter",
                   "fontSize": 28,
@@ -171,7 +171,7 @@
             {
               "type": "text",
               "id": "welcome_hint",
-              "content": "The Getting Started vault will be created in ~/Documents/Laputa",
+              "content": "The Getting Started vault will be created in ~/Documents/Bigfoot",
               "fill": "#787774",
               "fontFamily": "Inter",
               "fontSize": 12,
@@ -281,7 +281,7 @@
                 {
                   "type": "text",
                   "id": "missing_path_text",
-                  "content": "~/Laputa",
+                  "content": "~/Bigfoot",
                   "fill": "#787774",
                   "fontFamily": "SF Mono, monospace",
                   "fontSize": 12

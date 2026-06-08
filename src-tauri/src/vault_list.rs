@@ -4,8 +4,8 @@ use std::path::PathBuf;
 
 use crate::commands::expand_tilde;
 
-const APP_CONFIG_DIR: &str = "com.tolaria.app";
-const LEGACY_APP_CONFIG_DIR: &str = "com.laputa.app";
+const APP_CONFIG_DIR: &str = "com.bigfoot.app";
+const LEGACY_APP_CONFIG_DIR: &str = "com.bigfoot.app";
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq)]
 pub struct VaultEntry {
@@ -131,7 +131,7 @@ mod tests {
             vaults: vec![
                 VaultEntry {
                     label: "My Vault".to_string(),
-                    path: "/Users/luca/Laputa".to_string(),
+                    path: "/Users/luca/Bigfoot".to_string(),
                     ..Default::default()
                 },
                 VaultEntry {
@@ -140,16 +140,16 @@ mod tests {
                     ..Default::default()
                 },
             ],
-            active_vault: Some("/Users/luca/Laputa".to_string()),
+            active_vault: Some("/Users/luca/Bigfoot".to_string()),
             default_workspace_path: None,
             hidden_defaults: vec![],
         };
         let loaded = save_and_reload(&list);
         assert_eq!(loaded.vaults.len(), 2);
         assert_eq!(loaded.vaults[0].label, "My Vault");
-        assert_eq!(loaded.vaults[0].path, "/Users/luca/Laputa");
+        assert_eq!(loaded.vaults[0].path, "/Users/luca/Bigfoot");
         assert_eq!(loaded.vaults[1].label, "Work");
-        assert_eq!(loaded.active_vault.as_deref(), Some("/Users/luca/Laputa"));
+        assert_eq!(loaded.active_vault.as_deref(), Some("/Users/luca/Bigfoot"));
     }
 
     #[test]
@@ -196,18 +196,18 @@ mod tests {
         assert!(result.is_ok());
         let path = result.unwrap();
         let path = path.to_str().unwrap();
-        assert!(path.contains("com.tolaria.app") || path.contains("com.laputa.app"));
+        assert!(path.contains("com.bigfoot.app") || path.contains("com.bigfoot.app"));
     }
 
     #[test]
-    fn preferred_vault_list_path_uses_tolaria_namespace() {
+    fn preferred_vault_list_path_uses_bigfoot_namespace() {
         let result = preferred_app_config_path("vaults.json");
         assert!(result.is_ok());
         assert!(result
             .unwrap()
             .to_str()
             .unwrap()
-            .contains("com.tolaria.app"));
+            .contains("com.bigfoot.app"));
     }
 
     #[test]
@@ -266,16 +266,16 @@ mod tests {
     fn loaded_vault_list_expands_tilde_paths() {
         let home = dirs::home_dir().unwrap();
         let expected_vault = home.join("Workspace/refactoring-vault");
-        let expected_hidden = home.join("Workspace/tolaria/demo-vault-v2");
+        let expected_hidden = home.join("Workspace/bigfoot/demo-vault-v2");
         let list = VaultList {
             vaults: vec![VaultEntry {
-                label: "Refactoring".to_string(),
+                label: "Bigfoot Capital".to_string(),
                 path: "~/Workspace/refactoring-vault".to_string(),
                 ..Default::default()
             }],
             active_vault: Some("~/Workspace/refactoring-vault".to_string()),
             default_workspace_path: Some("~/Workspace/refactoring-vault".to_string()),
-            hidden_defaults: vec!["~/Workspace/tolaria/demo-vault-v2".to_string()],
+            hidden_defaults: vec!["~/Workspace/bigfoot/demo-vault-v2".to_string()],
         };
 
         let loaded = expand_vault_list_paths(list);

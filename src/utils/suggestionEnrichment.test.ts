@@ -178,12 +178,12 @@ describe('enrichSuggestionItems', () => {
 
   it('ranks exact title match first among prefix competitors', () => {
     const items = [
-      makeItem('Refactoring Ideas', 'Note', '/ri.md'),
-      makeItem('Refactoring Key Ideas', 'Note', '/rk.md'),
-      makeItem('Refactoring', 'Area', '/r.md'),
+      makeItem('Bigfoot Capital Ideas', 'Note', '/ri.md'),
+      makeItem('Bigfoot Capital Key Ideas', 'Note', '/rk.md'),
+      makeItem('Bigfoot Capital', 'Area', '/r.md'),
     ]
-    const result = enrichSuggestionItems(items, 'Refactoring', {})
-    expect(result[0].title).toBe('Refactoring')
+    const result = enrichSuggestionItems(items, 'Bigfoot Capital', {})
+    expect(result[0].title).toBe('Bigfoot Capital')
   })
 
   it('keeps workspace metadata visible when the filtered results contain one workspace', () => {

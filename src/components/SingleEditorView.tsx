@@ -41,12 +41,12 @@ import {
   openEditorAttachmentOrUrl,
 } from './editorAttachmentActions'
 import { useBlockNoteSideMenuHoverGuard } from './blockNoteSideMenuHoverGuard'
-import { getTolariaSlashMenuItems } from './tolariaEditorFormattingConfig'
+import { getBigfootSlashMenuItems } from './bigfootEditorFormattingConfig'
 import {
-  TolariaFormattingToolbar,
-  TolariaFormattingToolbarController,
-} from './tolariaEditorFormatting'
-import { TolariaSideMenu } from './tolariaBlockNoteSideMenu'
+  BigfootFormattingToolbar,
+  BigfootFormattingToolbarController,
+} from './bigfootEditorFormatting'
+import { BigfootSideMenu } from './bigfootBlockNoteSideMenu'
 import { useEditorLinkActivation } from './useEditorLinkActivation'
 import { findNearestTextCursorBlock } from './blockNoteCursorTarget'
 import { ImageLightbox } from './ImageLightbox'
@@ -282,7 +282,7 @@ function handleToolbarMouseDownCapture(
   event.preventDefault()
 }
 
-function TolariaOpenLinkButton({
+function BigfootOpenLinkButton({
   url,
   vaultPath,
 }: Pick<LinkToolbarProps, 'url'> & { vaultPath?: string }) {
@@ -304,7 +304,7 @@ function TolariaOpenLinkButton({
   )
 }
 
-function TolariaLinkToolbar({ vaultPath, ...props }: LinkToolbarProps & { vaultPath?: string }) {
+function BigfootLinkToolbar({ vaultPath, ...props }: LinkToolbarProps & { vaultPath?: string }) {
   return (
     <LinkToolbar {...props}>
       <EditLinkButton
@@ -314,7 +314,7 @@ function TolariaLinkToolbar({ vaultPath, ...props }: LinkToolbarProps & { vaultP
         setToolbarOpen={props.setToolbarOpen}
         setToolbarPositionFrozen={props.setToolbarPositionFrozen}
       />
-      <TolariaOpenLinkButton url={props.url} vaultPath={vaultPath} />
+      <BigfootOpenLinkButton url={props.url} vaultPath={vaultPath} />
       <DeleteLinkButton
         range={props.range}
         setToolbarOpen={props.setToolbarOpen}
@@ -362,14 +362,14 @@ function useSeedBlockNoteTableBridge(editor: ReturnType<typeof useCreateBlockNot
       seedEditorWithTestTable(editor, columnWidths)
     )
 
-    window.__laputaTest = {
-      ...window.__laputaTest,
+    window.__bigfootTest = {
+      ...window.__bigfootTest,
       seedBlockNoteTable,
     }
 
     return () => {
-      if (window.__laputaTest?.seedBlockNoteTable === seedBlockNoteTable) {
-        delete window.__laputaTest.seedBlockNoteTable
+      if (window.__bigfootTest?.seedBlockNoteTable === seedBlockNoteTable) {
+        delete window.__bigfootTest.seedBlockNoteTable
       }
     }
   }, [editor])
@@ -1091,7 +1091,7 @@ function useSuggestionMenuItems(options: {
   const getSlashMenuItems = useCallback(async (query: string) => {
     try {
       return guardSuggestionMenuItems(
-        await Promise.resolve(getTolariaSlashMenuItems(editor, query, {
+        await Promise.resolve(getBigfootSlashMenuItems(editor, query, {
           mathTitle: t('editor.slash.math'),
         })),
         runEditorAction,
@@ -1127,10 +1127,10 @@ function EditorInteractionControllers({
 }: EditorInteractionControllersProps) {
   return (
     <>
-      <SideMenuController sideMenu={TolariaSideMenu} />
-      <TolariaFormattingToolbarController
+      <SideMenuController sideMenu={BigfootSideMenu} />
+      <BigfootFormattingToolbarController
         formattingToolbar={(props) => (
-          <TolariaFormattingToolbar {...props} locale={locale} vaultPath={vaultPath} />
+          <BigfootFormattingToolbar {...props} locale={locale} vaultPath={vaultPath} />
         )}
         floatingUIOptions={{
           elementProps: {
@@ -1140,7 +1140,7 @@ function EditorInteractionControllers({
       />
       <LinkToolbarController
         linkToolbar={(props) => (
-          <TolariaLinkToolbar {...props} vaultPath={vaultPath} />
+          <BigfootLinkToolbar {...props} vaultPath={vaultPath} />
         )}
         floatingUIOptions={{
           elementProps: {

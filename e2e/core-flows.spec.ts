@@ -8,12 +8,12 @@ test.beforeEach(async ({ page }) => {
 // --- Flow 1: Open app, click note, verify editor shows content ---
 
 test('clicking a note opens it in the editor with content', async ({ page }) => {
-  // Click "Build Laputa App" in the note list
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  // Click "Build Bigfoot App" in the note list
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // Tab should appear and be active
-  await expect(page.locator('.editor__tab--active')).toHaveText(/Build Laputa App/)
+  await expect(page.locator('.editor__tab--active')).toHaveText(/Build Bigfoot App/)
 
   // Editor should show note content (heading in live preview)
   await expect(page.locator('.cm-editor')).toBeVisible()
@@ -25,7 +25,7 @@ test('clicking a note opens it in the editor with content', async ({ page }) => 
 })
 
 test('editor shows markdown content with live preview', async ({ page }) => {
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // CodeMirror should render the content
@@ -33,7 +33,7 @@ test('editor shows markdown content with live preview', async ({ page }) => {
   await expect(editor).toBeVisible()
 
   // Should contain the heading text (rendered by live preview)
-  await expect(page.locator('.cm-content')).toContainText('Build Laputa App')
+  await expect(page.locator('.cm-content')).toContainText('Build Bigfoot App')
 })
 
 // --- Flow 2: Sidebar filter changes note list ---
@@ -44,7 +44,7 @@ test('sidebar filter: People shows only Person entries', async ({ page }) => {
 
   await expect(page.locator('.note-list__count')).toHaveText('1')
   await expect(page.locator('.note-list__title', { hasText: 'Matteo Cellini' })).toBeVisible()
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).not.toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).not.toBeVisible()
 })
 
 test('sidebar filter: Events shows only Event entries', async ({ page }) => {
@@ -52,7 +52,7 @@ test('sidebar filter: Events shows only Event entries', async ({ page }) => {
   await page.waitForTimeout(200)
 
   await expect(page.locator('.note-list__count')).toHaveText('1')
-  await expect(page.locator('.note-list__title', { hasText: 'Laputa App Design Session' })).toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Bigfoot App Design Session' })).toBeVisible()
 })
 
 test('sidebar filter: clicking back to All Notes restores full list', async ({ page }) => {
@@ -73,7 +73,7 @@ test('search filters notes by title', async ({ page }) => {
 
   await expect(page.locator('.note-list__count')).toHaveText('1')
   await expect(page.locator('.note-list__title', { hasText: 'Stock Screener' })).toBeVisible()
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).not.toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).not.toBeVisible()
 })
 
 test('clearing search restores all results', async ({ page }) => {
@@ -90,7 +90,7 @@ test('clearing search restores all results', async ({ page }) => {
 
 test('opening multiple notes creates multiple tabs', async ({ page }) => {
   // Open first note
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // Open second note
@@ -109,25 +109,25 @@ test('opening multiple notes creates multiple tabs', async ({ page }) => {
 
 test('clicking a tab switches to it', async ({ page }) => {
   // Open two notes
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
   await page.locator('.note-list__item', { hasText: 'Grow Newsletter' }).click()
   await page.waitForTimeout(300)
 
   // Switch back to first tab
-  await page.locator('.editor__tab', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.editor__tab', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(200)
 
   // First tab should now be active
-  await expect(page.locator('.editor__tab--active')).toHaveText(/Build Laputa App/)
+  await expect(page.locator('.editor__tab--active')).toHaveText(/Build Bigfoot App/)
 
   // Editor should show first note's content
-  await expect(page.locator('.cm-content')).toContainText('Build Laputa App')
+  await expect(page.locator('.cm-content')).toContainText('Build Bigfoot App')
 })
 
 test('closing a tab removes it and switches to adjacent', async ({ page }) => {
   // Open two notes
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
   await page.locator('.note-list__item', { hasText: 'Grow Newsletter' }).click()
   await page.waitForTimeout(300)
@@ -138,13 +138,13 @@ test('closing a tab removes it and switches to adjacent', async ({ page }) => {
 
   // Should have 1 tab left
   await expect(page.locator('.editor__tab')).toHaveCount(1)
-  await expect(page.locator('.editor__tab--active')).toHaveText(/Build Laputa App/)
+  await expect(page.locator('.editor__tab--active')).toHaveText(/Build Bigfoot App/)
 })
 
 // --- Flow 5: Inspector shows correct properties ---
 
 test('inspector shows properties for selected note', async ({ page }) => {
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // Type
@@ -159,7 +159,7 @@ test('inspector shows properties for selected note', async ({ page }) => {
 
 test('inspector shows relationships', async ({ page }) => {
   // Open a note with relationships
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // Should show "Related to" relationships
@@ -167,8 +167,8 @@ test('inspector shows relationships', async ({ page }) => {
 })
 
 test('inspector shows backlinks', async ({ page }) => {
-  // Open a note that has backlinks (Build Laputa App is referenced by Facebook Ads and Budget Allocation)
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  // Open a note that has backlinks (Build Bigfoot App is referenced by Facebook Ads and Budget Allocation)
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // Backlinks section should show
@@ -177,17 +177,17 @@ test('inspector shows backlinks', async ({ page }) => {
 })
 
 test('inspector shows git history', async ({ page }) => {
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
 
   // Should show commits
   await expect(page.locator('.inspector__commit-hash').first()).toBeVisible()
-  await expect(page.locator('.inspector__commit-msg').first()).toContainText('26q1-laputa-app')
+  await expect(page.locator('.inspector__commit-msg').first()).toContainText('26q1-bigfoot-app')
 })
 
 test('inspector updates when switching tabs', async ({ page }) => {
   // Open first note
-  await page.locator('.note-list__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.note-list__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(300)
   await expect(page.locator('.inspector__prop-value', { hasText: 'Project' })).toBeVisible()
 

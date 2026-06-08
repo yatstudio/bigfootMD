@@ -23,7 +23,7 @@ const ACTIVE_VAULT_ERROR = 'Note path must stay inside the active vault'
 const MCP_SERVER_DIR = path.dirname(fileURLToPath(import.meta.url))
 
 before(async () => {
-  tmpDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-test-'))
+  tmpDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-test-'))
 
   await mkdir(path.join(tmpDir, 'project'), { recursive: true })
   await mkdir(path.join(tmpDir, 'note'), { recursive: true })
@@ -115,12 +115,12 @@ describe('getNote', () => {
   })
 
   it('should reject absolute paths outside the vault', async () => {
-    await assertRejectsOutsideVault('laputa-mcp-outside-', outsideNote => outsideNote)
+    await assertRejectsOutsideVault('bigfoot-mcp-outside-', outsideNote => outsideNote)
   })
 
   it('should reject traversal paths outside the vault', async () => {
     await assertRejectsOutsideVault(
-      'laputa-mcp-traversal-',
+      'bigfoot-mcp-traversal-',
       outsideNote => path.relative(tmpDir, outsideNote),
     )
   })
@@ -128,7 +128,7 @@ describe('getNote', () => {
 
 describe('createNote', () => {
   it('creates a new markdown note inside the vault', async () => {
-    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-create-'))
+    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-create-'))
     const content = `---
 type: Note
 ---
@@ -146,7 +146,7 @@ type: Note
   })
 
   it('does not overwrite an existing note', async () => {
-    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-create-existing-'))
+    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-create-existing-'))
     const notePath = path.join(vaultDir, 'existing.md')
     await writeFile(notePath, '# Existing\n', 'utf-8')
 
@@ -162,8 +162,8 @@ type: Note
   })
 
   it('rejects absolute paths outside the vault', async () => {
-    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-create-vault-'))
-    const outsideDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-create-outside-'))
+    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-create-vault-'))
+    const outsideDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-create-outside-'))
 
     try {
       await assert.rejects(
@@ -177,8 +177,8 @@ type: Note
   })
 
   it('rejects outside paths before creating missing parent folders', async () => {
-    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-create-vault-'))
-    const outsideDir = await mkdtemp(path.join(os.tmpdir(), 'laputa-mcp-create-outside-'))
+    const vaultDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-create-vault-'))
+    const outsideDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-create-outside-'))
     const outsideParent = path.join(outsideDir, 'missing-parent')
 
     try {
@@ -327,8 +327,8 @@ describe('requireVaultPath', () => {
     )
   })
 
-  it('rejects missing vault paths instead of falling back to ~/Laputa', async () => {
-    const configDir = await mkdtemp(path.join(os.tmpdir(), 'tolaria-mcp-empty-config-'))
+  it('rejects missing vault paths instead of falling back to ~/Bigfoot', async () => {
+    const configDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-empty-config-'))
     assert.throws(
       () => requireVaultPaths({}, { configDir }),
       /VAULT_PATH is required/,
@@ -346,12 +346,12 @@ describe('requireVaultPath', () => {
     )
   })
 
-  it('loads active mounted vault paths from Tolaria config when env is vault-neutral', async () => {
-    const configDir = await mkdtemp(path.join(os.tmpdir(), 'tolaria-mcp-config-'))
+  it('loads active mounted vault paths from Bigfoot config when env is vault-neutral', async () => {
+    const configDir = await mkdtemp(path.join(os.tmpdir(), 'bigfoot-mcp-config-'))
     const primaryVault = path.join(configDir, 'Primary Vault')
     const secondaryVault = path.join(configDir, 'Secondary Vault')
     const hiddenVault = path.join(configDir, 'Hidden Vault')
-    const configPath = path.join(configDir, 'com.tolaria.app', 'vaults.json')
+    const configPath = path.join(configDir, 'com.bigfoot.app', 'vaults.json')
 
     await mkdir(path.dirname(configPath), { recursive: true })
     await writeFile(configPath, JSON.stringify({
@@ -472,7 +472,7 @@ async function connectMcpClient() {
   })
   const stderr = collectTransportStderr(transport)
   const client = new Client(
-    { name: 'tolaria-mcp-test-client', version: '0.0.0' },
+    { name: 'bigfoot-mcp-test-client', version: '0.0.0' },
     { capabilities: {} },
   )
 

@@ -19,13 +19,13 @@ Commit `e581ad36` on 2026-04-06 removed the entire Trash system (123 files chang
 
 **Delete is permanent and immediate, gated only by a confirmation modal (`useDeleteActions`). Notes with `trashed: true` in existing vault frontmatter are treated as normal notes (the flag is ignored by the parser). The `trash` crate dependency is removed.**
 
-The confirmation modal is the sole safety gate. No soft-delete, no Trash view, no auto-purge scheduler, no `.laputa/purge.log`.
+The confirmation modal is the sole safety gate. No soft-delete, no Trash view, no auto-purge scheduler, no `.bigfoot/purge.log`.
 
 ## Options considered
 
 - **Option A — Permanent delete + confirm modal** (chosen): simple, honest, no hidden state. Git history provides recovery. Removes ~3000 lines of code and a platform-specific dependency. Downside: no in-app recovery path for users who don't know about git.
 - **Option B — OS Trash via `trash` crate** (ADR-0042, now superseded): soft-delete to OS Trash, user can recover from macOS Trash app. Downside: additional dependency, complex auto-purge scheduler, misleading "auto-purge" promise that was never actually implemented.
-- **Option C — `.laputa/deleted/` archive folder**: custom recovery mechanism inside vault. Downside: clutters vault, users wouldn't know to look there, still requires manual cleanup.
+- **Option C — `.bigfoot/deleted/` archive folder**: custom recovery mechanism inside vault. Downside: clutters vault, users wouldn't know to look there, still requires manual cleanup.
 
 ## Consequences
 

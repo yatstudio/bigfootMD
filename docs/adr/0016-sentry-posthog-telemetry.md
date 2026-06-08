@@ -8,7 +8,7 @@ date: 2026-03-25
 
 ## Context
 
-As Laputa approaches public release, crash reports and usage analytics are needed to identify bugs and understand feature adoption. However, as a personal knowledge management app that handles sensitive data, user privacy is paramount. Any telemetry must be opt-in with clear consent.
+As Bigfoot approaches public release, crash reports and usage analytics are needed to identify bugs and understand feature adoption. However, as a personal knowledge management app that handles sensitive data, user privacy is paramount. Any telemetry must be opt-in with clear consent.
 
 ## Decision
 

@@ -1,13 +1,13 @@
 import type { NoteReference } from './ai-context'
 
-export const OPEN_AI_CHAT_EVENT = 'tolaria:open-ai-chat'
-export const AI_PROMPT_QUEUED_EVENT = 'tolaria:ai-prompt-queued'
-export const NEW_AI_CHAT_EVENT = 'tolaria:new-ai-chat'
-export const AI_WORKSPACE_DOCK_REQUESTED_EVENT = 'tolaria:ai-workspace-dock-requested'
-export const AI_WORKSPACE_OPEN_NOTE_REQUESTED_EVENT = 'tolaria:ai-workspace-open-note-requested'
-export const AI_WORKSPACE_FILE_CREATED_EVENT = 'tolaria:ai-workspace-file-created'
-export const AI_WORKSPACE_FILE_MODIFIED_EVENT = 'tolaria:ai-workspace-file-modified'
-export const AI_WORKSPACE_VAULT_CHANGED_EVENT = 'tolaria:ai-workspace-vault-changed'
+export const OPEN_AI_CHAT_EVENT = 'bigfoot:open-ai-chat'
+export const AI_PROMPT_QUEUED_EVENT = 'bigfoot:ai-prompt-queued'
+export const NEW_AI_CHAT_EVENT = 'bigfoot:new-ai-chat'
+export const AI_WORKSPACE_DOCK_REQUESTED_EVENT = 'bigfoot:ai-workspace-dock-requested'
+export const AI_WORKSPACE_OPEN_NOTE_REQUESTED_EVENT = 'bigfoot:ai-workspace-open-note-requested'
+export const AI_WORKSPACE_FILE_CREATED_EVENT = 'bigfoot:ai-workspace-file-created'
+export const AI_WORKSPACE_FILE_MODIFIED_EVENT = 'bigfoot:ai-workspace-file-modified'
+export const AI_WORKSPACE_VAULT_CHANGED_EVENT = 'bigfoot:ai-workspace-vault-changed'
 
 export interface QueuedAiPrompt {
   id: number

@@ -67,9 +67,9 @@ async function expectPropertiesPanelToggle(page: Page, toggle: () => Promise<voi
 
 async function dispatchAppCommand(page: Page, id: string): Promise<void> {
   await page.evaluate((commandId) => {
-    const bridge = window.__laputaTest?.dispatchAppCommand
+    const bridge = window.__bigfootTest?.dispatchAppCommand
     if (typeof bridge !== 'function') {
-      throw new Error('Tolaria test bridge is missing dispatchAppCommand')
+      throw new Error('Bigfoot test bridge is missing dispatchAppCommand')
     }
     bridge(commandId)
   }, id)

@@ -191,7 +191,7 @@ mod tests {
             &config_path,
             serde_json::json!({
                 "mcp": {
-                    "laputa": { "type": "local", "command": ["node", "/old.js"] }
+                    "bigfoot": { "type": "local", "command": ["node", "/old.js"] }
                 }
             }),
         );
@@ -212,8 +212,8 @@ mod tests {
             &config_path,
             serde_json::json!({
                 "mcp": {
-                    "tolaria": { "type": "local" },
-                    "laputa": { "type": "local" },
+                    "bigfoot": { "type": "local" },
+                    "bigfoot": { "type": "local" },
                     "other": { "type": "local" }
                 }
             }),

@@ -1,6 +1,6 @@
 # Security Policy
 
-Thanks for helping keep Tolaria safe.
+Thanks for helping keep Bigfoot safe.
 
 If you believe you have found a security vulnerability, **please do not open a public GitHub issue**. Report it privately instead.
 

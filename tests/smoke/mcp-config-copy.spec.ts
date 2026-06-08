@@ -19,7 +19,7 @@ test.describe('MCP config copy', () => {
     const copiedConfig = await page.evaluate(() => navigator.clipboard.readText())
     const parsedConfig = JSON.parse(copiedConfig) as {
       mcpServers: {
-        tolaria: {
+        bigfoot: {
           args: string[]
           command: string
           env: Record<string, string>
@@ -27,12 +27,12 @@ test.describe('MCP config copy', () => {
         }
       }
     }
-    const tolariaServer = parsedConfig.mcpServers.tolaria
+    const bigfootServer = parsedConfig.mcpServers.bigfoot
 
-    expect(tolariaServer.type).toBe('stdio')
-    expect(tolariaServer.command).toBe('node')
-    expect(tolariaServer.args[0]).toContain('mcp-server/index.js')
-    expect(tolariaServer.env.VAULT_PATH).toBeUndefined()
-    expect(tolariaServer.env.WS_UI_PORT).toBe('9711')
+    expect(bigfootServer.type).toBe('stdio')
+    expect(bigfootServer.command).toBe('node')
+    expect(bigfootServer.args[0]).toContain('mcp-server/index.js')
+    expect(bigfootServer.env.VAULT_PATH).toBeUndefined()
+    expect(bigfootServer.env.WS_UI_PORT).toBe('9711')
   })
 })

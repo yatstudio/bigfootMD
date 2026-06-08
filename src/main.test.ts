@@ -43,7 +43,7 @@ vi.mock('@/components/ui/tooltip', () => ({
   TooltipProvider: ({ children }: { children: ReactNode }) => createElement('div', null, children),
 }))
 vi.mock('./hooks/appCommandDispatcher', () => ({
-  APP_COMMAND_EVENT_NAME: 'laputa:command',
+  APP_COMMAND_EVENT_NAME: 'bigfoot:command',
   isAppCommandId: (id: string) => id === 'known-command',
   isNativeMenuCommandId: (id: string) => id === 'native-command',
 }))
@@ -123,7 +123,7 @@ describe('main entrypoint', () => {
     vi.clearAllMocks()
     document.body.innerHTML = '<div id="root"></div>'
     document.body.className = ''
-    window.__tolariaFrontendReady = false
+    window.__bigfootFrontendReady = false
     sessionStorage.clear()
   })
 
@@ -141,7 +141,7 @@ describe('main entrypoint', () => {
     )
 
     const error = new Error('Maximum update depth exceeded')
-    window.__tolariaFrontendReady = true
+    window.__bigfootFrontendReady = true
     rootOptions().onCaughtError?.(error, { componentStack: '\n    in App' })
 
     expect(mocks.sentryHandler).toHaveBeenCalledWith(error, { componentStack: '\n    in App' })
@@ -151,7 +151,7 @@ describe('main entrypoint', () => {
     await importEntrypoint()
 
     const error = new Error('recoverable render error')
-    window.__tolariaFrontendReady = true
+    window.__bigfootFrontendReady = true
     rootOptions().onRecoverableError?.(error, {})
 
     expect(mocks.sentryHandler).toHaveBeenCalledWith(error, { componentStack: '' })
@@ -169,13 +169,13 @@ describe('main entrypoint', () => {
     await importEntrypoint()
 
     const error = new Error('ResizeObserver loop completed with undelivered notifications.')
-    window.__tolariaFrontendReady = true
+    window.__bigfootFrontendReady = true
 
     rootOptions().onRecoverableError?.(error, {})
     rootOptions().onCaughtError?.(error, { componentStack: '\n    in App' })
 
     expect(mocks.sentryHandler).not.toHaveBeenCalled()
-    expect(document.getElementById('tolaria-fatal-render-error')).toBeNull()
+    expect(document.getElementById('bigfoot-fatal-render-error')).toBeNull()
   })
 
   it('suppresses recovered BlockNote missing-id render errors from Sentry', async () => {
@@ -183,7 +183,7 @@ describe('main entrypoint', () => {
 
     const error = new Error("Block doesn't have id")
     const componentStack = '\n    in MermaidBlock\n    in BlockNoteRenderRecoveryBoundary'
-    window.__tolariaFrontendReady = true
+    window.__bigfootFrontendReady = true
 
     rootOptions().onCaughtError?.(error, { componentStack })
     expect(mocks.sentryHandler).not.toHaveBeenCalled()

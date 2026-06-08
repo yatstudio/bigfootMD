@@ -56,9 +56,9 @@ import {
 } from '@phosphor-icons/react'
 import { MARKDOWN_HIGHLIGHT_STYLE } from '../utils/markdownHighlightMarkdown'
 import {
-  filterTolariaFormattingToolbarItems,
-  getTolariaBlockTypeSelectItems,
-} from './tolariaEditorFormattingConfig'
+  filterBigfootFormattingToolbarItems,
+  getBigfootBlockTypeSelectItems,
+} from './bigfootEditorFormattingConfig'
 import { translate, type AppLocale } from '../lib/i18n'
 import { useBlockNoteFormattingToolbarHoverGuard } from './blockNoteFormattingToolbarHoverGuard'
 import { openEditorAttachmentOrUrl } from './editorAttachmentActions'
@@ -67,7 +67,7 @@ import {
   reportRecoveredEditorTransformError,
 } from './richEditorTransformErrorRecoveryExtension'
 
-type TolariaBasicTextStyle =
+type BigfootBasicTextStyle =
   | 'bold'
   | 'italic'
   | 'strike'
@@ -76,8 +76,8 @@ type TolariaBasicTextStyle =
 
 const FORMATTER_CLOSE_GRACE_MS = 160
 const FORMATTER_VIEWPORT_PADDING_PX = 8
-type TolariaFloatingOptions = NonNullable<FloatingUIOptions['useFloatingOptions']>
-type TolariaFloatingMiddleware = NonNullable<TolariaFloatingOptions['middleware']>[number]
+type BigfootFloatingOptions = NonNullable<FloatingUIOptions['useFloatingOptions']>
+type BigfootFloatingMiddleware = NonNullable<BigfootFloatingOptions['middleware']>[number]
 
 function isFocusStillWithinToolbar(
   currentTarget: EventTarget & Element,
@@ -170,7 +170,7 @@ function useDeduplicatedFormattingToolbarStore(
   }, [store])
 }
 
-const TOLARIA_BASIC_TEXT_STYLE_TOOLTIPS = {
+const BIGFOOT_BASIC_TEXT_STYLE_TOOLTIPS = {
   bold: {
     label: 'Bold',
     mainTooltip: 'Bold (persists in markdown)',
@@ -192,23 +192,23 @@ const TOLARIA_BASIC_TEXT_STYLE_TOOLTIPS = {
     secondaryTooltip: '`code`',
   },
 } satisfies Record<
-  Exclude<TolariaBasicTextStyle, typeof MARKDOWN_HIGHLIGHT_STYLE>,
+  Exclude<BigfootBasicTextStyle, typeof MARKDOWN_HIGHLIGHT_STYLE>,
   { label: string; mainTooltip: string; secondaryTooltip: string }
 >
 
-const TOLARIA_BASIC_TEXT_STYLE_ICONS = {
+const BIGFOOT_BASIC_TEXT_STYLE_ICONS = {
   bold: Bold,
   italic: Italic,
   strike: Strikethrough,
   code: Code2,
   [MARKDOWN_HIGHLIGHT_STYLE]: Highlighter,
-} satisfies Record<TolariaBasicTextStyle, PhosphorIcon>
+} satisfies Record<BigfootBasicTextStyle, PhosphorIcon>
 
-type TolariaSelectedBlock = ReturnType<
+type BigfootSelectedBlock = ReturnType<
   BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>['getTextCursorPosition']
 >['block']
 
-type TolariaSelectedFileBlock = {
+type BigfootSelectedFileBlock = {
   type: string
   url: string
 }
@@ -220,8 +220,8 @@ const FORMATTING_TOOLBAR_FILE_BLOCK_TYPES = new Set([
   'video',
 ])
 
-type TolariaBlockTypeSelectOption = ReturnType<
-  typeof getTolariaBlockTypeSelectItems
+type BigfootBlockTypeSelectOption = ReturnType<
+  typeof getBigfootBlockTypeSelectItems
 >[number] & {
   iconElement: ReactElement
   isSelected: boolean
@@ -242,9 +242,9 @@ function textAlignmentToPlacement(
   }
 }
 
-function viewportClampMiddleware(): TolariaFloatingMiddleware {
+function viewportClampMiddleware(): BigfootFloatingMiddleware {
   return {
-    name: 'tolariaViewportClamp',
+    name: 'bigfootViewportClamp',
     fn({ x, rects }: { rects: { floating: { width: number } }; x: number }) {
       const viewportWidth = window.visualViewport?.width ?? window.innerWidth
       const minX = FORMATTER_VIEWPORT_PADDING_PX
@@ -261,8 +261,8 @@ function viewportClampMiddleware(): TolariaFloatingMiddleware {
 }
 
 function withViewportSafeMiddleware(
-  options?: TolariaFloatingOptions,
-): TolariaFloatingOptions {
+  options?: BigfootFloatingOptions,
+): BigfootFloatingOptions {
   if (!options) {
     return {
       middleware: [viewportClampMiddleware()],
@@ -279,7 +279,7 @@ function withViewportSafeMiddleware(
 }
 
 function editorSupportsTextStyle(
-  style: TolariaBasicTextStyle,
+  style: BigfootBasicTextStyle,
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
 ) {
   const styleSchema = Reflect.get(editor.schema.styleSchema, style) as {
@@ -295,18 +295,18 @@ function editorSupportsTextStyle(
 
 function getSelectedBlocksSafely(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-): TolariaSelectedBlock[] {
+): BigfootSelectedBlock[] {
   try {
     const selectionBlocks = editor.getSelection()?.blocks
     if (selectionBlocks?.length) {
-      return selectionBlocks as TolariaSelectedBlock[]
+      return selectionBlocks as BigfootSelectedBlock[]
     }
   } catch {
     // BlockNote can briefly expose an invalid selection while inline actions remount blocks.
   }
 
   try {
-    return [editor.getTextCursorPosition().block as TolariaSelectedBlock]
+    return [editor.getTextCursorPosition().block as BigfootSelectedBlock]
   } catch {
     return []
   }
@@ -314,9 +314,9 @@ function getSelectedBlocksSafely(
 
 function getCursorBlockSafely(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-): TolariaSelectedBlock | null {
+): BigfootSelectedBlock | null {
   try {
-    return editor.getTextCursorPosition().block as TolariaSelectedBlock
+    return editor.getTextCursorPosition().block as BigfootSelectedBlock
   } catch {
     return null
   }
@@ -329,7 +329,7 @@ function selectionSupportsInlineFormatting(
 }
 
 function getBasicTextStyleButtonState(
-  basicTextStyle: TolariaBasicTextStyle,
+  basicTextStyle: BigfootBasicTextStyle,
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
 ) {
   if (!editor.isEditable) return undefined
@@ -342,15 +342,15 @@ function getBasicTextStyleButtonState(
 }
 
 function getBlockTypeItemIconElement(
-  item: ReturnType<typeof getTolariaBlockTypeSelectItems>[number],
+  item: ReturnType<typeof getBigfootBlockTypeSelectItems>[number],
 ) {
   const Icon = item.icon
   return <Icon size={16} />
 }
 
 function isSelectedBlockTypeItem(
-  item: ReturnType<typeof getTolariaBlockTypeSelectItems>[number],
-  firstSelectedBlock: TolariaSelectedBlock,
+  item: ReturnType<typeof getBigfootBlockTypeSelectItems>[number],
+  firstSelectedBlock: BigfootSelectedBlock,
 ) {
   if (item.type !== firstSelectedBlock.type) return false
 
@@ -360,11 +360,11 @@ function isSelectedBlockTypeItem(
   )
 }
 
-function getTolariaBlockTypeSelectOptions(
+function getBigfootBlockTypeSelectOptions(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-  firstSelectedBlock: TolariaSelectedBlock,
+  firstSelectedBlock: BigfootSelectedBlock,
 ) {
-  return getTolariaBlockTypeSelectItems()
+  return getBigfootBlockTypeSelectItems()
     .filter((item) =>
       editorHasBlockWithType(
         editor,
@@ -397,7 +397,7 @@ function getFormattingToolbarBridgeBlockId(
 
 function getSelectedFileBlockState(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-): TolariaSelectedFileBlock | null {
+): BigfootSelectedFileBlock | null {
   const selectedBlocks = getSelectedBlocksSafely(editor)
   if (selectedBlocks.length !== 1) return null
 
@@ -417,10 +417,10 @@ function reportStaleFormattingToolbarBlockReference(error: unknown) {
 
 function liveSelectedBlock(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-  block: TolariaSelectedBlock,
+  block: BigfootSelectedBlock,
 ) {
   try {
-    return editor.getBlock(block.id) as TolariaSelectedBlock | undefined
+    return editor.getBlock(block.id) as BigfootSelectedBlock | undefined
   } catch (error) {
     if (isStaleBlockReferenceError(error)) {
       reportStaleFormattingToolbarBlockReference(error)
@@ -432,9 +432,9 @@ function liveSelectedBlock(
 
 function liveSelectedBlocks(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-  selectedBlocks: TolariaSelectedBlock[],
+  selectedBlocks: BigfootSelectedBlock[],
 ) {
-  const liveBlocks: TolariaSelectedBlock[] = []
+  const liveBlocks: BigfootSelectedBlock[] = []
 
   for (const block of selectedBlocks) {
     const liveBlock = liveSelectedBlock(editor, block)
@@ -466,8 +466,8 @@ function getFormattingToolbarAnchorElement(
 
 function updateSelectedBlocksToType(
   editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
-  selectedBlocks: TolariaSelectedBlock[],
-  item: ReturnType<typeof getTolariaBlockTypeSelectItems>[number],
+  selectedBlocks: BigfootSelectedBlock[],
+  item: ReturnType<typeof getBigfootBlockTypeSelectItems>[number],
 ) {
   const blocks = liveSelectedBlocks(editor, selectedBlocks)
   if (!blocks.length) return
@@ -491,11 +491,11 @@ function updateSelectedBlocksToType(
   }
 }
 
-function TolariaBasicTextStyleButton({
+function BigfootBasicTextStyleButton({
   basicTextStyle,
   locale = 'en',
 }: {
-  basicTextStyle: TolariaBasicTextStyle
+  basicTextStyle: BigfootBasicTextStyle
   locale?: AppLocale
 }) {
   const Components = useComponentsContext()!
@@ -516,7 +516,7 @@ function TolariaBasicTextStyleButton({
 
   if (buttonState === undefined) return null
 
-  const Icon = Reflect.get(TOLARIA_BASIC_TEXT_STYLE_ICONS, basicTextStyle) as PhosphorIcon
+  const Icon = Reflect.get(BIGFOOT_BASIC_TEXT_STYLE_ICONS, basicTextStyle) as PhosphorIcon
   const copy = basicTextStyleCopy(basicTextStyle, locale)
 
   return (
@@ -534,7 +534,7 @@ function TolariaBasicTextStyleButton({
 }
 
 function basicTextStyleCopy(
-  basicTextStyle: TolariaBasicTextStyle,
+  basicTextStyle: BigfootBasicTextStyle,
   locale: AppLocale,
 ) {
   if (basicTextStyle === MARKDOWN_HIGHLIGHT_STYLE) {
@@ -545,14 +545,14 @@ function basicTextStyleCopy(
     }
   }
 
-  return Reflect.get(TOLARIA_BASIC_TEXT_STYLE_TOOLTIPS, basicTextStyle) as {
+  return Reflect.get(BIGFOOT_BASIC_TEXT_STYLE_TOOLTIPS, basicTextStyle) as {
     label: string
     mainTooltip: string
     secondaryTooltip: string
   }
 }
 
-function TolariaBlockTypeSelect() {
+function BigfootBlockTypeSelect() {
   const editor = useBlockNoteEditor<
     BlockSchema,
     InlineContentSchema,
@@ -560,19 +560,19 @@ function TolariaBlockTypeSelect() {
   >()
   const selectedBlocks = useEditorState({
     editor,
-    selector: ({ editor }): TolariaSelectedBlock[] => getSelectedBlocksSafely(editor),
+    selector: ({ editor }): BigfootSelectedBlock[] => getSelectedBlocksSafely(editor),
   })
   const firstSelectedBlock = selectedBlocks[0] ?? null
   const selectItems = useMemo(
     () => (
       firstSelectedBlock
-        ? getTolariaBlockTypeSelectOptions(editor, firstSelectedBlock)
+        ? getBigfootBlockTypeSelectOptions(editor, firstSelectedBlock)
         : []
     ),
     [editor, firstSelectedBlock],
   )
   const selectedItem = selectItems.find(
-    (item): item is TolariaBlockTypeSelectOption => item.isSelected,
+    (item): item is BigfootBlockTypeSelectOption => item.isSelected,
   )
 
   if (!selectedItem || !editor.isEditable) return null
@@ -617,7 +617,7 @@ function TolariaBlockTypeSelect() {
   )
 }
 
-function TolariaFileDownloadButton({ vaultPath }: { vaultPath?: string }) {
+function BigfootFileDownloadButton({ vaultPath }: { vaultPath?: string }) {
   const Components = useComponentsContext()!
   const dict = useDictionary()
   const editor = useBlockNoteEditor<
@@ -660,15 +660,15 @@ function replaceToolbarControls(items: ReactElement[], vaultPath?: string) {
   return items.flatMap((item) => {
     switch (String(item.key)) {
       case 'blockTypeSelect':
-        return [<TolariaBlockTypeSelect key={item.key} />]
+        return [<BigfootBlockTypeSelect key={item.key} />]
       case 'boldStyleButton':
-        return [<TolariaBasicTextStyleButton basicTextStyle="bold" key={item.key} />]
+        return [<BigfootBasicTextStyleButton basicTextStyle="bold" key={item.key} />]
       case 'italicStyleButton':
-        return [<TolariaBasicTextStyleButton basicTextStyle="italic" key={item.key} />]
+        return [<BigfootBasicTextStyleButton basicTextStyle="italic" key={item.key} />]
       case 'strikeStyleButton':
-        return [<TolariaBasicTextStyleButton basicTextStyle="strike" key={item.key} />]
+        return [<BigfootBasicTextStyleButton basicTextStyle="strike" key={item.key} />]
       case 'fileDownloadButton':
-        return [<TolariaFileDownloadButton key={item.key} vaultPath={vaultPath} />]
+        return [<BigfootFileDownloadButton key={item.key} vaultPath={vaultPath} />]
       default:
         return [item]
     }
@@ -683,8 +683,8 @@ function insertExtraTextStyleButtons(items: ReactElement[], locale: AppLocale) {
 
   return [
     ...items.slice(0, strikeButtonIndex + 1),
-    <TolariaBasicTextStyleButton basicTextStyle="code" key="codeStyleButton" />,
-    <TolariaBasicTextStyleButton
+    <BigfootBasicTextStyleButton basicTextStyle="code" key="codeStyleButton" />,
+    <BigfootBasicTextStyleButton
       basicTextStyle={MARKDOWN_HIGHLIGHT_STYLE}
       key="highlightStyleButton"
       locale={locale}
@@ -693,10 +693,10 @@ function insertExtraTextStyleButtons(items: ReactElement[], locale: AppLocale) {
   ]
 }
 
-function getTolariaFormattingToolbarItems(vaultPath: string | undefined, locale: AppLocale) {
+function getBigfootFormattingToolbarItems(vaultPath: string | undefined, locale: AppLocale) {
   return insertExtraTextStyleButtons(
     replaceToolbarControls(
-      filterTolariaFormattingToolbarItems(
+      filterBigfootFormattingToolbarItems(
         getFormattingToolbarItems(),
       ),
       vaultPath,
@@ -705,17 +705,17 @@ function getTolariaFormattingToolbarItems(vaultPath: string | undefined, locale:
   )
 }
 
-export function TolariaFormattingToolbar({
+export function BigfootFormattingToolbar({
   locale = 'en',
   vaultPath,
 }: {
   locale?: AppLocale
   vaultPath?: string
 } = {}) {
-  return <FormattingToolbar>{getTolariaFormattingToolbarItems(vaultPath, locale)}</FormattingToolbar>
+  return <FormattingToolbar>{getBigfootFormattingToolbarItems(vaultPath, locale)}</FormattingToolbar>
 }
 
-export function TolariaFormattingToolbarController(props: {
+export function BigfootFormattingToolbarController(props: {
   formattingToolbar?: FC<FormattingToolbarProps>;
   floatingUIOptions?: FloatingUIOptions;
 }) {
@@ -826,7 +826,7 @@ export function TolariaFormattingToolbarController(props: {
     ],
   )
 
-  const Component = props.formattingToolbar || TolariaFormattingToolbar
+  const Component = props.formattingToolbar || BigfootFormattingToolbar
 
   return (
     <PositionPopover position={position} {...floatingUIOptions}>

@@ -22,8 +22,8 @@ ADR-0014 (git-based vault cache) and ADR-0021 (push-to-main workflow) both assum
 
 ## Consequences
 
-- Git is now a first-class prerequisite for Laputa vaults, not just implied by the cache strategy.
+- Git is now a first-class prerequisite for Bigfoot vaults, not just implied by the cache strategy.
 - The `is_git_repo` command is intentionally lightweight (checks for `.git` existence only; does not validate remote or commit history).
 - The modal offers `git init` + an initial commit as a one-click path, lowering the barrier for new users.
 - Browser mode bypasses the check so dev/Storybook workflows are unaffected.
-- Re-evaluate if Laputa needs to support non-git vaults (e.g., iCloud-only, shared network drive); at that point ADR-0014 would also need revisiting.
+- Re-evaluate if Bigfoot needs to support non-git vaults (e.g., iCloud-only, shared network drive); at that point ADR-0014 would also need revisiting.

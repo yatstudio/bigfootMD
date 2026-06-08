@@ -38,8 +38,8 @@ export function initSentry(anonymousId: string): void {
       ? 'stable'
       : sentryBuildVersion.includes('-') ? 'prerelease' : 'internal'
 
-    Sentry.setTag('tolaria.build_version', sentryBuildVersion)
-    Sentry.setTag('tolaria.release_kind', releaseKind)
+    Sentry.setTag('bigfoot.build_version', sentryBuildVersion)
+    Sentry.setTag('bigfoot.release_kind', releaseKind)
   }
   sentryInitialized = true
 }

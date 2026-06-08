@@ -518,7 +518,7 @@
                               "id": "BgNaS",
                               "name": "proj1Txt",
                               "fill": "$--accent-red",
-                              "content": "Laputa App",
+                              "content": "Bigfoot App",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -1356,7 +1356,7 @@
                                           "id": "qGt0S",
                                           "name": "noteSelTitle",
                                           "fill": "$--foreground",
-                                          "content": "Laputa App",
+                                          "content": "Bigfoot App",
                                           "fontFamily": "Inter",
                                           "fontSize": 13,
                                           "fontWeight": "600"
@@ -1997,7 +1997,7 @@
                           "id": "ZWVUX",
                           "name": "tab1Txt",
                           "fill": "$--foreground",
-                          "content": "Laputa App",
+                          "content": "Bigfoot App",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontWeight": "500"
@@ -2194,7 +2194,7 @@
                                   "id": "eNhLA",
                                   "name": "breadcrumbName",
                                   "fill": "$--foreground",
-                                  "content": "Laputa App",
+                                  "content": "Bigfoot App",
                                   "fontFamily": "Inter",
                                   "fontSize": 12,
                                   "fontWeight": "500"
@@ -2610,7 +2610,7 @@
                                     {
                                       "type": "frame",
                                       "id": "wQayu",
-                                      "name": "relLaputaBtn",
+                                      "name": "relBigfootBtn",
                                       "width": "fill_container",
                                       "fill": "$--accent-green-light",
                                       "cornerRadius": 6,
@@ -2624,9 +2624,9 @@
                                         {
                                           "type": "text",
                                           "id": "5BZc-",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--accent-green",
-                                          "content": "Laputa",
+                                          "content": "Bigfoot",
                                           "fontFamily": "Inter",
                                           "fontSize": 12,
                                           "fontWeight": "500"
@@ -2647,7 +2647,7 @@
                                     {
                                       "type": "frame",
                                       "id": "9NFxD",
-                                      "name": "relLaputaBtn",
+                                      "name": "relBigfootBtn",
                                       "width": "fill_container",
                                       "fill": "$--accent-green-light",
                                       "cornerRadius": 6,
@@ -2661,7 +2661,7 @@
                                         {
                                           "type": "text",
                                           "id": "HoFKQ",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--accent-green",
                                           "content": "Building",
                                           "fontFamily": "Inter",
@@ -2702,7 +2702,7 @@
                                         {
                                           "type": "text",
                                           "id": "yVLK0",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--muted-foreground",
                                           "content": "+ Link existing",
                                           "fontFamily": "Inter",
@@ -2789,7 +2789,7 @@
                                         {
                                           "type": "text",
                                           "id": "suN12",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--muted-foreground",
                                           "content": "+ Link existing",
                                           "fontFamily": "Inter",
@@ -3701,7 +3701,7 @@
                               "id": "buYPs",
                               "name": "proj1Txt",
                               "fill": "$--accent-red",
-                              "content": "Laputa App",
+                              "content": "Bigfoot App",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -4539,7 +4539,7 @@
                                           "id": "oh0Nx",
                                           "name": "noteSelTitle",
                                           "fill": "$--foreground",
-                                          "content": "Laputa App",
+                                          "content": "Bigfoot App",
                                           "fontFamily": "Inter",
                                           "fontSize": 13,
                                           "fontWeight": "600"
@@ -5180,7 +5180,7 @@
                           "id": "5qYgu",
                           "name": "tab1Txt",
                           "fill": "$--foreground",
-                          "content": "Laputa App",
+                          "content": "Bigfoot App",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontWeight": "500"
@@ -5387,7 +5387,7 @@
                                   "id": "aJ9Ij",
                                   "name": "breadcrumbName",
                                   "fill": "$--foreground",
-                                  "content": "Laputa App",
+                                  "content": "Bigfoot App",
                                   "fontFamily": "Inter",
                                   "fontSize": 12,
                                   "fontWeight": "500"
@@ -5773,7 +5773,7 @@
                                     {
                                       "type": "frame",
                                       "id": "Ucmgk",
-                                      "name": "relLaputaBtn",
+                                      "name": "relBigfootBtn",
                                       "width": "fill_container",
                                       "fill": "$--accent-green-light",
                                       "cornerRadius": 6,
@@ -5787,9 +5787,9 @@
                                         {
                                           "type": "text",
                                           "id": "HP94T",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--accent-green",
-                                          "content": "Laputa",
+                                          "content": "Bigfoot",
                                           "fontFamily": "Inter",
                                           "fontSize": 12,
                                           "fontWeight": "500"
@@ -5810,7 +5810,7 @@
                                     {
                                       "type": "frame",
                                       "id": "NKNrl",
-                                      "name": "relLaputaBtn",
+                                      "name": "relBigfootBtn",
                                       "width": "fill_container",
                                       "fill": "$--accent-green-light",
                                       "cornerRadius": 6,
@@ -5824,7 +5824,7 @@
                                         {
                                           "type": "text",
                                           "id": "7Fgue",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--accent-green",
                                           "content": "Building",
                                           "fontFamily": "Inter",
@@ -5865,7 +5865,7 @@
                                         {
                                           "type": "text",
                                           "id": "twL0t",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--muted-foreground",
                                           "content": "+ Link existing",
                                           "fontFamily": "Inter",
@@ -5952,7 +5952,7 @@
                                         {
                                           "type": "text",
                                           "id": "ny0XL",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--muted-foreground",
                                           "content": "+ Link existing",
                                           "fontFamily": "Inter",
@@ -7204,7 +7204,7 @@
                               "id": "EHkKO",
                               "name": "proj1Txt",
                               "fill": "$--accent-red",
-                              "content": "Laputa App",
+                              "content": "Bigfoot App",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -10482,7 +10482,7 @@
                               "id": "KMKlm",
                               "name": "proj1Txt",
                               "fill": "$--accent-red",
-                              "content": "Laputa App",
+                              "content": "Bigfoot App",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -11320,7 +11320,7 @@
                                           "id": "3mYfY",
                                           "name": "noteSelTitle",
                                           "fill": "$--foreground",
-                                          "content": "Laputa App",
+                                          "content": "Bigfoot App",
                                           "fontFamily": "Inter",
                                           "fontSize": 13,
                                           "fontWeight": "600"
@@ -11974,7 +11974,7 @@
                           "id": "eo9dK",
                           "name": "tab1Txt",
                           "fill": "$--foreground",
-                          "content": "Laputa App",
+                          "content": "Bigfoot App",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontWeight": "500"
@@ -12171,7 +12171,7 @@
                                   "id": "Hko61",
                                   "name": "breadcrumbName",
                                   "fill": "$--foreground",
-                                  "content": "Laputa App",
+                                  "content": "Bigfoot App",
                                   "fontFamily": "Inter",
                                   "fontSize": 12,
                                   "fontWeight": "500"
@@ -12557,7 +12557,7 @@
                                     {
                                       "type": "frame",
                                       "id": "ovNo_",
-                                      "name": "relLaputaBtn",
+                                      "name": "relBigfootBtn",
                                       "width": "fill_container",
                                       "fill": "$--accent-green-light",
                                       "cornerRadius": 6,
@@ -12571,9 +12571,9 @@
                                         {
                                           "type": "text",
                                           "id": "u6cth",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--accent-green",
-                                          "content": "Laputa",
+                                          "content": "Bigfoot",
                                           "fontFamily": "Inter",
                                           "fontSize": 12,
                                           "fontWeight": "500"
@@ -12594,7 +12594,7 @@
                                     {
                                       "type": "frame",
                                       "id": "TwrqD",
-                                      "name": "relLaputaBtn",
+                                      "name": "relBigfootBtn",
                                       "width": "fill_container",
                                       "fill": "$--accent-green-light",
                                       "cornerRadius": 6,
@@ -12608,7 +12608,7 @@
                                         {
                                           "type": "text",
                                           "id": "R02qX",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--accent-green",
                                           "content": "Building",
                                           "fontFamily": "Inter",
@@ -12649,7 +12649,7 @@
                                         {
                                           "type": "text",
                                           "id": "Sohlo",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--muted-foreground",
                                           "content": "+ Link existing",
                                           "fontFamily": "Inter",
@@ -12736,7 +12736,7 @@
                                         {
                                           "type": "text",
                                           "id": "0BiPL",
-                                          "name": "laputaTxt",
+                                          "name": "bigfootTxt",
                                           "fill": "$--muted-foreground",
                                           "content": "+ Link existing",
                                           "fontFamily": "Inter",

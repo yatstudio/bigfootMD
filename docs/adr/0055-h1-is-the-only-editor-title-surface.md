@@ -10,13 +10,13 @@ superseded_by: "0068"
 
 ## Context
 
-ADR-0044 moved Laputa to H1-as-title, but the frontend still carried a legacy fallback: when a note had no H1, `TitleField` and the old title section could reappear above the editor. That left two competing title surfaces in the product and made it possible for deleting an H1 to resurrect UI that was supposed to be gone.
+ADR-0044 moved Bigfoot to H1-as-title, but the frontend still carried a legacy fallback: when a note had no H1, `TitleField` and the old title section could reappear above the editor. That left two competing title surfaces in the product and made it possible for deleting an H1 to resurrect UI that was supposed to be gone.
 
 The result was both behavioral drift and stale tests: some code paths still treated the dedicated title row as a valid editing surface even though the product direction is now keyboard-first writing directly in the document body.
 
 ## Decision
 
-**The editor body is now the only title surface. Laputa never renders a separate title section above the editor, regardless of whether a note currently has an H1.**
+**The editor body is now the only title surface. Bigfoot never renders a separate title section above the editor, regardless of whether a note currently has an H1.**
 
 Display-title behavior stays:
 1. First H1 in the body

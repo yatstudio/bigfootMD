@@ -20,7 +20,7 @@ on:
 
 env:
   # Bump this when Tauri/Rust target artifacts capture stale absolute paths.
-  RUST_TARGET_CACHE_VERSION: v2026-04-14-tolaria
+  RUST_TARGET_CACHE_VERSION: v2026-04-14-bigfoot
   # The production Vite bundle can exceed Node's default ~2GB heap on
   # macOS arm64 runners while Tauri runs beforeBuildCommand.
   NODE_OPTIONS: --max-old-space-size=4096
@@ -91,7 +91,7 @@ jobs:
           APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
         run: |
           CERT_PATH="$RUNNER_TEMP/apple_cert.p12"
-          KEYCHAIN_PATH="$RUNNER_TEMP/laputa-signing.keychain-db"
+          KEYCHAIN_PATH="$RUNNER_TEMP/bigfoot-signing.keychain-db"
           KEYCHAIN_PASSWORD="$(uuidgen)"
           echo "$APPLE_CERTIFICATE" | base64 --decode > "$CERT_PATH"
           security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"

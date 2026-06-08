@@ -213,7 +213,7 @@ describe('App note windows', () => {
     editorSnapshots.length = 0
     resetCommandResults()
     localStorage.clear()
-    localStorage.setItem('tolaria:claude-code-onboarding-dismissed', '1')
+    localStorage.setItem('bigfoot:claude-code-onboarding-dismissed', '1')
     window.history.replaceState(
       {},
       '',

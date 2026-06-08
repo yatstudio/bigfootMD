@@ -16,7 +16,7 @@ describe('feedbackDiagnostics', () => {
     const stopCapture = startFeedbackDiagnosticsCapture()
     const sampleToken = ['ghp', 'super-secret-token'].join('_')
 
-    console.error(`Load failed for /Users/luca/Laputa/private.md with token ${sampleToken}`)
+    console.error(`Load failed for /Users/luca/Bigfoot/private.md with token ${sampleToken}`)
     console.warn('Retrying from C:\\Users\\luca\\Notes\\vault.md')
 
     const bundle = buildSanitizedDiagnosticBundle({
@@ -24,12 +24,12 @@ describe('feedbackDiagnostics', () => {
       releaseChannel: 'alpha',
     })
 
-    expect(bundle).toContain('Tolaria sanitized diagnostics')
+    expect(bundle).toContain('Bigfoot sanitized diagnostics')
     expect(bundle).toContain('Build: b281')
     expect(bundle).toContain('Release channel: alpha')
     expect(bundle).toContain('[error] Load failed for [redacted-path] with token [redacted-token]')
     expect(bundle).toContain('[warn] Retrying from [redacted-path]')
-    expect(bundle).not.toContain('/Users/luca/Laputa/private.md')
+    expect(bundle).not.toContain('/Users/luca/Bigfoot/private.md')
     expect(bundle).not.toContain(sampleToken)
     expect(bundle).not.toContain('C:\\Users\\luca\\Notes\\vault.md')
 

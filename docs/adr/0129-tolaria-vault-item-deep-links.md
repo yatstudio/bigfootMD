@@ -1,25 +1,25 @@
 ---
 type: ADR
 id: "0129"
-title: "Tolaria vault item deep links"
+title: "Bigfoot vault item deep links"
 status: active
 date: 2026-05-27
 ---
 
-# ADR-0129: Tolaria vault item deep links
+# ADR-0129: Bigfoot vault item deep links
 
 ## Context
 
-Users need durable links they can paste into calendars, task managers, chats, and other apps to return to a Tolaria vault item. The link needs to identify a registered vault, preserve the file extension so non-Markdown files can be opened, and fail clearly when the vault or item is unavailable. Links must not create or import files implicitly.
+Users need durable links they can paste into calendars, task managers, chats, and other apps to return to a Bigfoot vault item. The link needs to identify a registered vault, preserve the file extension so non-Markdown files can be opened, and fail clearly when the vault or item is unavailable. Links must not create or import files implicitly.
 
 Mounted workspaces make vault naming non-trivial. A readable slug is useful, but two vaults can share a label, alias, or folder name. URL parsing also cannot rely only on the browser URL implementation because dot-segment normalization can hide path traversal attempts before validation runs.
 
 ## Decision
 
-Tolaria deep links use this shape:
+Bigfoot deep links use this shape:
 
 ```text
-tolaria://<vault-slug>/<relative-path-with-extension>
+bigfoot://<vault-slug>/<relative-path-with-extension>
 ```
 
 The vault slug is generated from the registered workspace alias, then label, then path basename. When two vaults would share the same base slug, generated links append a stable short hash derived from the normalized vault path. A handwritten ambiguous base slug is rejected instead of picking an arbitrary vault.
@@ -28,7 +28,7 @@ The path component is encoded per segment with `encodeURIComponent`, so spaces, 
 
 `src/utils/deepLinks.ts` owns URL building, parsing, and vault resolution. `src/hooks/useDeepLinks.ts` owns renderer integration: it receives Tauri deep-link events, validates them against the registered vault list, switches vaults when needed, reloads once if the target file is not in the current index yet, opens existing Markdown/text/binary entries, reports localized errors, and emits safe PostHog outcomes. Deep links are navigation-only; they never create missing files, import external content, or infer a fallback vault.
 
-The desktop shell registers the `tolaria` scheme through `tauri-plugin-deep-link` and keeps second launches focused through `tauri-plugin-single-instance`. Windows and Linux also call runtime `register_all()` as a repair step. macOS uses bundle scheme registration. Linux runtime registration is best-effort and is not part of the verified v1 support target.
+The desktop shell registers the `bigfoot` scheme through `tauri-plugin-deep-link` and keeps second launches focused through `tauri-plugin-single-instance`. Windows and Linux also call runtime `register_all()` as a repair step. macOS uses bundle scheme registration. Linux runtime registration is best-effort and is not part of the verified v1 support target.
 
 Copy surfaces are shared actions:
 

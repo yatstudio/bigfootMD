@@ -12,7 +12,7 @@ Users want to save reusable filtered note lists (e.g., "Active Projects", "This 
 
 ## Decision
 
-**Custom views are stored as `.yml` files in `.laputa/views/` within the vault root.** Each file defines a named view with filter conditions, optional icon/color, and sort preferences.
+**Custom views are stored as `.yml` files in `.bigfoot/views/` within the vault root.** Each file defines a named view with filter conditions, optional icon/color, and sort preferences.
 
 ### File format
 
@@ -54,6 +54,6 @@ Wikilink values like `[[target|Alias]]` are matched by stem (stripping brackets 
 ## Consequences
 
 - New dependency: `serde_yaml` crate for YAML parsing.
-- `.laputa/views/` directory auto-created on first view save. Already excluded from vault scanning via `HIDDEN_DIRS`.
+- `.bigfoot/views/` directory auto-created on first view save. Already excluded from vault scanning via `HIDDEN_DIRS`.
 - Views sync across devices via git. Conflicts resolved by standard git merge (YAML is line-based, merges well).
 - Sort persistence: changing sort while a view is selected writes `sort` back to the `.yml` file.

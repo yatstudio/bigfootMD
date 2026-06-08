@@ -350,33 +350,33 @@ describe('useVaultLoader', () => {
   it('freshly reloads the active mounted workspace on startup in Tauri mode', async () => {
     await enableTauriMode()
     const brian = { label: 'Brian', path: '/brian', alias: 'brian', available: true, mounted: true }
-    const laputa = { label: 'Laputa', path: '/laputa', alias: 'laputa', available: true, mounted: true }
-    const vaults = [laputa, brian]
-    const laputaStartupResponses: Partial<Record<string, VaultEntry[]>> = {
+    const bigfoot = { label: 'Bigfoot', path: '/bigfoot', alias: 'bigfoot', available: true, mounted: true }
+    const vaults = [bigfoot, brian]
+    const bigfootStartupResponses: Partial<Record<string, VaultEntry[]>> = {
       reload_vault: [
-        { ...mockEntries[0], path: '/laputa/note/alpha.md', filename: 'alpha.md', title: 'Alpha' },
+        { ...mockEntries[0], path: '/bigfoot/note/alpha.md', filename: 'alpha.md', title: 'Alpha' },
       ],
       list_vault: [],
     }
 
     backendInvokeFn.mockImplementation(((cmd: string, args?: Record<string, unknown>) => {
-      const response = args?.path === '/laputa' ? laputaStartupResponses[cmd] : undefined
+      const response = args?.path === '/bigfoot' ? bigfootStartupResponses[cmd] : undefined
       if (response) return Promise.resolve(response)
       if (EMPTY_ARRAY_COMMANDS.has(cmd)) return Promise.resolve([])
       return Promise.resolve(null)
     }) as typeof defaultMockInvoke)
 
-    const { result } = renderHook(() => useVaultLoader('/laputa', vaults, '/laputa', vaults))
+    const { result } = renderHook(() => useVaultLoader('/bigfoot', vaults, '/bigfoot', vaults))
 
     await waitFor(() => {
       expect(result.current.entries.map((entry) => entry.title)).toEqual(['Alpha'])
     })
 
-    const laputaLoadCommands = backendInvokeFn.mock.calls
-      .filter(([, args]) => args?.path === '/laputa')
+    const bigfootLoadCommands = backendInvokeFn.mock.calls
+      .filter(([, args]) => args?.path === '/bigfoot')
       .map(([command]) => command)
-    expect(laputaLoadCommands).toContain('reload_vault')
-    expect(laputaLoadCommands).not.toContain('list_vault')
+    expect(bigfootLoadCommands).toContain('reload_vault')
+    expect(bigfootLoadCommands).not.toContain('list_vault')
   })
 
   it('marks the vault unavailable when the initial load finds a missing active vault', async () => {

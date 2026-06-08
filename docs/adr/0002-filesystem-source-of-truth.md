@@ -8,7 +8,7 @@ date: 2026-02-14
 
 ## Context
 
-Laputa needs a persistence model. The core question: does the app own the data, or does the filesystem? This affects sync, conflict resolution, offline support, portability, and long-term trust with users.
+Bigfoot needs a persistence model. The core question: does the app own the data, or does the filesystem? This affects sync, conflict resolution, offline support, portability, and long-term trust with users.
 
 ## Decision
 

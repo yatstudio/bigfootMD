@@ -51,7 +51,7 @@
 }
 
 .editor__blocknote-container .bn-side-menu button,
-.editor__blocknote-container .tolaria-block-drag-handle {
+.editor__blocknote-container .bigfoot-block-drag-handle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -388,7 +388,7 @@
   max-height: calc(100dvh - 32px);
   overflow: hidden;
   padding: 0;
-  zoom: var(--tolaria-overlay-zoom-inverse, 1);
+  zoom: var(--bigfoot-overlay-zoom-inverse, 1);
 }
 
 .mermaid-diagram__dialog-viewport {
@@ -551,7 +551,7 @@ body.tldraw-whiteboard-fullscreen-open {
   cursor: pointer;
 }
 
-/* Code blocks follow Tolaria's theme instead of BlockNote's fixed dark shell. */
+/* Code blocks follow Bigfoot's theme instead of BlockNote's fixed dark shell. */
 .editor__blocknote-container .bn-block-content[data-content-type="codeBlock"] {
   background-color: var(--editor-code-block-background) !important;
   border: 1px solid var(--editor-code-block-border);

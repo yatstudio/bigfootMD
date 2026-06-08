@@ -124,7 +124,7 @@ mod tests {
     #[test]
     fn rename_folder_updates_relative_destination() {
         let dir = TempDir::new().unwrap();
-        make_folder(&dir, "projects/laputa");
+        make_folder(&dir, "projects/bigfoot");
 
         let result = rename_folder(dir.path(), "projects", "work").unwrap();
 
@@ -135,7 +135,7 @@ mod tests {
                 new_path: "work".to_string(),
             }
         );
-        assert!(dir.path().join("work/laputa").is_dir());
+        assert!(dir.path().join("work/bigfoot").is_dir());
         assert!(!dir.path().join("projects").exists());
     }
 
@@ -173,7 +173,7 @@ mod tests {
     #[test]
     fn delete_folder_removes_nested_contents() {
         let dir = TempDir::new().unwrap();
-        let nested = make_folder(&dir, "projects/laputa");
+        let nested = make_folder(&dir, "projects/bigfoot");
         fs::write(nested.join("note.md"), "# Note\n").unwrap();
 
         let deleted_path = delete_folder(dir.path(), "projects").unwrap();

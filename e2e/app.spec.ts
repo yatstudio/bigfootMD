@@ -14,7 +14,7 @@ test('sidebar shows filters and section groups', async ({ page }) => {
   await page.goto('/')
   await page.waitForTimeout(500) // Wait for mock data
 
-  await expect(page.getByRole('heading', { name: 'Laputa' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Bigfoot' })).toBeVisible()
   // Filters
   await expect(page.locator('.sidebar__filter-item').filter({ hasText: 'All Notes' })).toBeVisible()
   await expect(page.locator('.sidebar__filter-item').filter({ hasText: 'People' })).toBeVisible()

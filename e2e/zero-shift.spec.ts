@@ -4,8 +4,8 @@ test('zero horizontal shift: headings and bullets', async ({ page }) => {
   await page.goto('http://localhost:5173')
   await page.waitForTimeout(800)
 
-  // Open "Build Laputa App" which has headings and bullets
-  const noteItem = page.locator('.note-list__item', { hasText: 'Build Laputa App' })
+  // Open "Build Bigfoot App" which has headings and bullets
+  const noteItem = page.locator('.note-list__item', { hasText: 'Build Bigfoot App' })
   await noteItem.click()
   await page.waitForTimeout(800)
 

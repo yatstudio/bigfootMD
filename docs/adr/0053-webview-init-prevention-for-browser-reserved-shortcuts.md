@@ -14,13 +14,13 @@ The gap is WKWebView itself: some browser-reserved chords are swallowed by the w
 
 ## Decision
 
-**Laputa will keep renderer-first shortcut execution, but for macOS browser-reserved chords we will add a narrow Tauri webview-init prevention layer using `tauri-plugin-prevent-default` so the real keystroke reaches the shared command path.**
+**Bigfoot will keep renderer-first shortcut execution, but for macOS browser-reserved chords we will add a narrow Tauri webview-init prevention layer using `tauri-plugin-prevent-default` so the real keystroke reaches the shared command path.**
 
 ## Options considered
 
 - **Option A** (chosen): Add a narrow `tauri-plugin-prevent-default` registration for only the known browser-reserved chords we actually use. This preserves ADR 0052, keeps the command bus unified, and fixes the real native keystroke path without broad shortcut capture.
 - **Option B**: Keep relying on renderer capture listeners alone. Simpler, but it fails for chords that WKWebView consumes before renderer code sees them.
-- **Option C**: Use a global shortcut plugin as the fallback path. This would catch the keystroke natively, but it reserves the chord outside Laputa and is too heavy for app-local shortcuts.
+- **Option C**: Use a global shortcut plugin as the fallback path. This would catch the keystroke natively, but it reserves the chord outside Bigfoot and is too heavy for app-local shortcuts.
 
 ## Consequences
 

@@ -8,7 +8,7 @@ date: 2026-02-14
 
 ## Context
 
-Laputa is a desktop app for macOS (with iPad as a future target) that reads and writes a vault of markdown files. The app needs a native feel, filesystem access, git integration, and a rich text editor. A single developer (with AI assistance) is building it.
+Bigfoot is a desktop app for macOS (with iPad as a future target) that reads and writes a vault of markdown files. The app needs a native feel, filesystem access, git integration, and a rich text editor. A single developer (with AI assistance) is building it.
 
 ## Decision
 

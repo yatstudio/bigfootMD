@@ -24,7 +24,7 @@ test('clicking Events filter shows only events', async ({ page }) => {
   await page.waitForTimeout(100)
   const count = page.locator('.note-list__count')
   await expect(count).toHaveText('1')
-  await expect(page.locator('.note-list__title', { hasText: 'Laputa App Design Session' })).toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Bigfoot App Design Session' })).toBeVisible()
   await page.screenshot({ path: 'test-results/filter-events.png' })
 })
 
@@ -33,15 +33,15 @@ test('clicking PROJECTS header shows all projects', async ({ page }) => {
   await page.waitForTimeout(100)
   const count = page.locator('.note-list__count')
   await expect(count).toHaveText('1')
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).toBeVisible()
   await page.screenshot({ path: 'test-results/filter-projects.png' })
 })
 
 test('clicking specific entity shows it pinned with children', async ({ page }) => {
-  await page.locator('.sidebar__item', { hasText: 'Build Laputa App' }).click()
+  await page.locator('.sidebar__item', { hasText: 'Build Bigfoot App' }).click()
   await page.waitForTimeout(100)
   // Pinned entity + children that belongTo this project
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).toBeVisible()
   await expect(page.locator('.note-list__title', { hasText: 'Facebook Ads Strategy' })).toBeVisible()
   await expect(page.locator('.note-list__title', { hasText: 'Budget Allocation' })).toBeVisible()
   await expect(page.locator('.note-list__item--pinned')).toBeVisible()
@@ -51,7 +51,7 @@ test('clicking specific entity shows it pinned with children', async ({ page }) 
 test('clicking topic shows entries related to that topic', async ({ page }) => {
   await page.locator('.sidebar__topic-item', { hasText: 'Software Development' }).click()
   await page.waitForTimeout(100)
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).toBeVisible()
   await page.screenshot({ path: 'test-results/filter-topic.png' })
 })
 
@@ -61,7 +61,7 @@ test('search bar filters by title substring', async ({ page }) => {
   const count = page.locator('.note-list__count')
   await expect(count).toHaveText('1')
   await expect(page.locator('.note-list__title', { hasText: 'Budget Allocation' })).toBeVisible()
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).not.toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).not.toBeVisible()
   await page.screenshot({ path: 'test-results/search-budget.png' })
 })
 
@@ -71,7 +71,7 @@ test('type filter pills narrow results', async ({ page }) => {
   await page.waitForTimeout(100)
   const count = page.locator('.note-list__count')
   await expect(count).toHaveText('1')
-  await expect(page.locator('.note-list__title', { hasText: 'Build Laputa App' })).toBeVisible()
+  await expect(page.locator('.note-list__title', { hasText: 'Build Bigfoot App' })).toBeVisible()
   await expect(page.locator('.note-list__title', { hasText: 'Matteo Cellini' })).not.toBeVisible()
   await page.screenshot({ path: 'test-results/pill-projects.png' })
 

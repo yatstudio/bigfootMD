@@ -27,8 +27,8 @@ import {
 } from 'react'
 import { isStaleBlockReferenceError } from './richEditorTransformErrorRecoveryExtension'
 
-type TolariaBlockNoteEditor = BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>
-type TolariaBlock = NonNullable<ReturnType<TolariaBlockNoteEditor['getBlock']>>
+type BigfootBlockNoteEditor = BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>
+type BigfootBlock = NonNullable<ReturnType<BigfootBlockNoteEditor['getBlock']>>
 type SideMenuBlock = {
   content?: unknown
   id: string
@@ -82,7 +82,7 @@ const BLOCK_CONTAINER_SELECTOR = '[data-node-type="blockContainer"][data-id]'
 const POINTER_REORDER_THRESHOLD_PX = 4
 const SIDE_MENU_ALIGNMENT_ATTEMPTS = 8
 
-function liveSideMenuBlock(editor: TolariaBlockNoteEditor, block: SideMenuBlock | undefined) {
+function liveSideMenuBlock(editor: BigfootBlockNoteEditor, block: SideMenuBlock | undefined) {
   if (!block) return undefined
   try {
     return editor.getBlock(block.id)
@@ -120,7 +120,7 @@ function tableHeaderContent(block: unknown): TableHeaderContent | undefined {
   return block.content
 }
 
-function hasChildBlock(block: TolariaBlock, blockId: string): boolean {
+function hasChildBlock(block: BigfootBlock, blockId: string): boolean {
   for (const child of block.children) {
     if (child.id === blockId || hasChildBlock(child, blockId)) return true
   }
@@ -132,7 +132,7 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max)
 }
 
-function editorBlockElement(editor: TolariaBlockNoteEditor): HTMLElement | null {
+function editorBlockElement(editor: BigfootBlockNoteEditor): HTMLElement | null {
   const element = editor.domElement
   if (!(element instanceof HTMLElement)) return null
   return element.matches('.bn-editor')
@@ -303,7 +303,7 @@ function createSideMenuAlignmentCleanup({
   }
 }
 
-function createSideMenuAlignmentController(editor: TolariaBlockNoteEditor, blockId: string) {
+function createSideMenuAlignmentController(editor: BigfootBlockNoteEditor, blockId: string) {
   const editorElement = editorBlockElement(editor)
   const ownerWindow = editorElement?.ownerDocument.defaultView
   if (!editorElement || !ownerWindow) return undefined
@@ -339,7 +339,7 @@ function createSideMenuAlignmentController(editor: TolariaBlockNoteEditor, block
   })
 }
 
-function useSideMenuTextAlignment(editor: TolariaBlockNoteEditor, block: SideMenuBlock | undefined) {
+function useSideMenuTextAlignment(editor: BigfootBlockNoteEditor, block: SideMenuBlock | undefined) {
   const blockId = block?.id
 
   useLayoutEffect(() => {
@@ -454,7 +454,7 @@ function validDropTarget({
   x,
   y,
 }: {
-  editor: TolariaBlockNoteEditor
+  editor: BigfootBlockNoteEditor
   state: PointerReorderState
   x: number
   y: number
@@ -487,7 +487,7 @@ function moveBlockByPointerDrop({
   targetBlockId,
   placement,
 }: {
-  editor: TolariaBlockNoteEditor
+  editor: BigfootBlockNoteEditor
   draggedBlockId: string
   targetBlockId: string
   placement: DropPlacement
@@ -530,7 +530,7 @@ function useSideMenuBlock() {
   return { block, editor }
 }
 
-function TolariaAddBlockButton() {
+function BigfootAddBlockButton() {
   const Components = useComponentsContext()!
   const dict = useDictionary()
   const suggestionMenu = useExtension(SuggestionMenu)
@@ -566,7 +566,7 @@ function TolariaAddBlockButton() {
   )
 }
 
-function TolariaDragHandleButton({
+function BigfootDragHandleButton({
   children,
   dragHandleMenu,
 }: SideMenuProps & { children?: ReactNode }) {
@@ -705,7 +705,7 @@ function TolariaDragHandleButton({
     >
       <Components.Generic.Menu.Trigger>
         <span
-          className="tolaria-block-drag-handle"
+          className="bigfoot-block-drag-handle"
           onPointerDown={onPointerDown}
           onClickCapture={onClickCapture}
         >
@@ -724,7 +724,7 @@ function TolariaDragHandleButton({
   )
 }
 
-function TolariaRemoveBlockItem({ children }: { children: ReactNode }) {
+function BigfootRemoveBlockItem({ children }: { children: ReactNode }) {
   const Components = useComponentsContext()!
   const { block, editor } = useSideMenuBlock()
 
@@ -746,7 +746,7 @@ function TolariaRemoveBlockItem({ children }: { children: ReactNode }) {
   )
 }
 
-function TolariaTableHeaderItem({
+function BigfootTableHeaderItem({
   children,
   header,
 }: {
@@ -788,26 +788,26 @@ function TolariaTableHeaderItem({
   )
 }
 
-function TolariaDragHandleMenu() {
+function BigfootDragHandleMenu() {
   const dict = useDictionary()
 
   return (
     <DragHandleMenu>
-      <TolariaRemoveBlockItem>{dict.drag_handle.delete_menuitem}</TolariaRemoveBlockItem>
-      <TolariaTableHeaderItem header="row">{dict.drag_handle.header_row_menuitem}</TolariaTableHeaderItem>
-      <TolariaTableHeaderItem header="column">{dict.drag_handle.header_column_menuitem}</TolariaTableHeaderItem>
+      <BigfootRemoveBlockItem>{dict.drag_handle.delete_menuitem}</BigfootRemoveBlockItem>
+      <BigfootTableHeaderItem header="row">{dict.drag_handle.header_row_menuitem}</BigfootTableHeaderItem>
+      <BigfootTableHeaderItem header="column">{dict.drag_handle.header_column_menuitem}</BigfootTableHeaderItem>
     </DragHandleMenu>
   )
 }
 
-export function TolariaSideMenu(props: SideMenuProps) {
+export function BigfootSideMenu(props: SideMenuProps) {
   const { block, editor } = useSideMenuBlock()
   useSideMenuTextAlignment(editor, block)
 
   return (
     <SideMenu {...props}>
-      <TolariaAddBlockButton />
-      <TolariaDragHandleButton dragHandleMenu={TolariaDragHandleMenu} />
+      <BigfootAddBlockButton />
+      <BigfootDragHandleButton dragHandleMenu={BigfootDragHandleMenu} />
     </SideMenu>
   )
 }

@@ -29,6 +29,6 @@ The view filter engine (ADR 0040) supports operators like `contains`, `equals`, 
 ## Consequences
 
 - New dependency: `regex` crate in Rust (already present for other vault modules; no net new dep).
-- Filter YAML files that use `regex: true` require Laputa ≥ this version to evaluate correctly; older versions silently ignore the flag (falling back to `regex: false` default via `#[serde(default)]`).
+- Filter YAML files that use `regex: true` require Bigfoot ≥ this version to evaluate correctly; older versions silently ignore the flag (falling back to `regex: false` default via `#[serde(default)]`).
 - Regex evaluation has a small performance cost vs. literal matching. No memoization of compiled regexes per evaluation call — acceptable given vault sizes (< 10k notes).
 - Re-evaluation trigger: if regex performance becomes measurable, cache compiled `Regex` objects keyed by pattern string.

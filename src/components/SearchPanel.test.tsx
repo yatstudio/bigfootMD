@@ -52,7 +52,7 @@ const MOCK_ENTRIES: VaultEntry[] = [
   {
     path: '/vault/event/retreat.md',
     filename: 'retreat.md',
-    title: 'Refactoring Retreat',
+    title: 'Bigfoot Capital Retreat',
     isA: 'Event',
     aliases: [],
     belongsTo: [],
@@ -176,7 +176,7 @@ async function expectOnlySecondResultAfterArrowDown(
   await act(async () => pressArrowDown(input))
 
   await waitFor(() => {
-    expectSelectedResult('Refactoring Retreat')
+    expectSelectedResult('Bigfoot Capital Retreat')
     expectUnselectedResult('Search Patterns')
   })
 }
@@ -354,7 +354,7 @@ describe('SearchPanel', () => {
     })
 
     await waitFor(() => {
-      const resultTwo = screen.getByText('Refactoring Retreat').closest('[class*="cursor-pointer"]')!
+      const resultTwo = screen.getByText('Bigfoot Capital Retreat').closest('[class*="cursor-pointer"]')!
       expect(resultTwo.className).toContain('bg-accent')
     })
   })
@@ -405,7 +405,7 @@ describe('SearchPanel', () => {
     fireEvent.mouseMove(resultRow('Search Patterns'), { movementX: 0, movementY: 0 })
 
     await waitFor(() => {
-      expectSelectedResult('Refactoring Retreat')
+      expectSelectedResult('Bigfoot Capital Retreat')
       expectUnselectedResult('Search Patterns')
     })
   })
@@ -591,7 +591,7 @@ describe('SearchPanel', () => {
 
     // Only second query results should appear — VaultEntry title shown
     await waitFor(() => {
-      expect(screen.getByText('Refactoring Retreat')).toBeInTheDocument()
+      expect(screen.getByText('Bigfoot Capital Retreat')).toBeInTheDocument()
     })
   })
 
@@ -599,7 +599,7 @@ describe('SearchPanel', () => {
     mockInvokeFn.mockResolvedValue({
       results: [
         { title: 'How to Design AI-first APIs', path: '/vault/essay/ai-apis.md', snippet: 'keyword hit', score: 0.7, note_type: 'Essay' },
-        { title: 'Refactoring Retreat', path: '/vault/event/retreat.md', snippet: 'unique', score: 0.6, note_type: 'Event' },
+        { title: 'Bigfoot Capital Retreat', path: '/vault/event/retreat.md', snippet: 'unique', score: 0.6, note_type: 'Event' },
         { title: 'How to Design AI-first APIs', path: '/vault/essay/ai-apis.md', snippet: 'duplicate hit', score: 0.9, note_type: 'Essay' },
       ],
       elapsed_ms: 48,

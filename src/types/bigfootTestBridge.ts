@@ -3,7 +3,7 @@ import type {
   AppCommandShortcutEventOptions,
 } from '../hooks/appCommandCatalog'
 
-export interface LaputaTestBridge {
+export interface BigfootTestBridge {
   activeTabPath?: string | null
   dispatchAppCommand?: (id: string) => void
   openDeepLink?: (url: string) => void
@@ -17,7 +17,7 @@ export interface LaputaTestBridge {
 
 declare global {
   interface Window {
-    __laputaTest?: LaputaTestBridge
+    __bigfootTest?: BigfootTestBridge
   }
 }
 

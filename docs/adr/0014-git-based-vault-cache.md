@@ -12,7 +12,7 @@ Scanning a vault of 9000+ markdown files on every app launch takes several secon
 
 ## Decision
 
-**Use git as the change detection mechanism. The cache stores all `VaultEntry` objects in a JSON file at `~/.laputa/cache/<vault-hash>.json`. On load, it compares the cached git HEAD commit hash with the current one: if the same, only re-parse uncommitted changed files; if different, use `git diff` to find changed files and selectively re-parse. Full rescan only on cache miss or version bump.**
+**Use git as the change detection mechanism. The cache stores all `VaultEntry` objects in a JSON file at `~/.bigfoot/cache/<vault-hash>.json`. On load, it compares the cached git HEAD commit hash with the current one: if the same, only re-parse uncommitted changed files; if different, use `git diff` to find changed files and selectively re-parse. Full rescan only on cache miss or version bump.**
 
 ## Options considered
 
@@ -22,10 +22,10 @@ Scanning a vault of 9000+ markdown files on every app launch takes several secon
 
 ## Consequences
 
-- Cache file stored outside the vault at `~/.laputa/cache/<vault-hash>.json` — never pollutes the user's git repo.
+- Cache file stored outside the vault at `~/.bigfoot/cache/<vault-hash>.json` — never pollutes the user's git repo.
 - Writes are atomic (write to `.tmp` then rename) to prevent corruption.
 - Cache version (v5) is bumped on `VaultEntry` field changes to force full rescan.
-- Legacy `.laputa-cache.json` files inside the vault are auto-migrated and deleted on first run.
+- Legacy `.bigfoot-cache.json` files inside the vault are auto-migrated and deleted on first run.
 - `reload_vault` command deletes the cache file before rescanning, guaranteeing fresh data.
 - Stale cache entries are pruned on vault open (files that no longer exist on disk).
 - Re-evaluation trigger: if non-git vaults (e.g., iCloud-only) need to be supported.

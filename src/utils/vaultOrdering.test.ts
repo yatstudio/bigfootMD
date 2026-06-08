@@ -3,18 +3,18 @@ import type { VaultOption } from '../components/status-bar/types'
 import { canMoveVaultPath, moveVaultPath, orderVaultsByPath, reorderVaultPath, vaultPathList } from './vaultOrdering'
 
 const vaults: VaultOption[] = [
-  { label: 'Laputa', path: '/laputa' },
+  { label: 'Bigfoot', path: '/bigfoot' },
   { label: 'Research', path: '/research' },
   { label: 'Archive', path: '/archive' },
 ]
 
 describe('vaultOrdering', () => {
   it('extracts vault paths in display order', () => {
-    expect(vaultPathList(vaults)).toEqual(['/laputa', '/research', '/archive'])
+    expect(vaultPathList(vaults)).toEqual(['/bigfoot', '/research', '/archive'])
   })
 
   it('orders vaults by a complete path list', () => {
-    expect(orderVaultsByPath(vaults, ['/archive', '/laputa', '/research'])).toEqual([
+    expect(orderVaultsByPath(vaults, ['/archive', '/bigfoot', '/research'])).toEqual([
       vaults[2],
       vaults[0],
       vaults[1],
@@ -22,18 +22,18 @@ describe('vaultOrdering', () => {
   })
 
   it('rejects incomplete or unknown path lists', () => {
-    expect(orderVaultsByPath(vaults, ['/archive', '/laputa'])).toBeNull()
-    expect(orderVaultsByPath(vaults, ['/archive', '/laputa', '/missing'])).toBeNull()
+    expect(orderVaultsByPath(vaults, ['/archive', '/bigfoot'])).toBeNull()
+    expect(orderVaultsByPath(vaults, ['/archive', '/bigfoot', '/missing'])).toBeNull()
   })
 
   it('moves vault paths one slot at a time', () => {
-    expect(moveVaultPath(vaults, '/research', 'up')).toEqual(['/research', '/laputa', '/archive'])
-    expect(moveVaultPath(vaults, '/research', 'down')).toEqual(['/laputa', '/archive', '/research'])
+    expect(moveVaultPath(vaults, '/research', 'up')).toEqual(['/research', '/bigfoot', '/archive'])
+    expect(moveVaultPath(vaults, '/research', 'down')).toEqual(['/bigfoot', '/archive', '/research'])
   })
 
   it('reorders a dragged vault path to the hovered path index', () => {
-    expect(reorderVaultPath(vaults, '/laputa', '/archive')).toEqual(['/research', '/archive', '/laputa'])
-    expect(reorderVaultPath(vaults, '/archive', '/laputa')).toEqual(['/archive', '/laputa', '/research'])
+    expect(reorderVaultPath(vaults, '/bigfoot', '/archive')).toEqual(['/research', '/archive', '/bigfoot'])
+    expect(reorderVaultPath(vaults, '/archive', '/bigfoot')).toEqual(['/archive', '/bigfoot', '/research'])
   })
 
   it('ignores no-op or unknown drag reorder paths', () => {
@@ -43,8 +43,8 @@ describe('vaultOrdering', () => {
   })
 
   it('reports whether a vault can move in a direction', () => {
-    expect(canMoveVaultPath(vaults, '/laputa', 'up')).toBe(false)
-    expect(canMoveVaultPath(vaults, '/laputa', 'down')).toBe(true)
+    expect(canMoveVaultPath(vaults, '/bigfoot', 'up')).toBe(false)
+    expect(canMoveVaultPath(vaults, '/bigfoot', 'down')).toBe(true)
     expect(canMoveVaultPath(vaults, '/archive', 'down')).toBe(false)
   })
 })

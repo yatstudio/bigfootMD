@@ -22,11 +22,11 @@ test('quick open: search and select a note', async ({ page }) => {
   await page.waitForTimeout(200)
 
   // Type to search
-  await page.fill('.palette__input', 'laputa')
+  await page.fill('.palette__input', 'bigfoot')
   await page.waitForTimeout(100)
 
   // Should show matching result
-  await expect(page.locator('.palette__item-title:has-text("Build Laputa App")')).toBeVisible()
+  await expect(page.locator('.palette__item-title:has-text("Build Bigfoot App")')).toBeVisible()
 
   // Press Enter to select
   await page.keyboard.press('Enter')

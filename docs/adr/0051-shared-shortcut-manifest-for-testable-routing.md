@@ -27,5 +27,5 @@ The riskiest failures were exactly the native-owned commands that matter most in
 - `appCommandCatalog.ts` is now the frontend source of truth for shortcut-capable command IDs, ownership, modifier rules, and dispatch kind.
 - `appCommandDispatcher.ts` is reduced to route execution instead of carrying a large switch plus duplicated ownership metadata.
 - `useAppKeyboard.ts` resolves shortcuts from the shared manifest, including the distinction between `Cmd+Shift+L` (macOS-only) and `CmdOrCtrl+Shift+I/F/O`.
-- Native-menu smoke tests should use `window.__laputaTest.triggerMenuCommand()` or the Tauri `trigger_menu_command` bridge to prove the native command path. Renderer-only commands may still be proven with direct keyboard events.
+- Native-menu smoke tests should use `window.__bigfootTest.triggerMenuCommand()` or the Tauri `trigger_menu_command` bridge to prove the native command path. Renderer-only commands may still be proven with direct keyboard events.
 - This ADR supersedes ADR 0050 by replacing “shared command IDs are enough” with “shared command IDs plus shared shortcut ownership metadata are required.”

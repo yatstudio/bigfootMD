@@ -8,7 +8,7 @@ date: 2026-04-11
 
 ## Context
 
-ADR 0051 gave Laputa a shared shortcut manifest and shared command IDs, but it still treated many shortcuts as native-menu-owned at execution time. In practice that meant `useAppKeyboard` deferred commands like `Cmd+Shift+I`, `Cmd+Shift+L`, and `Cmd+\` whenever the app ran under Tauri, and automated QA had to prove those flows by injecting menu-command IDs instead of pressing the real keys.
+ADR 0051 gave Bigfoot a shared shortcut manifest and shared command IDs, but it still treated many shortcuts as native-menu-owned at execution time. In practice that meant `useAppKeyboard` deferred commands like `Cmd+Shift+I`, `Cmd+Shift+L`, and `Cmd+\` whenever the app ran under Tauri, and automated QA had to prove those flows by injecting menu-command IDs instead of pressing the real keys.
 
 That is not a strong enough QA story for a keyboard-first app. If a user presses a shortcut while the editor is focused, we need a deterministic way to prove the actual key combo works. At the same time, we still want a native macOS menu bar with working menu items and accelerators.
 

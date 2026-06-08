@@ -13,7 +13,7 @@
     "section": "start",
     "headings": [
       "What You Choose",
-      "What Tolaria Creates",
+      "What Bigfoot Creates",
       "First Commands To Try",
       "AI Setup Prompt"
     ]
@@ -31,7 +31,7 @@
     ]
   },
   {
-    "title": "Install Tolaria",
+    "title": "Install Bigfoot",
     "path": "pages/start/install.md",
     "url": "/start/install",
     "section": "start",
@@ -98,7 +98,7 @@
     "url": "/concepts/git",
     "section": "concepts",
     "headings": [
-      "What Tolaria Uses Git For",
+      "What Bigfoot Uses Git For",
       "History And Diffs",
       "Local Commits",
       "Remotes"

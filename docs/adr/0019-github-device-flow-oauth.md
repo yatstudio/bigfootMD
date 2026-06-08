@@ -8,7 +8,7 @@ date: 2026-02-28
 
 ## Context
 
-Laputa supports git-backed vaults synced to GitHub. Users need to authenticate with GitHub to clone repos, push changes, and create new vault repositories. In a desktop app, the standard OAuth redirect flow is awkward (no web server to receive the callback). The Device Authorization Flow is designed for exactly this scenario.
+Bigfoot supports git-backed vaults synced to GitHub. Users need to authenticate with GitHub to clone repos, push changes, and create new vault repositories. In a desktop app, the standard OAuth redirect flow is awkward (no web server to receive the callback). The Device Authorization Flow is designed for exactly this scenario.
 
 ## Decision
 

@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-This folder contains Architecture Decision Records (ADRs) for the Laputa app.
+This folder contains Architecture Decision Records (ADRs) for the Bigfoot app.
 
 ## Format
 
@@ -95,7 +95,7 @@ proposed → active → superseded
 | [0037](0037-codemirror-language-markdown-highlighting.md) | Language-based markdown syntax highlighting in raw editor | active |
 | [0038](0038-frontmatter-backed-favorites.md) | Frontmatter-backed favorites (_favorite, _favorite_index) | active |
 | [0039](0039-git-history-for-note-dates.md) | Git history as source of truth for note creation/modification dates | active |
-| [0040](0040-custom-views-yml-filter-engine.md) | Custom Views — .laputa/views/*.yml with YAML filter engine | active |
+| [0040](0040-custom-views-yml-filter-engine.md) | Custom Views — .bigfoot/views/*.yml with YAML filter engine | active |
 | [0041](0041-filekind-all-files-in-vault-scanner.md) | fileKind field — scan all vault files, not just markdown | active |
 | [0042](0042-trash-auto-purge-safety-model.md) | Trash auto-purge safety model | superseded → [0045](0045-permanent-delete-no-trash.md) |
 | [0043](0043-reactive-vault-state-on-save.md) | Reactive vault state: editor changes propagate immediately to all UI | active |
@@ -180,7 +180,7 @@ proposed → active → superseded
 | [0126](0126-renderer-action-history.md) | Renderer action history for app-level undo and redo | active |
 | [0127](0127-native-ai-workspace-window.md) | Native AI workspace window | superseded -> [0128](0128-lightweight-ai-workspace-window.md) |
 | [0128](0128-lightweight-ai-workspace-window.md) | Lightweight AI workspace window | active |
-| [0129](0129-tolaria-vault-item-deep-links.md) | Tolaria vault item deep links | active |
+| [0129](0129-bigfoot-vault-item-deep-links.md) | Bigfoot vault item deep links | active |
 | [0130](0130-windows-authenticode-release-signing.md) | Windows Authenticode signing for release installers | active |
 | [0131](0131-reusable-release-artifact-build-workflow.md) | Reusable release artifact build workflow | active |
 | [0132](0132-alpha-authenticode-soft-gate.md) | Alpha Authenticode soft gate | active |

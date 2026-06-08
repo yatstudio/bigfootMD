@@ -2,7 +2,7 @@
 
 Use this command when you need to document an architectural decision made during a task.
 
-Inspired by [adr-tools](https://github.com/npryce/adr-tools) (Nygard format), adapted for Laputa's frontmatter-based note format.
+Inspired by [adr-tools](https://github.com/npryce/adr-tools) (Nygard format), adapted for Bigfoot's frontmatter-based note format.
 
 ## When to use this
 

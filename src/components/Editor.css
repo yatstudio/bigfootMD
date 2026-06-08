@@ -103,7 +103,7 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
   border-radius: 8px;
   background: var(--surface-popover);
   color: var(--primary);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   box-shadow: 0 2px 8px var(--shadow-dialog);
 }
@@ -113,7 +113,9 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
   height: 100%;
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-size: 15px;
+  font-size: 17px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
   /* Override BlockNote's internal color variables so .bn-editor background
      matches our vault theme instead of BlockNote's hardcoded light/dark defaults. */
   --bn-colors-editor-background: var(--bg-primary);
@@ -133,7 +135,7 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
 
 .editor__blocknote-container .bn-editor {
   width: 100%;
-  padding: 20px 0;
+  padding: 24px 0;
 }
 
 .editor__blocknote-container .bn-suggestion-menu {
@@ -191,7 +193,7 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
   display: none !important;
 }
 
-.editor__blocknote-container .tolaria-slash-menu-icon {
+.editor__blocknote-container .bigfoot-slash-menu-icon {
   position: relative;
   display: inline-flex;
   width: 20px;
@@ -200,17 +202,17 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
   justify-content: center;
 }
 
-.editor__blocknote-container .tolaria-slash-menu-icon__fill {
+.editor__blocknote-container .bigfoot-slash-menu-icon__fill {
   position: absolute;
   inset: 0;
   opacity: 0;
 }
 
-.editor__blocknote-container .bn-suggestion-menu-item:is(:hover, [aria-selected="true"]) .tolaria-slash-menu-icon__regular {
+.editor__blocknote-container .bn-suggestion-menu-item:is(:hover, [aria-selected="true"]) .bigfoot-slash-menu-icon__regular {
   opacity: 0;
 }
 
-.editor__blocknote-container .bn-suggestion-menu-item:is(:hover, [aria-selected="true"]) .tolaria-slash-menu-icon__fill {
+.editor__blocknote-container .bn-suggestion-menu-item:is(:hover, [aria-selected="true"]) .bigfoot-slash-menu-icon__fill {
   opacity: 1;
 }
 
@@ -307,8 +309,8 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
 }
 
 @media print {
-  html:has(body.tolaria-note-pdf-exporting),
-  body.tolaria-note-pdf-exporting {
+  html:has(body.bigfoot-note-pdf-exporting),
+  body.bigfoot-note-pdf-exporting {
     background: #fff !important;
     color: #111 !important;
     height: auto !important;
@@ -316,21 +318,21 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
     overflow: visible !important;
   }
 
-  body.tolaria-note-pdf-exporting * {
+  body.bigfoot-note-pdf-exporting * {
     box-shadow: none !important;
     text-shadow: none !important;
     visibility: hidden !important;
   }
 
-  body.tolaria-note-pdf-exporting :is(.app__sidebar, .app__note-list, .breadcrumb-bar, .editor-memory-probe) {
+  body.bigfoot-note-pdf-exporting :is(.app__sidebar, .app__note-list, .breadcrumb-bar, .editor-memory-probe) {
     display: none !important;
   }
 
-  body.tolaria-note-pdf-exporting .editor > .relative > :not(:has([data-note-pdf-export-root="true"])) {
+  body.bigfoot-note-pdf-exporting .editor > .relative > :not(:has([data-note-pdf-export-root="true"])) {
     display: none !important;
   }
 
-  body.tolaria-note-pdf-exporting :is(#root, .app-shell, .app, .app__editor, .editor, .editor > .relative, .editor-content-width--normal, .editor-content-width--wide, .editor-scroll-area) {
+  body.bigfoot-note-pdf-exporting :is(#root, .app-shell, .app, .app__editor, .editor, .editor > .relative, .editor-content-width--normal, .editor-content-width--wide, .editor-scroll-area) {
     display: block !important;
     height: auto !important;
     min-height: 0 !important;
@@ -338,12 +340,12 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
     width: auto !important;
   }
 
-  body.tolaria-note-pdf-exporting [data-note-pdf-export-root="true"],
-  body.tolaria-note-pdf-exporting [data-note-pdf-export-root="true"] * {
+  body.bigfoot-note-pdf-exporting [data-note-pdf-export-root="true"],
+  body.bigfoot-note-pdf-exporting [data-note-pdf-export-root="true"] * {
     visibility: visible !important;
   }
 
-  body.tolaria-note-pdf-exporting [data-note-pdf-export-root="true"] {
+  body.bigfoot-note-pdf-exporting [data-note-pdf-export-root="true"] {
     display: block !important;
     width: 100% !important;
     max-width: none !important;
@@ -354,9 +356,9 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
     color: #111 !important;
   }
 
-  body.tolaria-note-pdf-exporting .editor__blocknote-container,
-  body.tolaria-note-pdf-exporting .bn-container,
-  body.tolaria-note-pdf-exporting .bn-editor {
+  body.bigfoot-note-pdf-exporting .editor__blocknote-container,
+  body.bigfoot-note-pdf-exporting .bn-container,
+  body.bigfoot-note-pdf-exporting .bn-editor {
     height: auto !important;
     min-height: auto !important;
     overflow: visible !important;
@@ -364,31 +366,31 @@ body.mac-chrome .app:not(:has(.app__sidebar)):not(:has(.app__note-list)) .breadc
     color: #111 !important;
   }
 
-  body.tolaria-note-pdf-exporting .bn-editor {
+  body.bigfoot-note-pdf-exporting .bn-editor {
     padding: 0 !important;
   }
 
-  body.tolaria-note-pdf-exporting :is(.bn-block-outer, figure, table, pre, .math-block-shell, .mermaid-diagram, .tldraw-whiteboard) {
+  body.bigfoot-note-pdf-exporting :is(.bn-block-outer, figure, table, pre, .math-block-shell, .mermaid-diagram, .tldraw-whiteboard) {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  body.tolaria-note-pdf-exporting :is(img, svg, canvas) {
+  body.bigfoot-note-pdf-exporting :is(img, svg, canvas) {
     max-width: 100% !important;
   }
 
-  body.tolaria-note-pdf-exporting :is(a, .wikilink) {
+  body.bigfoot-note-pdf-exporting :is(a, .wikilink) {
     color: #111 !important;
     text-decoration: underline !important;
   }
 
-  body.tolaria-note-pdf-exporting .bn-block-content[data-content-type="codeBlock"] {
+  body.bigfoot-note-pdf-exporting .bn-block-content[data-content-type="codeBlock"] {
     border-color: #d0d7de !important;
     background: #f6f8fa !important;
     color: #111 !important;
   }
 
-  body.tolaria-note-pdf-exporting :is(.editor__code-block-copy, .mermaid-diagram__expand-button, .tldraw-whiteboard__resize-handle, .tlui-layout, .tlui-popover, [data-radix-popper-content-wrapper]) {
+  body.bigfoot-note-pdf-exporting :is(.editor__code-block-copy, .mermaid-diagram__expand-button, .tldraw-whiteboard__resize-handle, .tlui-layout, .tlui-popover, [data-radix-popper-content-wrapper]) {
     display: none !important;
   }
 }

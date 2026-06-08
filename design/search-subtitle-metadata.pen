@@ -323,7 +323,7 @@
               {
                 "type": "text",
                 "id": "f2_i1_title",
-                "content": "Build Laputa App",
+                "content": "Build Bigfoot App",
                 "fill": "$--foreground",
                 "fontFamily": "Inter",
                 "fontSize": 13,

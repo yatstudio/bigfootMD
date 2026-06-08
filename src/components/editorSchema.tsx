@@ -25,7 +25,7 @@ import { MERMAID_BLOCK_TYPE, mermaidFenceSource } from '../utils/mermaidMarkdown
 import { TLDRAW_BLOCK_TYPE, TLDRAW_DEFAULT_HEIGHT } from '../utils/tldrawMarkdown'
 import { MARKDOWN_HIGHLIGHT_STYLE } from '../utils/markdownHighlightMarkdown'
 import type { VaultEntry } from '../types'
-import { createTolariaCodeBlockOptions } from './codeBlockOptions'
+import { createBigfootCodeBlockOptions } from './codeBlockOptions'
 import { NoteTitleIcon } from './NoteTitleIcon'
 import { MermaidDiagram } from './MermaidDiagram'
 import { SafeHtmlSpan } from './SafeMarkup'
@@ -311,12 +311,12 @@ export function mediaBlockPropsForPreviewRuntime<T extends MediaBlockPreviewProp
   }
 }
 
-export function TolariaAudioBlock(props: AudioBlockProps) {
+export function BigfootAudioBlock(props: AudioBlockProps) {
   const externalMediaPreview = useExternalMediaPreview()
   return <AudioBlock {...mediaBlockPropsForPreviewRuntime(props, externalMediaPreview)} />
 }
 
-export function TolariaVideoBlock(props: VideoBlockProps) {
+export function BigfootVideoBlock(props: VideoBlockProps) {
   const externalMediaPreview = useExternalMediaPreview()
   return <VideoBlock {...mediaBlockPropsForPreviewRuntime(props, externalMediaPreview)} />
 }
@@ -324,7 +324,7 @@ export function TolariaVideoBlock(props: VideoBlockProps) {
 const AudioBlockSpec = createReactBlockSpec(
   createAudioBlockConfig,
   (config) => ({
-    render: TolariaAudioBlock,
+    render: BigfootAudioBlock,
     parse: audioParse(config),
     toExternalHTML: AudioToExternalHTML,
     runsBefore: ['file'],
@@ -334,7 +334,7 @@ const AudioBlockSpec = createReactBlockSpec(
 const VideoBlockSpec = createReactBlockSpec(
   createVideoBlockConfig,
   (config) => ({
-    render: TolariaVideoBlock,
+    render: BigfootVideoBlock,
     parse: videoParse(config),
     toExternalHTML: VideoToExternalHTML,
     runsBefore: ['file'],
@@ -389,7 +389,7 @@ const TldrawBlock = createReactBlockSpec(
   },
 )
 
-const codeBlock = createCodeBlockSpec(createTolariaCodeBlockOptions())
+const codeBlock = createCodeBlockSpec(createBigfootCodeBlockOptions())
 const audioBlock = AudioBlockSpec()
 const mathBlock = MathBlock()
 const mermaidBlock = MermaidBlock()

@@ -47,15 +47,15 @@ describe('fuzzyMatch', () => {
 
 describe('searchRank', () => {
   it('returns 0 for exact match', () => {
-    expect(searchRank('Refactoring', 'Refactoring')).toBe(0)
+    expect(searchRank('Bigfoot Capital', 'Bigfoot Capital')).toBe(0)
   })
 
   it('returns 0 for case-insensitive exact match', () => {
-    expect(searchRank('refactoring', 'Refactoring')).toBe(0)
+    expect(searchRank('refactoring', 'Bigfoot Capital')).toBe(0)
   })
 
   it('returns 1 for prefix match', () => {
-    expect(searchRank('Refactoring', 'Refactoring Ideas')).toBe(1)
+    expect(searchRank('Bigfoot Capital', 'Bigfoot Capital Ideas')).toBe(1)
   })
 
   it('returns 1 for case-insensitive prefix match', () => {
@@ -63,21 +63,21 @@ describe('searchRank', () => {
   })
 
   it('returns 2 for non-prefix fuzzy match', () => {
-    expect(searchRank('Ideas', 'Refactoring Ideas')).toBe(2)
+    expect(searchRank('Ideas', 'Bigfoot Capital Ideas')).toBe(2)
   })
 })
 
 describe('bestSearchRank', () => {
   it('returns 0 for title exact match', () => {
-    expect(bestSearchRank('Refactoring', 'Refactoring', [])).toBe(0)
+    expect(bestSearchRank('Bigfoot Capital', 'Bigfoot Capital', [])).toBe(0)
   })
 
   it('returns 0 for title exact match with aliases present', () => {
-    expect(bestSearchRank('Refactoring', 'Refactoring', ['refactor', 'cleanup'])).toBe(0)
+    expect(bestSearchRank('Bigfoot Capital', 'Bigfoot Capital', ['refactor', 'cleanup'])).toBe(0)
   })
 
   it('returns 1 for alias exact match (never 0)', () => {
-    expect(bestSearchRank('ref', 'Refactoring Notes', ['ref'])).toBe(1)
+    expect(bestSearchRank('ref', 'Bigfoot Capital Notes', ['ref'])).toBe(1)
   })
 
   it('ranks alias exact match above title prefix match', () => {
@@ -86,7 +86,7 @@ describe('bestSearchRank', () => {
   })
 
   it('returns 2 for title prefix match (no alias boost)', () => {
-    expect(bestSearchRank('Refactoring', 'Refactoring Ideas', [])).toBe(2)
+    expect(bestSearchRank('Bigfoot Capital', 'Bigfoot Capital Ideas', [])).toBe(2)
   })
 
   it('returns 3 for alias prefix match only', () => {
@@ -94,16 +94,16 @@ describe('bestSearchRank', () => {
   })
 
   it('returns 4 when nothing matches as exact or prefix', () => {
-    expect(bestSearchRank('ideas', 'Refactoring Ideas', ['thoughts'])).toBe(4)
+    expect(bestSearchRank('ideas', 'Bigfoot Capital Ideas', ['thoughts'])).toBe(4)
   })
 
   it('title exact match always beats alias exact match', () => {
-    const titleExact = bestSearchRank('Refactoring', 'Refactoring', ['refactor'])
-    const aliasExact = bestSearchRank('Refactoring', 'Refactoring Ideas', ['Refactoring'])
+    const titleExact = bestSearchRank('Bigfoot Capital', 'Bigfoot Capital', ['refactor'])
+    const aliasExact = bestSearchRank('Bigfoot Capital', 'Bigfoot Capital Ideas', ['Bigfoot Capital'])
     expect(titleExact).toBeLessThan(aliasExact)
   })
 
   it('handles trimmed whitespace in title and query', () => {
-    expect(bestSearchRank('Refactoring ', ' Refactoring', [])).toBe(0)
+    expect(bestSearchRank('Bigfoot Capital ', ' Bigfoot Capital', [])).toBe(0)
   })
 })

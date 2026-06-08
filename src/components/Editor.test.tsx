@@ -152,9 +152,9 @@ vi.mock('@blocknote/mantine', () => ({
 
 vi.mock('@blocknote/mantine/style.css', () => ({}))
 
-vi.mock('./tolariaEditorFormatting', () => ({
-  TolariaFormattingToolbar: ({ children }: PropsWithChildren) => <>{children}</>,
-  TolariaFormattingToolbarController: () => null,
+vi.mock('./bigfootEditorFormatting', () => ({
+  BigfootFormattingToolbar: ({ children }: PropsWithChildren) => <>{children}</>,
+  BigfootFormattingToolbarController: () => null,
 }))
 
 import { Editor } from './Editor'
@@ -1165,9 +1165,9 @@ describe('person @mention autocomplete', () => {
   }
   const nonPersonEntry: VaultEntry = {
     ...mockEntry,
-    title: 'Build Laputa App',
-    filename: 'laputa-app.md',
-    path: '/vault/project/laputa-app.md',
+    title: 'Build Bigfoot App',
+    filename: 'bigfoot-app.md',
+    path: '/vault/project/bigfoot-app.md',
     isA: 'Project',
     aliases: [],
   }

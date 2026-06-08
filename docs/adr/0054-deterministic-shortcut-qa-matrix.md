@@ -18,7 +18,7 @@ That made it too easy to ship a shortcut with passing automation while overstati
 
 ## Decision
 
-**Laputa will treat shortcut QA as an explicit part of the shared command manifest. Every shortcut-capable command must have a deterministic automated proof path, and the test harness must distinguish renderer shortcut-event proof from native menu-command proof instead of calling the browser harness “native Tauri QA”.**
+**Bigfoot will treat shortcut QA as an explicit part of the shared command manifest. Every shortcut-capable command must have a deterministic automated proof path, and the test harness must distinguish renderer shortcut-event proof from native menu-command proof instead of calling the browser harness “native Tauri QA”.**
 
 ## Options considered
 

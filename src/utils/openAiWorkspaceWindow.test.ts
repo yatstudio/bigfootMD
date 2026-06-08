@@ -78,7 +78,7 @@ describe('openAiWorkspaceWindow', () => {
       vaultPath: '/tmp/vault',
       vaultPaths: ['/tmp/vault', '/tmp/other'],
     })
-    const parsed = new URL(url, 'https://tolaria.localhost')
+    const parsed = new URL(url, 'https://bigfoot.localhost')
 
     expect(parsed.pathname).toBe('/')
     expect(parsed.searchParams.get('window')).toBe('ai-workspace')
@@ -121,7 +121,7 @@ describe('openAiWorkspaceWindow', () => {
       AI_WORKSPACE_WINDOW_LABEL,
       expect.objectContaining({
         url: expect.stringContaining('vault=%2Ftmp%2Fvault'),
-        title: 'Tolaria AI',
+        title: 'Bigfoot AI',
         width: 560,
         height: 680,
         minWidth: 420,
@@ -135,7 +135,7 @@ describe('openAiWorkspaceWindow', () => {
         visible: true,
       }),
     )
-    expect(localStorage.getItem('tolaria:ai-workspace-window:ai-workspace')).toBe('true')
+    expect(localStorage.getItem('bigfoot:ai-workspace-window:ai-workspace')).toBe('true')
   })
 
   it('preloads a hidden native AI workspace window', async () => {
@@ -150,7 +150,7 @@ describe('openAiWorkspaceWindow', () => {
         visible: false,
       }),
     )
-    expect(localStorage.getItem('tolaria:ai-workspace-window:ai-workspace')).toBe('true')
+    expect(localStorage.getItem('bigfoot:ai-workspace-window:ai-workspace')).toBe('true')
   })
 
   it('closes a hidden preloaded window', async () => {
