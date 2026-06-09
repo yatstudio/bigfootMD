@@ -178,7 +178,7 @@ describe('buildStableDownloadRedirectPage', () => {
     expect(html).toContain('Bigfoot Stable Download Unavailable')
     expect(html).toContain('View release history')
     expect(html).toContain('https://bigfoot.md/releases/')
-    expect(html).not.toContain('https://bigfoot.capital/bigfootMD/')
+    expect(html).not.toContain('https://bigfoot.capital/bigfootnote/')
     expect(html).not.toContain('DOWNLOAD_TARGETS')
   })
 })

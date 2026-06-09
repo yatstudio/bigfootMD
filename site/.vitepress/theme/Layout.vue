@@ -8,7 +8,7 @@ const fallbackGithubStars = "9,946";
 const githubStars = ref(fallbackGithubStars);
 const githubStarsCacheKey = "bigfoot:github-stars";
 const githubStarsCacheTtlMs = 60 * 60 * 1000;
-const githubRepoApiUrl = "https://api.github.com/repos/yatstudio/bigfootMD";
+const githubRepoApiUrl = "https://api.github.com/repos/yatstudio/bigfootnote";
 
 type GithubStarsCache = {
   stars: number;
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
       <template #nav-bar-content-after>
         <a
           class="github-star-widget"
-          href="https://github.com/yatstudio/bigfootMD"
+          href="https://github.com/yatstudio/bigfootnote"
           target="_blank"
           rel="noreferrer"
           :aria-label="`${githubStars} GitHub stars`"

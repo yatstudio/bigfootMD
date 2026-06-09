@@ -82,7 +82,7 @@
     },
     "updater": {
       "endpoints": [
-        "https://bigfoot.capital/bigfootMD/stable/latest.json"
+        "https://bigfoot.capital/bigfootnote/stable/latest.json"
       ],
       "windows": {
         "installMode": "passive"

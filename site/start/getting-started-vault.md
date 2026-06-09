@@ -1,6 +1,6 @@
 # Getting Started Vault
 
-The Getting Started vault is a small public sample vault hosted at [yatstudio/bigfootMD-getting-started](https://github.com/yatstudio/bigfootMD-getting-started).
+The Getting Started vault is a small public sample vault hosted at [yatstudio/bigfootnote-getting-started](https://github.com/yatstudio/bigfootnote-getting-started).
 
 It exists to show Bigfoot Note's conventions without requiring you to restructure your own notes first.
 

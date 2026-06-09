@@ -57,7 +57,7 @@ URL: /start/getting-started-vault
 
 # Getting Started Vault
 
-The Getting Started vault is a small public sample vault hosted at [yatstudio/bigfootMD-getting-started](https://github.com/yatstudio/bigfootMD-getting-started).
+The Getting Started vault is a small public sample vault hosted at [yatstudio/bigfootnote-getting-started](https://github.com/yatstudio/bigfootnote-getting-started).
 
 It exists to show Bigfoot's conventions without requiring you to restructure your own notes first.
 
@@ -104,7 +104,7 @@ Bigfoot publishes desktop builds for macOS, Windows, and Linux. macOS is the pri
 Use the latest stable release unless you are intentionally testing pre-release builds:
 
 - <a href="https://bigfoot.md/download/" target="_self">Download the latest stable build</a>
-- [Browse all GitHub releases](https://github.com/yatstudio/bigfootMD/releases)
+- [Browse all GitHub releases](https://github.com/yatstudio/bigfootnote/releases)
 - <a href="https://bigfoot.md/releases/" target="_self">Read the release notes</a>
 
 ## Homebrew
@@ -1126,15 +1126,15 @@ Use the [product board](https://bigfoot.capital/) for feature ideas. Search firs
 
 ## Discussions
 
-Use [GitHub Discussions](https://github.com/yatstudio/bigfootMD/discussions) for questions, conversations, show and tell, and broader community context.
+Use [GitHub Discussions](https://github.com/yatstudio/bigfootnote/discussions) for questions, conversations, show and tell, and broader community context.
 
 ## Contribute Code
 
-Small, focused pull requests are welcome. Check the product board first so you build the right thing, then open a PR on [GitHub](https://github.com/yatstudio/bigfootMD/pulls). The [contributing guide](https://github.com/yatstudio/bigfootMD/blob/main/CONTRIBUTING.md) explains the local workflow.
+Small, focused pull requests are welcome. Check the product board first so you build the right thing, then open a PR on [GitHub](https://github.com/yatstudio/bigfootnote/pulls). The [contributing guide](https://github.com/yatstudio/bigfootnote/blob/main/CONTRIBUTING.md) explains the local workflow.
 
 ## Report A Bug
 
-Use [GitHub Issues](https://github.com/yatstudio/bigfootMD/issues) for bugs. Include what happened, what you expected, and clear reproduction steps. If you are reporting from inside Bigfoot, use the Contribute panel to copy sanitized diagnostics and attach them to the issue.
+Use [GitHub Issues](https://github.com/yatstudio/bigfootnote/issues) for bugs. Include what happened, what you expected, and clear reproduction steps. If you are reporting from inside Bigfoot, use the Contribute panel to copy sanitized diagnostics and attach them to the issue.
 
 ---
 

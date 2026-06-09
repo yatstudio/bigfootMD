@@ -52,22 +52,22 @@ test.describe('Contribute modal', () => {
     await page.keyboard.press('Tab')
     await expect(page.getByRole('button', { name: 'Open Discussions' })).toBeFocused()
     await page.keyboard.press('Space')
-    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootMD/discussions')
+    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootnote/discussions')
 
     await page.keyboard.press('Tab')
     await expect(page.getByRole('button', { name: 'Open Pull Requests' })).toBeFocused()
     await page.keyboard.press('Enter')
-    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootMD/pulls')
+    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootnote/pulls')
 
     await page.keyboard.press('Tab')
     await expect(page.getByRole('button', { name: 'Open Contributing Guide' })).toBeFocused()
     await page.keyboard.press('Space')
-    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootMD/blob/main/CONTRIBUTING.md')
+    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootnote/blob/main/CONTRIBUTING.md')
 
     await page.keyboard.press('Tab')
     await expect(page.getByRole('button', { name: 'Open GitHub Issues' })).toBeFocused()
     await page.keyboard.press('Enter')
-    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootMD/issues')
+    await expect.poll(async () => page.evaluate(() => (window as typeof window & { __bigfootOpenedUrls: string[] }).__bigfootOpenedUrls)).toContain('https://github.com/yatstudio/bigfootnote/issues')
 
     await page.keyboard.press('Tab')
     await expect(page.getByRole('button', { name: 'Copy sanitized diagnostics' })).toBeFocused()

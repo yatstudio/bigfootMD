@@ -172,7 +172,7 @@ jobs:
           TAG="${{ needs.version.outputs.tag }}"
           REPO="${GITHUB_REPOSITORY}"
           REPO_NAME="${REPO#*/}"
-          PAGES_URL="https://bigfoot.capital/bigfootMD/"
+          PAGES_URL="https://bigfoot.capital/bigfootnote/"
 
           find_required() {
             local patterns=("$@")

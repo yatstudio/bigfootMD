@@ -64,6 +64,14 @@ jobs:
         env:
           VITE_SENTRY_RELEASE: ${{ needs.version.outputs.version }}
         run: pnpm tauri build --target ${{ matrix.target }} --bundles app
+      - name: Re-sign and verify macOS app bundle
+        run: |
+          APP_PATH=$(find src-tauri/target/${{ matrix.target }}/release/bundle/macos -maxdepth 1 -name '*.app' -print -quit)
+          test -n "$APP_PATH"
+          xattr -cr "$APP_PATH" || true
+          codesign --force --deep --sign - --timestamp=none "$APP_PATH"
+          codesign --verify --deep --strict --verbose=4 "$APP_PATH"
+          spctl -a -vvv -t execute "$APP_PATH" || true
       - name: Package app as tar.gz
         run: |
           mkdir -p artifacts

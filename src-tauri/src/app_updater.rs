@@ -5,8 +5,8 @@ use tauri_plugin_updater::UpdaterExt;
 
 const ALPHA_METADATA_ASSET_NAME: &str = "alpha-latest.json";
 const GITHUB_RELEASES_API_URL: &str =
-    "https://api.github.com/repos/yatstudio/bigfootMD/releases?per_page=100";
-const RELEASES_BASE_URL: &str = "https://bigfoot.capital/bigfootMD";
+    "https://api.github.com/repos/yatstudio/bigfootnote/releases?per_page=100";
+const RELEASES_BASE_URL: &str = "https://bigfoot.capital/bigfootnote";
 const UPDATER_HTTP_TIMEOUT: Duration = Duration::from_secs(5);
 const UPDATER_USER_AGENT: &str = concat!("Bigfoot/", env!("CARGO_PKG_VERSION"));
 
@@ -297,11 +297,11 @@ mod tests {
     fn release_channel_endpoints_match_expected_paths() {
         assert_eq!(
             ReleaseChannel::Alpha.updater_endpoint().unwrap().as_str(),
-            "https://bigfoot.capital/bigfootMD/alpha/latest.json"
+            "https://bigfoot.capital/bigfootnote/alpha/latest.json"
         );
         assert_eq!(
             ReleaseChannel::Stable.updater_endpoint().unwrap().as_str(),
-            "https://bigfoot.capital/bigfootMD/stable/latest.json"
+            "https://bigfoot.capital/bigfootnote/stable/latest.json"
         );
     }
 
@@ -310,15 +310,15 @@ mod tests {
         let releases = vec![
             github_alpha_release(
                 "alpha-v2026.5.8-alpha.0007",
-                "https://github.com/yatstudio/bigfootMD/releases/download/alpha-v2026.5.8-alpha.0007/alpha-latest.json",
+                "https://github.com/yatstudio/bigfootnote/releases/download/alpha-v2026.5.8-alpha.0007/alpha-latest.json",
             ),
             github_alpha_release(
                 "alpha-v2026.5.8-alpha.0017",
-                "https://github.com/yatstudio/bigfootMD/releases/download/alpha-v2026.5.8-alpha.0017/alpha-latest.json",
+                "https://github.com/yatstudio/bigfootnote/releases/download/alpha-v2026.5.8-alpha.0017/alpha-latest.json",
             ),
             github_alpha_release(
                 "alpha-v2026.5.7-alpha.0099",
-                "https://github.com/yatstudio/bigfootMD/releases/download/alpha-v2026.5.7-alpha.0099/alpha-latest.json",
+                "https://github.com/yatstudio/bigfootnote/releases/download/alpha-v2026.5.7-alpha.0099/alpha-latest.json",
             ),
         ];
 
@@ -326,7 +326,7 @@ mod tests {
             latest_alpha_release_metadata_url(&releases)
                 .unwrap()
                 .as_str(),
-            "https://github.com/yatstudio/bigfootMD/releases/download/alpha-v2026.5.8-alpha.0017/alpha-latest.json"
+            "https://github.com/yatstudio/bigfootnote/releases/download/alpha-v2026.5.8-alpha.0017/alpha-latest.json"
         );
     }
 

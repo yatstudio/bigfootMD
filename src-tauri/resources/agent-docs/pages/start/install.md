@@ -12,7 +12,7 @@ Bigfoot publishes desktop builds for macOS, Windows, and Linux. macOS is the pri
 Use the latest stable release unless you are intentionally testing pre-release builds:
 
 - <a href="https://bigfoot.md/download/" target="_self">Download the latest stable build</a>
-- [Browse all GitHub releases](https://github.com/yatstudio/bigfootMD/releases)
+- [Browse all GitHub releases](https://github.com/yatstudio/bigfootnote/releases)
 - <a href="https://bigfoot.md/releases/" target="_self">Read the release notes</a>
 
 ## Homebrew

@@ -1,4 +1,4 @@
-![Latest stable](https://img.shields.io/github/v/release/yatstudio/bigfootMD?display_name=tag) [![CI](https://github.com/yatstudio/bigfootMD/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yatstudio/bigfootMD/actions/workflows/ci.yml) [![Codecov](https://codecov.io/gh/yatstudio/bigfootMD/graph/badge.svg?branch=main)](https://codecov.io/gh/yatstudio/bigfootMD) [![CodeScene Hotspot Code Health](https://codescene.io/projects/76865/status-badges/hotspot-code-health)](https://codescene.io/projects/76865)
+![Latest stable](https://img.shields.io/github/v/release/yatstudio/bigfootnote?display_name=tag) [![CI](https://github.com/yatstudio/bigfootnote/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yatstudio/bigfootnote/actions/workflows/ci.yml) [![Codecov](https://codecov.io/gh/yatstudio/bigfootnote/graph/badge.svg?branch=main)](https://codecov.io/gh/yatstudio/bigfootnote) [![CodeScene Hotspot Code Health](https://codescene.io/projects/76865/status-badges/hotspot-code-health)](https://codescene.io/projects/76865)
 
 # 💧 Bigfoot Note
 
@@ -43,17 +43,17 @@ brew install --cask bigfoot
 
 ### Download from releases
 
-Download the [latest release here](https://bigfoot.capital/bigfootMD/download/) for macOS, Windows, or Linux. Windows installers are Authenticode-signed; company-managed devices may still require IT approval of the Bigfoot Note publisher before first install.
+Download the [latest release here](https://bigfoot.capital/bigfootnote/download/) for macOS, Windows, or Linux. Windows installers are Authenticode-signed; company-managed devices may still require IT approval of the Bigfoot Note publisher before first install.
 
 ## Getting started
 
-When you open Bigfoot Note for the first time you get the chance of cloning the [getting started vault](https://github.com/yatstudio/bigfootMD-getting-started) — which gives you a walkthrough of the whole app.
+When you open Bigfoot Note for the first time you get the chance of cloning the [getting started vault](https://github.com/yatstudio/bigfootnote-getting-started) — which gives you a walkthrough of the whole app.
 
 The public user docs live in [`site/`](site/) and are published to GitHub Pages. Start with [Install Bigfoot Note](site/start/install.md), then [First Launch](site/start/first-launch.md).
 
 ## Open source and local setup
 
-Bigfoot Note is open source and built with Tauri, React, and TypeScript. If you want to run or contribute to the app locally, here is [how to get started](https://github.com/yatstudio/bigfootMD/blob/main/docs/GETTING-STARTED.md). You can also find the gist below 👇
+Bigfoot Note is open source and built with Tauri, React, and TypeScript. If you want to run or contribute to the app locally, here is [how to get started](https://github.com/yatstudio/bigfootnote/blob/main/docs/GETTING-STARTED.md). You can also find the gist below 👇
 
 ### Prerequisites
 
